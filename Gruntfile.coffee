@@ -13,9 +13,6 @@ module.exports = (grunt) ->
 
   buildDir = path.resolve 'build'
 
-  test = ->
-    dd
-
   coffeeConfig =
     glob_to_multiple:
       expand: true
