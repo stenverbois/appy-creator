@@ -6,7 +6,7 @@ require('crash-reporter').start();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the javascript object is GCed.
-var main_window = null;
+var mainWindow = null;
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
@@ -18,19 +18,19 @@ app.on('window-all-closed', function() {
 // initialization and ready for creating browser windows.
 app.on('ready', function() {
   // Create the browser window.
-  main_window = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({width: 800, height: 600});
 
   // and load the index.html of the app.
-  main_window.loadUrl('file://' + __dirname + '/index.html');
+  mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
   // Open the devtools.
-  main_window.openDevTools();
+  mainWindow.openDevTools();
 
   // Emitted when the window is closed.
-  main_window.on('closed', function() {
+  mainWindow.on('closed', function() {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    main_window = null;
+    mainWindow = null;
   });
 });
