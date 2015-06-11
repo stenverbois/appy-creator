@@ -2,7 +2,7 @@
   "name": "something-app",
   "version": "0.0.0",
   "description": "A super awesome app creation tool!",
-  "main": "index.js",
+  "main": "build/src/main.js",
   "scripts": {
     "start": "electron .",
     "build-linux": "electron-packager . SuperApp --ignore=node_modules/electron-* --platform=win32 --arch=x64 --version=0.27.2",
@@ -29,8 +29,10 @@
     "grunt": "^0.4.5",
     "grunt-coffeelint": "0.0.13",
     "grunt-contrib-coffee": "^0.13.0",
+    "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-csslint": "^0.4.0",
     "grunt-contrib-less": "^1.0.1",
+    "grunt-contrib-watch": "^0.6.1",
     "grunt-cson": "^0.15.0",
     "grunt-lesslint": "^1.1.14"
   }

@@ -11,6 +11,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-csslint'
 
+  grunt.loadNpmTasks 'grunt-contrib-copy'
+
   buildDir = path.resolve 'build'
 
   coffeeConfig =
@@ -90,6 +92,11 @@ module.exports = (grunt) ->
       'style/**/*.less'
     ]
 
+  copyConfig =
+    testhtml:
+      src: 'index.html'
+      dest: buildDir + '/index.html'
+
   grunt.initConfig
     coffee: coffeeConfig
     cson: csonConfig
@@ -98,6 +105,8 @@ module.exports = (grunt) ->
     coffeelint: coffeelintConfig
     lesslint: lesslintConfig
     csslint: csslintConfig
+
+    copy: copyConfig
 
   grunt.registerTask 'test', ->
     console.log 'test called.'
