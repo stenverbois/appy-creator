@@ -15,8 +15,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-watch'
 
-  grunt.loadNpmTasks 'grunt-shell'
-
   buildDir = path.resolve 'build'
 
   coffeeConfig =
@@ -112,13 +110,6 @@ module.exports = (grunt) ->
         'coffee'
       ]
 
-  shellConfig =
-    electron:
-      command: electron + ' .'
-      option:
-        stdout: true
-        stderr: true
-
   grunt.initConfig
     coffee: coffeeConfig
     cson: csonConfig
@@ -132,11 +123,8 @@ module.exports = (grunt) ->
 
     watch: watchConfig
 
-    shell: shellConfig
-
   grunt.registerTask 'test', ->
-    console.log electron
+    console.log 'Working...'
 
   grunt.registerTask 'compile', ['coffee', 'cson', 'less']
   grunt.registerTask 'lint', ['coffeelint', 'csslint', 'lesslint']
-  grunt.registerTask 'run', ['watch', 'shell']

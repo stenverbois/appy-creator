@@ -17,11 +17,8 @@ app.on 'window-all-closed', ->
     app.quit()
 
 translateTemplate = (template) ->
-  console.log template
   for item in template
-    console.log item
     if item.command is 'RELOAD'
-      console.log 'yup'
       item.click = -> mainWindow.reload()
     translateTemplate(item.submenu) if item.submenu
   template
@@ -36,14 +33,12 @@ app.on 'ready', ->
 
   # and load the index.html of the app.
   p = path.normalize(__dirname + '/../index.html')
-  console.log p
   mainWindow.loadUrl 'file://' + p
 
   # Open the devtools.
   mainWindow.openDevTools()
 
   template = Menu.buildFromTemplate translateTemplate(m.menu)
-
 
   Menu.setApplicationMenu template
 
