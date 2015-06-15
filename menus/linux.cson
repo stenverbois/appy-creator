@@ -2,10 +2,16 @@
   {
     label: '&File'
     submenu: [
-      { label: 'New &Window', command: 'application:new-window' }
-      { label: '&New File', command: 'application:new-file' }
-      { label: '&Open File...', command: 'application:open-file' }
-      { label: 'Open Folder...', command: 'application:open-folder' }
+      { label: 'New &Window' }
+      { label: '&New File' }
+      { label: '&Open File...' }
+      { label: 'Open Folder...' }
+    ]
+  }
+  {
+    label: '&View'
+    submenu: [
+      { label: '&Reload', command: 'RELOAD' }
     ]
   }
 ]

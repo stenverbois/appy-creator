@@ -1,5 +1,6 @@
 fs = require 'fs'
 path = require 'path'
+electron = require 'electron-prebuilt'
 
 module.exports = (grunt) ->
 
@@ -12,6 +13,9 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-csslint'
 
   grunt.loadNpmTasks 'grunt-contrib-copy'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
+
+  grunt.loadNpmTasks 'grunt-shell'
 
   buildDir = path.resolve 'build'
 
@@ -97,6 +101,24 @@ module.exports = (grunt) ->
       src: 'index.html'
       dest: buildDir + '/index.html'
 
+  watchConfig =
+    src:
+      options:
+        livereload: true
+      files: [
+        'src/**/*.coffee'
+      ]
+      tasks: [
+        'coffee'
+      ]
+
+  shellConfig =
+    electron:
+      command: electron + ' .'
+      option:
+        stdout: true
+        stderr: true
+
   grunt.initConfig
     coffee: coffeeConfig
     cson: csonConfig
@@ -108,8 +130,13 @@ module.exports = (grunt) ->
 
     copy: copyConfig
 
+    watch: watchConfig
+
+    shell: shellConfig
+
   grunt.registerTask 'test', ->
-    console.log 'test called.'
+    console.log electron
 
   grunt.registerTask 'compile', ['coffee', 'cson', 'less']
   grunt.registerTask 'lint', ['coffeelint', 'csslint', 'lesslint']
+  grunt.registerTask 'run', ['watch', 'shell']

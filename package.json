@@ -34,6 +34,7 @@
     "grunt-contrib-less": "^1.0.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-cson": "^0.15.0",
-    "grunt-lesslint": "^1.1.14"
+    "grunt-lesslint": "^1.1.14",
+    "grunt-shell": "^1.1.2"
   }
 }
