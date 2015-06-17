@@ -11,7 +11,7 @@
   {
     label: '&View'
     submenu: [
-      { label: '&Reload', command: 'RELOAD' }
+      { label: '&Reload', command: 'window:reload', accelerator: 'CommandOrControl+Alt+R' }
     ]
   }
 ]

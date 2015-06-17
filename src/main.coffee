@@ -18,7 +18,7 @@ app.on 'window-all-closed', ->
 
 translateTemplate = (template) ->
   for item in template
-    if item.command is 'RELOAD'
+    if item.command is 'window:reload'
       item.click = -> mainWindow.reload()
     translateTemplate(item.submenu) if item.submenu
   template
