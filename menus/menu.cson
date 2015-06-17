@@ -5,7 +5,7 @@
       { label: 'New &Window' }
       { label: '&New File' }
       { label: '&Open File...' }
-      { label: 'Open Folder...' }
+      { label: 'Open F&older...' }
     ]
   }
   {
