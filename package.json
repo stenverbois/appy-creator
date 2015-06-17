@@ -17,6 +17,9 @@
     "mobile"
   ],
   "author": "Sten Verbois <stenverbois@gmail.com>",
+  "contributors": [
+    "Thierry Deruyttere <thierryderuyttere@gmail.com>"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/stenverbois/something-app/issues"
