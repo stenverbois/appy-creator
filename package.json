@@ -29,6 +29,7 @@
     "coffeelint": "^1.10.1",
     "electron-packager": "^4.1.2",
     "electron-prebuilt": "^0.27.2",
+    "fs-jetpack": "^0.6.5",
     "grunt": "^0.4.5",
     "grunt-coffeelint": "0.0.13",
     "grunt-contrib-coffee": "^0.13.0",
@@ -37,6 +38,7 @@
     "grunt-contrib-less": "^1.0.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-cson": "^0.15.0",
-    "grunt-lesslint": "^1.1.14"
+    "grunt-lesslint": "^1.1.14",
+    "q": "^1.4.1"
   }
 }

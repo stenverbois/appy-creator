@@ -33,6 +33,13 @@ class Editor
       # when you should delete the corresponding element
       mainWindow = null
 
+    specWindow = new BrowserWindow
+      width: 800
+      height: 600
+    specWindow.loadUrl 'file://' + path.normalize(__dirname + '/../SpecRunner.html')
+    specWindow.on 'close', ->
+      specWindow = null
+
   #TODO: Move to its own 'menu' module
   translateTemplate: (template) ->
     for item in template

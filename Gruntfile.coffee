@@ -4,14 +4,17 @@ electron = require 'electron-prebuilt'
 
 module.exports = (grunt) ->
 
-  grunt.loadNpmTasks 'grunt-cson'
+  # Linting
   grunt.loadNpmTasks 'grunt-lesslint'
   grunt.loadNpmTasks 'grunt-coffeelint'
-
-  grunt.loadNpmTasks 'grunt-contrib-less'
-  grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-csslint'
 
+  # Compiling
+  grunt.loadNpmTasks 'grunt-cson'
+  grunt.loadNpmTasks 'grunt-contrib-less'
+  grunt.loadNpmTasks 'grunt-contrib-coffee'
+
+  # General building
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-watch'
 
@@ -22,6 +25,7 @@ module.exports = (grunt) ->
       expand: true
       src: [
         'src/**/*.coffee'
+        'spec/**/*.coffee'
       ]
       dest: buildDir
       ext: '.js'
@@ -61,7 +65,7 @@ module.exports = (grunt) ->
       'Gruntfile.coffee'
     ]
     test: [
-      'spec/*.coffee'
+      'spec/**/*.coffee'
     ]
 
   csslintConfig =
@@ -120,7 +124,6 @@ module.exports = (grunt) ->
     csslint: csslintConfig
 
     copy: copyConfig
-
     watch: watchConfig
 
   grunt.registerTask 'test', ->
