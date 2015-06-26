@@ -5,8 +5,7 @@
   "main": "build/src/main.js",
   "scripts": {
     "start": "electron .",
-    "build-linux": "electron-packager . SuperApp --ignore=node_modules/electron-* --platform=win32 --arch=x64 --version=0.27.2",
-    "package": "asar pack SuperApp-linux/resources/default_app/ SuperApp-linux/resources/app.asar"
+    "build": "grunt build"
   },
   "repository": {
     "type": "git",

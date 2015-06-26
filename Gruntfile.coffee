@@ -37,7 +37,7 @@ module.exports = (grunt) ->
     glob_to_multiple:
       expand: true
       src: [
-        'menus/*.cson'
+        'menu/*.cson'
       ]
       dest: buildDir
       ext: '.json'
@@ -99,19 +99,53 @@ module.exports = (grunt) ->
     ]
 
   copyConfig =
-    testhtml:
+    index:
       src: 'index.html'
       dest: buildDir + '/index.html'
+    spec:
+      src: 'spec.html'
+      dest: buildDir + '/spec.html'
 
   watchConfig =
     src:
-      options:
-        livereload: true
       files: [
         'src/**/*.coffee'
       ]
       tasks: [
         'coffee'
+      ]
+    spec:
+      files: [
+        'spec/**/*.coffee'
+      ]
+      tasks: [
+        'coffee'
+      ]
+    style:
+      files: [
+        'style/**/*.less'
+      ]
+      tasks: [
+        'less'
+      ]
+    menu:
+      files: [
+        'menu/**/*.cson'
+      ]
+      tasks: [
+        'cson'
+      ]
+    copy:
+      files: [
+        'spec.html'
+        'index.html'
+      ]
+      tasks: [
+        'copy'
+      ]
+    grunt:
+      files: [
+        'Gruntfile.coffee'
       ]
 
   grunt.initConfig
@@ -131,3 +165,5 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'compile', ['coffee', 'cson', 'less']
   grunt.registerTask 'lint', ['coffeelint', 'csslint', 'lesslint']
+
+  grunt.registerTask 'build', ['compile', 'lint', 'copy']

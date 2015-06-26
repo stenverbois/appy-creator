@@ -4,7 +4,7 @@ path = require 'path'
 BrowserWindow = require 'browser-window'
 Menu = require 'menu'
 
-m = require '../menus/menu'
+m = require '../menu/menu'
 
 module.exports =
 class Editor
@@ -36,7 +36,7 @@ class Editor
     specWindow = new BrowserWindow
       width: 800
       height: 600
-    specWindow.loadUrl 'file://' + path.normalize(__dirname + '/../SpecRunner.html')
+    specWindow.loadUrl 'file://' + path.normalize(__dirname + '/../spec.html')
     specWindow.on 'close', ->
       specWindow = null
 
