@@ -28,6 +28,7 @@ class Editor
     # Load the index.html of the app
     mainWindow.loadUrl 'file://' + path.normalize(__dirname + '/../index.html')
 
+    # Set the menu
     menuManager.setMainMenu()
 
     # Emitted when the window is closed
