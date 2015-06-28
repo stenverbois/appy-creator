@@ -4,6 +4,7 @@ path = require 'path'
 BrowserWindow = require 'browser-window'
 
 MenuManager = require './menu'
+command = require './command'
 
 module.exports =
 class Editor
@@ -12,11 +13,11 @@ class Editor
   specWindow = null
 
   menuManager = null
-  commandRegistery = null
 
   constructor: () ->
     menuManager = new MenuManager
-    commandRegistery = new CommandRegistery
+
+    @registerCommands()
 
   ready: ->
     # Create the browser window
@@ -39,3 +40,6 @@ class Editor
     specWindow.loadUrl 'file://' + path.normalize(__dirname + '/../spec.html')
     specWindow.on 'close', ->
       specWindow = null
+
+  registerCommands: ->
+    command.register 'window:reload', -> mainWindow.reload()

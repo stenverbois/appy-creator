@@ -1,5 +1,7 @@
 Menu = require 'menu'
 
+command = require './command'
+
 m = require '../menu/menu'
 
 module.exports =
@@ -7,11 +9,10 @@ class MenuManager
   setMainMenu: () ->
     template = Menu.buildFromTemplate @translateTemplate(m.menu)
     Menu.setApplicationMenu template
-    console.log 'LELLELELELE'
 
   translateTemplate: (template) ->
     for item in template
-      if item.command is 'window:reload'
-        item.click = -> mainWindow.reload()
+      if item.command
+        item.click = -> command.get(item.command)()
       @translateTemplate(item.submenu) if item.submenu
     template
