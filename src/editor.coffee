@@ -2,16 +2,21 @@ fs = require 'fs'
 path = require 'path'
 
 BrowserWindow = require 'browser-window'
-Menu = require 'menu'
 
-m = require '../menu/menu'
+MenuManager = require './menu'
 
 module.exports =
 class Editor
 
   mainWindow = null
+  specWindow = null
+
+  menuManager = null
+  commandRegistery = null
 
   constructor: () ->
+    menuManager = new MenuManager
+    commandRegistery = new CommandRegistery
 
   ready: ->
     # Create the browser window
@@ -22,28 +27,15 @@ class Editor
     # Load the index.html of the app
     mainWindow.loadUrl 'file://' + path.normalize(__dirname + '/../index.html')
 
-    template = Menu.buildFromTemplate @translateTemplate(m.menu)
-
-    Menu.setApplicationMenu template
+    menuManager.setMainMenu()
 
     # Emitted when the window is closed
     mainWindow.on 'closed', ->
-      # Dereference the window object, usually you would store windows
-      # in an array if your app supports multi windows, this is the time
-      # when you should delete the corresponding element
       mainWindow = null
 
     specWindow = new BrowserWindow
-      width: 800
-      height: 600
+      width: 400
+      height: 400
     specWindow.loadUrl 'file://' + path.normalize(__dirname + '/../spec.html')
     specWindow.on 'close', ->
       specWindow = null
-
-  #TODO: Move to its own 'menu' module
-  translateTemplate: (template) ->
-    for item in template
-      if item.command is 'window:reload'
-        item.click = -> mainWindow.reload()
-      @translateTemplate(item.submenu) if item.submenu
-    template
