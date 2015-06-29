@@ -11,7 +11,7 @@ class CommandRegistery
     commandRegistery[command] = callback
 
   ###*
-   * Get the callback registerd to a command
+   * Get the callback registered to a command
    * @param  {String} command The command name
    * @return {Function}       The callback that is registered to the command
   ###
