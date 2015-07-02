@@ -27,3 +27,9 @@ class CommandRegistery
   ###
   @size: ->
     Object.keys(commandRegistery).length
+
+  ###*
+   * Empties the registery
+  ###
+  @reset: ->
+    commandRegistery = {}

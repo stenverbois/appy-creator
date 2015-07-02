@@ -2,22 +2,23 @@
   {
     label: '&File'
     submenu: [
-      { label: 'New &Window' }
-      { label: '&New File' }
-      { label: '&Open File...' }
-      { label: 'Open F&older...' }
+      { label: 'New Window' }
+      { label: 'New File' }
+      { label: 'Open File...' }
+      { label: 'Open Folder...' }
     ]
   }
   {
     label: '&View'
     submenu: [
-      { label: '&Reload', command: 'window:reload', accelerator: 'CommandOrControl+Alt+R' }
+      { label: 'Reload', command: 'window:reload', accelerator: 'CommandOrControl+Alt+R' }
     ]
   }
   {
     label: '&Developer'
     submenu: [
-      { label: '&Show Versions', command: 'editor:show-versions', accelerator: 'CommandOrControl+Alt+V' }
+      { label: 'Show Versions', command: 'editor:show-versions', accelerator: 'CommandOrControl+Alt+V' }
+      { label: 'Open Spec Window', command: 'editor:open-specs', accelerator: 'CommandOrControl+Alt+S' }
     ]
   }
 ]

@@ -36,16 +36,10 @@ class Editor
     @mainWindow.on 'closed', ->
       @mainWindow = null
 
-    # specWindow = new BrowserWindow
-    #   width: 400
-    #   height: 400
-    # specWindow.loadUrl 'file://' + path.normalize(__dirname + '/../spec.html')
-    # specWindow.on 'close', ->
-    #   specWindow = null
-
   registerCommands: ->
     command.register 'window:reload', => @mainWindow.reload()
     command.register 'editor:show-versions', => @showVersions()
+    command.register 'editor:open-specs', => @openSpecWindow()
 
   showVersions: ->
     Dialog.showMessageBox @mainWindow,
@@ -59,3 +53,11 @@ class Editor
                """
       detail: ''
       # icon: null
+
+  openSpecWindow: ->
+    @specWindow = new BrowserWindow
+      width: 400
+      height: 400
+    @specWindow.loadUrl 'file://' + path.normalize(__dirname + '/../spec.html')
+    @specWindow.on 'close', ->
+      @specWindow = null
