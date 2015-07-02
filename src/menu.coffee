@@ -16,6 +16,6 @@ class MenuManager
   translateTemplate: (template) ->
     for item in template
       if item.command
-        item.click = -> command.get(item.command)()
+        item.click = -> command.get(item.command)?()
       @translateTemplate(item.submenu) if item.submenu
     template

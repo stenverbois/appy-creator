@@ -14,6 +14,12 @@
       { label: '&Reload', command: 'window:reload', accelerator: 'CommandOrControl+Alt+R' }
     ]
   }
+  {
+    label: '&Developer'
+    submenu: [
+      { label: '&Show Versions', command: 'editor:show-versions', accelerator: 'CommandOrControl+Alt+V' }
+    ]
+  }
 ]
 
 # 'context-menu':
