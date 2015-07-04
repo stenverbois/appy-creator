@@ -50,7 +50,8 @@ module.exports = (grunt) ->
     glob_to_multiple:
       expand: true
       src: [
-        'style/**/*.less'
+        'style/main.less'
+        # '!style/kube/*.less'
       ]
       dest: buildDir
       ext: '.css'
@@ -105,6 +106,21 @@ module.exports = (grunt) ->
     spec:
       src: 'spec.html'
       dest: buildDir + '/spec.html'
+    semantic:
+      files: [
+        {
+          expand: true
+          flatten: true
+          src: ['style/semantic/dist/*.min.css', 'style/semantic/dist/*.min.js']
+          dest: buildDir + '/style/'
+        }
+        {
+          expand: true
+          cwd: 'style/semantic/dist'
+          src: ['themes/**']
+          dest: buildDir + '/style/'
+        }
+      ]
 
   watchConfig =
     src:
@@ -124,6 +140,7 @@ module.exports = (grunt) ->
     style:
       files: [
         'style/**/*.less'
+        'style/**/*.variables'
       ]
       tasks: [
         'less'
@@ -166,4 +183,4 @@ module.exports = (grunt) ->
   grunt.registerTask 'compile', ['coffee', 'cson', 'less']
   grunt.registerTask 'lint', ['coffeelint', 'csslint', 'lesslint']
 
-  grunt.registerTask 'build', ['compile', 'lint', 'copy']
+  grunt.registerTask 'build', ['compile', 'copy']
