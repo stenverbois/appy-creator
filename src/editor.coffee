@@ -40,6 +40,7 @@ class Editor
     command.register 'window:reload', => @mainWindow.reload()
     command.register 'editor:show-versions', => @showVersions()
     command.register 'editor:open-specs', => @openSpecWindow()
+    command.register 'window:open-dev-tools', => @mainWindow.openDevTools()
 
   showVersions: ->
     Dialog.showMessageBox @mainWindow,

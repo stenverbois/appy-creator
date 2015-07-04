@@ -19,6 +19,7 @@
     submenu: [
       { label: 'Show Versions', command: 'editor:show-versions', accelerator: 'CommandOrControl+Alt+V' }
       { label: 'Open Spec Window', command: 'editor:open-specs', accelerator: 'CommandOrControl+Alt+S' }
+      { label: 'Open Chrome Dev Tools', command: 'window:open-dev-tools', accelerator: 'CommandOrControl+Alt+I' }
     ]
   }
 ]
