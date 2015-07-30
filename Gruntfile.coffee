@@ -106,21 +106,6 @@ module.exports = (grunt) ->
     spec:
       src: 'spec.html'
       dest: buildDir + '/spec.html'
-    semantic:
-      files: [
-        {
-          expand: true
-          flatten: true
-          src: ['style/semantic/dist/*.min.css', 'style/semantic/dist/*.min.js']
-          dest: buildDir + '/style/'
-        }
-        {
-          expand: true
-          cwd: 'style/semantic/dist'
-          src: ['themes/**']
-          dest: buildDir + '/style/'
-        }
-      ]
 
   watchConfig =
     src:
@@ -184,3 +169,4 @@ module.exports = (grunt) ->
   grunt.registerTask 'lint', ['coffeelint', 'csslint', 'lesslint']
 
   grunt.registerTask 'build', ['compile', 'copy']
+  grunt.registerTask 'dev', ['build', 'watch']
