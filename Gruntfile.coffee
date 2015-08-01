@@ -109,7 +109,10 @@ module.exports = (grunt) ->
       dest: buildDir + '/spec.html'
     vue:
       expand: true
-      src: ['src/renderer/**/*']
+      src: [
+        'src/renderer/**/*'
+        '!src/**/*.coffee'
+      ]
       dest: buildDir
 
   webpackConfig =
@@ -123,6 +126,7 @@ module.exports = (grunt) ->
       module:
         loaders: [
           { test: /\.vue$/, loader: "vue" }
+          { test: /\.html$/, loader: "html" }
         ]
 
       storeStatsTo: "webpackStats" # Stats for later use i.e. <%= xyz.hash %>

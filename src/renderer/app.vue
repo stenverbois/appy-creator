@@ -16,8 +16,8 @@ module.exports =
   data:
     msg: "Message."
   components:
-    header: require './components/header.vue'
-    contents: require './components/content.vue'
-    footer: require './components/footer.vue'
+    header: require './views/header.vue'
+    contents: require './views/content'
+    footer: require './views/footer.vue'
 
 </script>
