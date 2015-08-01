@@ -149,6 +149,9 @@ module.exports = (grunt) ->
       files: [
         'Gruntfile.coffee'
       ]
+      tasks: [
+        'dev'
+      ]
 
   grunt.initConfig
     coffee: coffeeConfig
