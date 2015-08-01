@@ -11,15 +11,15 @@
   {
     label: '&View'
     submenu: [
-      { label: 'Reload', command: 'window:reload', accelerator: 'CommandOrControl+Alt+R' }
+      { label: 'Reload', command: 'window:reload', accelerator: 'CommandOrControl+R' }
     ]
   }
   {
     label: '&Developer'
     submenu: [
-      { label: 'Show Versions', command: 'editor:show-versions', accelerator: 'CommandOrControl+Alt+V' }
-      { label: 'Open Spec Window', command: 'editor:open-specs', accelerator: 'CommandOrControl+Alt+S' }
-      { label: 'Open Chrome Dev Tools', command: 'window:open-dev-tools', accelerator: 'CommandOrControl+Alt+I' }
+      { label: 'Show Versions', command: 'editor:show-versions', accelerator: 'CommandOrControl+V' }
+      { label: 'Open Spec Window', command: 'editor:run-specs', accelerator: 'CommandOrControl+S' }
+      { label: 'Toggle Chrome Dev Tools', command: 'window:toggle-dev-tools', accelerator: 'CommandOrControl+I' }
     ]
   }
 ]

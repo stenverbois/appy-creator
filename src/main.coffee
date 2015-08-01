@@ -1,6 +1,6 @@
 app = require 'app'
 
-Editor = require './editor'
+Application = require './application'
 
 mainEditor = null
 
@@ -11,5 +11,6 @@ app.on 'window-all-closed', ->
 
 # Electron ready for creating browser windows
 app.on 'ready', ->
-  mainEditor = new Editor
-  mainEditor.ready()
+  # command line options someday
+  options = {}
+  global.mainEditor = new Application(options)
