@@ -17,6 +17,7 @@ module.exports = (grunt) ->
   # General building
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-webpack'
 
   buildDir = path.resolve 'build'
 
@@ -106,14 +107,36 @@ module.exports = (grunt) ->
     spec:
       src: 'spec.html'
       dest: buildDir + '/spec.html'
+    vue:
+      expand: true
+      src: ['src/renderer/**/*']
+      dest: buildDir
+
+  webpackConfig =
+    someName:
+      # webpack options
+      entry: "./build/src/renderer/main.js"
+      output:
+        path: "./build/src/renderer/"
+        filename: "build.js"
+
+      module:
+        loaders: [
+          { test: /\.vue$/, loader: "vue" }
+        ]
+
+      storeStatsTo: "webpackStats" # Stats for later use i.e. <%= xyz.hash %>
+      watch: false
+      keepalive: false
+      devtool: 'source-map'
 
   watchConfig =
     src:
       files: [
-        'src/**/*.coffee'
+        'src/**/*.*'
       ]
       tasks: [
-        'coffee'
+        'build'
       ]
     spec:
       files: [
@@ -164,6 +187,7 @@ module.exports = (grunt) ->
 
     copy: copyConfig
     watch: watchConfig
+    webpack: webpackConfig
 
   grunt.registerTask 'test', ->
     console.log 'Working...'
@@ -171,5 +195,5 @@ module.exports = (grunt) ->
   grunt.registerTask 'compile', ['coffee', 'cson', 'less']
   grunt.registerTask 'lint', ['coffeelint', 'csslint', 'lesslint']
 
-  grunt.registerTask 'build', ['compile', 'copy']
+  grunt.registerTask 'build', ['compile', 'copy', 'webpack']
   grunt.registerTask 'dev', ['build', 'watch']
