@@ -7,7 +7,7 @@
 
 <template>
   <header></header>
-  <contents>ehhhh</contents>
+  <contents></contents>
   <footer></footer>
 </template>
 

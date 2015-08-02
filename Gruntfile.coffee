@@ -2,6 +2,8 @@ fs = require 'fs'
 path = require 'path'
 electron = require 'electron-prebuilt'
 
+webpack = require 'webpack'
+
 module.exports = (grunt) ->
 
   # Linting
@@ -111,12 +113,13 @@ module.exports = (grunt) ->
       expand: true
       src: [
         'src/renderer/**/*'
+        'src/style/**/*.less'
         '!src/**/*.coffee'
       ]
       dest: buildDir
 
   webpackConfig =
-    someName:
+    development:
       # webpack options
       entry: "./build/src/renderer/main.js"
       output:
@@ -127,7 +130,22 @@ module.exports = (grunt) ->
         loaders: [
           { test: /\.vue$/, loader: "vue" }
           { test: /\.html$/, loader: "html" }
+          { test: /\.less$/, loader: "style!css!less" }
+          { test: /\.css$/, loader: "style!css" }
         ]
+
+      plugins: [
+        new webpack.ProvidePlugin
+          $: "jquery"
+          jQuery: "jquery"
+      ]
+
+      resolve: {
+        alias: {
+          'gridster': './../../../lib/gridster/jquery.gridster.min.js'
+          'gridster-css': './../../../lib/gridster/jquery.gridster.min.css'
+        }
+      }
 
       storeStatsTo: "webpackStats" # Stats for later use i.e. <%= xyz.hash %>
       watch: false

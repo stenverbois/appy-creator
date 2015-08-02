@@ -41,7 +41,7 @@ class Application extends EventEmitter
     window = new BrowserWindow
       width: 800
       height: 600
-    window.loadUrl 'file://' + path.normalize(__dirname + '/../index.html')
+    window.loadUrl 'file://' + path.normalize(__dirname + '/../../index.html')
 
     # Set the menu
     @menu = new Menu()
@@ -72,6 +72,6 @@ class Application extends EventEmitter
     @specWindow = new BrowserWindow
       width: 400
       height: 400
-    @specWindow.loadUrl 'file://' + path.normalize(__dirname + '/../spec.html')
+    @specWindow.loadUrl 'file://' + path.normalize(__dirname + '/../../spec.html')
     @specWindow.on 'close', ->
       @specWindow = null

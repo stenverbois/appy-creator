@@ -1,4 +1,6 @@
-<style lang="css">
+<style lang="less">
+@import "./../../style/variables.less";
+
 .header {
   display: flex;
   flex-direction: row;
@@ -6,9 +8,9 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 50px;
+  height: @top-bar-height;
   background-color: lightblue;
-  
+
   -webkit-user-select: none;
 }
 </style>

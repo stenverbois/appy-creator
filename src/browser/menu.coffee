@@ -1,6 +1,6 @@
 Menu = require 'menu'
 
-m = require '../menu/menu'
+m = require '../../menu/menu'
 
 {EventEmitter} = require 'events'
 

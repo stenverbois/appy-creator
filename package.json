@@ -2,10 +2,11 @@
   "name": "appy-creator",
   "version": "0.0.0",
   "description": "A super awesome app creation tool!",
-  "main": "build/src/main.js",
+  "main": "build/src/browser/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "grunt build"
+    "build": "grunt build",
+    "dev": "grunt dev"
   },
   "repository": {
     "type": "git",
@@ -43,10 +44,12 @@
     "grunt-lesslint": "^1.1.14",
     "grunt-webpack": "^1.0.11",
     "html-loader": "^0.3.0",
+    "jquery": "^2.1.4",
     "less": "^2.5.1",
     "less-loader": "^2.2.0",
     "q": "^1.4.1",
     "style-loader": "^0.12.3",
+    "vue-dnd": "^0.1.1",
     "vue-loader": "^2.1.1",
     "webpack": "^1.10.5",
     "webpack-dev-server": "^1.10.1"
