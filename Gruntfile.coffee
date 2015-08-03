@@ -156,6 +156,7 @@ module.exports = (grunt) ->
     src:
       files: [
         'src/**/*.*'
+        'lib/**/*.*'
       ]
       tasks: [
         'build'
