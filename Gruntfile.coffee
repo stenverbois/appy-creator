@@ -142,7 +142,7 @@ module.exports = (grunt) ->
 
       resolve: {
         alias: {
-          'gridster': './../../../lib/gridster/jquery.gridster.min.js'
+          'gridster': './../../../lib/gridster/jquery.gridster.js'
           'gridster-css': './../../../lib/gridster/jquery.gridster.min.css'
         }
       }

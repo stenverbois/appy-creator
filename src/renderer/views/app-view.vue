@@ -42,4 +42,5 @@ module.exports =
       resize:
         enabled: true
       shift_widgets_up: false
+      max_cols: 5
 </script>
