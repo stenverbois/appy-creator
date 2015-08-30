@@ -123,8 +123,8 @@ module.exports = (grunt) ->
       # webpack options
       entry: "./build/src/renderer/main.js"
       output:
-        path: "./build/src/renderer/"
-        filename: "build.js"
+        path: "./build"
+        filename: "src/renderer/build.js"
 
       module:
         loaders: [
@@ -132,6 +132,14 @@ module.exports = (grunt) ->
           { test: /\.html$/, loader: "html" }
           { test: /\.less$/, loader: "style!css!less" }
           { test: /\.css$/, loader: "style!css" }
+          {
+            test: /\.(jpe?g|png|gif|svg)$/i
+            loaders: [
+              'file?hash=sha512&digest=hex&name=[hash].[ext]'
+              'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+            ]
+          }
+
         ]
 
       plugins: [

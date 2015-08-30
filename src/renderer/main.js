@@ -1,3 +1,7 @@
+$(document).on("mousedown", ".gridster button", function(e) {
+  console.log("click")
+})
+
 var Vue = require('vue')
 Vue.use(require('vue-dnd'))
 var appOptions = require('./app.vue')
