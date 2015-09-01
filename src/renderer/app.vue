@@ -1,4 +1,5 @@
 <style lang="less">
+  @import "../style/main.less";
   html, body {
     height: 100%;
     width: 100%;

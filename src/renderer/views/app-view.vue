@@ -24,7 +24,7 @@
 <template>
   <div class="app-window">
     <div class="gridster">
-        <ul>
+        <!-- <ul>
             <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
               <button style="width:100%; height:100%;">test</button>
             </li>
@@ -32,13 +32,15 @@
               <img src="../../../../appy.png" style="width:100%; height:100%;" draggable="false" alt="APPY" />
             </li>
             <li data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li>
-        </ul>
+        </ul> -->
     </div>
   </div>
 </template>
 
 <script lang="coffee">
 module.exports =
+  inherit: true
+
   attached: ->
     $(".gridster ul").gridster
       widget_margins: [10, 10]

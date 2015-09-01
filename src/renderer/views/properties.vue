@@ -11,5 +11,11 @@
 </style>
 
 <template>
-  <div class="properties">Properties</div>
+  <div class="properties">
+    <h3>Properties</h3>
+    <comp-button></comp-button>
+  </div>
 </template>
+
+<script lang="coffee">
+</script>
