@@ -23,6 +23,8 @@
 
 <script lang="coffee">
 module.exports =
+  inherit: true
+  
   data: ->
     test: 6
 

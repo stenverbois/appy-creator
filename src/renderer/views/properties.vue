@@ -13,9 +13,17 @@
 <template>
   <div class="properties">
     <h3>Properties</h3>
-    <comp-button></comp-button>
+    <ul>
+      <li v-repeat="propertyData in component.properties">
+        <property data="{{ propertyData }}"></property>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script lang="coffee">
+module.exports =
+  props: ['component']
+  components:
+    property: require './property.vue'
 </script>

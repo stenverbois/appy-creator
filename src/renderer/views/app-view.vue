@@ -34,6 +34,8 @@
             <li data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li>
         </ul> -->
     </div>
+    <button v-on="click: selected++">Switch</button>
+    <pre>{{ selectedComp | json }}</pre>
   </div>
 </template>
 
