@@ -37,12 +37,28 @@
     <button v-on="click: selected++">Next</button>
     <button v-on="click: selected--">Previous</button>
     <pre>{{ selectedComp | json }}</pre>
+    <ul>
+      <li v-repeat="component in components">
+        <component is="{{component.cmpName}}" cmp="{{component}}"></component>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script lang="coffee">
 module.exports =
   inherit: true
+
+  data: ->
+
+  computed:
+    computed: (comp) ->
+      comp
+
+  components:
+    "app-component": require './app-component.vue'
+
+    "cmp-button": require '../components/cmp-button.vue'
 
   attached: ->
     $(".gridster ul").gridster

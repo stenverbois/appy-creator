@@ -1,7 +1,7 @@
 Component = require './component'
 
 module.exports =
-class Button
+class Button extends Component
 
   constructor: (@name) ->
     @visible = true
@@ -15,3 +15,6 @@ class Button
       prop3:
         value: 'hehe'
         type: 'text'
+
+    @html = '<button>Name: {{selectedComp}}</button>'
+    @cmpName = 'cmp-button'
