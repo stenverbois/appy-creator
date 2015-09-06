@@ -1,5 +1,5 @@
 <template>
-  <button v-text="cmp.properties.prop3.value"></button>
+  <button v-text="cmp.properties.name.value"></button>
 </template>
 
 <script lang="coffee">
