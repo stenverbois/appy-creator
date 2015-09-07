@@ -7,6 +7,10 @@
   left: @component-bar-width;
   width: ~"calc(100% - @{properties-bar-width} - @{component-bar-width})";
   height: ~"calc(100% - @{top-bar-height} - @{footer-bar-height})";
+
+  .app-components {
+
+  }
 }
 
 .gridster {
@@ -34,14 +38,15 @@
             <li data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li>
         </ul> -->
     </div>
-    <button v-on="click: selected++">Next</button>
-    <button v-on="click: selected--">Previous</button>
-    <pre>{{ selectedComp | json }}</pre>
-    <ul>
-      <li v-repeat="component in components">
-        <component is="{{component.cmpName}}" cmp="{{component}}"></component>
-      </li>
-    </ul>
+    <div class="app-components">
+      <ul class="list-inline">
+        <li v-repeat="component in components">
+          <div v-on="click: selected = $index">
+            <component is="{{component.cmpName}}" cmp="{{component}}"></component>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
