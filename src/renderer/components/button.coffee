@@ -10,5 +10,3 @@ class Button extends Component
         type: 'text'
 
     @cmpName = 'cmp-button'
-
-    @html = 'app html TODO'
