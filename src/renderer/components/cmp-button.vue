@@ -1,5 +1,5 @@
 <template>
-  <button class="btn"
+  <button class="btn truncate"
     v-text="cmp.properties.name.value"
     v-show="cmp.properties.visibility.value">
     </button>

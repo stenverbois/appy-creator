@@ -8,19 +8,21 @@
   width: @properties-bar-width;
   height: ~"calc(100% - @{top-bar-height} - @{footer-bar-height})";
 }
+
+.property {
+  margin: 5px 0px 8px 0px
+}
 </style>
 
 <template>
   <div class="properties">
-    <h3>Properties</h3>
     <div class="row">
       <div class="col s12">
-        <ul>
-          <li v-repeat="propertyData in component.properties">
-            <property data="{{ propertyData }}"></property>
-          </li>
-        </ul>
-      </div>
+        <h4>Properties</h4>
+        <div class="row" v-repeat="propertyData in component.properties">
+          <property data="{{ propertyData }}"></property>
+        </div>
+      </div
     </div>
   </div>
 </template>

@@ -2,13 +2,18 @@
 </style>
 
 <template>
-  <div class="row">
-    <label>{{data.name}}<input type="{{data.type}}" v-model="data.value"></label>
-    <p>{{data.help}}</p>
-  </div>
+  <component is="{{propComponent}}" data="{{data}}"></component>
 </template>
 
 <script lang="coffee">
 module.exports =
   props: ['data']
+  components:
+    'prop-checkbox': require('../components/prop-checkbox.vue')
+    'prop-text': require('../components/prop-text.vue')
+
+  computed:
+    propComponent: ->
+      "prop-#{@data.type}"
+
 </script>
