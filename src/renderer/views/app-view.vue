@@ -54,12 +54,6 @@
 module.exports =
   inherit: true
 
-  data: ->
-
-  computed:
-    computed: (comp) ->
-      comp
-
   components:
     "cmp-button": require '../components/cmp-button.vue'
 

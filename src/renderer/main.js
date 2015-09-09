@@ -3,6 +3,7 @@ $(document).on("mousedown", ".gridster button", function(e) {
 })
 
 var Vue = require('vue')
+Vue.config.debug = true
 Vue.use(require('vue-dnd'))
 var appOptions = require('./app.vue')
 require('gridster')
