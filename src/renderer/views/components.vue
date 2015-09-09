@@ -13,7 +13,7 @@
 
 <template>
   <div class="components">Components
-    <button class="btn btn-primary"
+    <button class="btn"
       v-draggable="button: {a: 'YES'}"
       v-dropzone="component: testFunc2()">
       TEST
@@ -24,7 +24,7 @@
 <script lang="coffee">
 module.exports =
   inherit: true
-  
+
   data: ->
     test: 6
 

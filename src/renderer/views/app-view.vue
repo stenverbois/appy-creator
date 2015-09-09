@@ -39,7 +39,7 @@
         </ul> -->
     </div>
     <div class="app-components">
-      <ul class="list-inline">
+      <ul>
         <li v-repeat="component in components">
           <div v-on="click: selected = $index">
             <component is="{{component.cmpName}}" cmp="{{component}}"></component>

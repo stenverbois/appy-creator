@@ -13,11 +13,15 @@
 <template>
   <div class="properties">
     <h3>Properties</h3>
-    <ul>
-      <li v-repeat="propertyData in component.properties">
-        <property data="{{ propertyData }}"></property>
-      </li>
-    </ul>
+    <div class="row">
+      <div class="col s12">
+        <ul>
+          <li v-repeat="propertyData in component.properties">
+            <property data="{{ propertyData }}"></property>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -14,8 +14,6 @@
 
 <script lang="coffee">
 module.exports =
-  data:
-    msg: "Message."
   components:
     header: require './views/header.vue'
     contents: require './views/content'

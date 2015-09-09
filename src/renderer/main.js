@@ -1,7 +1,3 @@
-$(document).on("mousedown", ".gridster button", function(e) {
-  console.log("click")
-})
-
 var Vue = require('vue')
 Vue.config.debug = true
 Vue.use(require('vue-dnd'))

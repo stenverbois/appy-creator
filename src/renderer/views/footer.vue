@@ -14,7 +14,7 @@
 </style>
 
 <template>
-  <div class="footer container-fluid">
+  <div class="footer">
     <div class="row">
       Footer
     </div>

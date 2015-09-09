@@ -16,7 +16,7 @@
 </style>
 
 <template>
-  <div class="header container-fluid">
+  <div class="header">
     <div class="row">
       Header
     </div>
