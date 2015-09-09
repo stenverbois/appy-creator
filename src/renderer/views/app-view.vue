@@ -61,8 +61,6 @@ module.exports =
       comp
 
   components:
-    "app-component": require './app-component.vue'
-
     "cmp-button": require '../components/cmp-button.vue'
 
   attached: ->
