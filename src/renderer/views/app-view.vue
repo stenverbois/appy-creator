@@ -19,8 +19,16 @@
     position: absolute;
     left: 0;
   }
+
   li {
     background-color: #fe2;
+    &.selected {
+      background-color: #ff2222;
+    }
+  }
+
+  button {
+    padding: 0px;
   }
 }
 </style>
@@ -30,25 +38,21 @@
     <div class="row">
       <div class="col s12">
         <div class="gridster">
-            <!-- <ul>
-                <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-                  <button style="width:100%; height:100%;">test</button>
-                </li>
-                <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
-                  <img src="../../../../appy.png" style="width:100%; height:100%;" draggable="false" alt="APPY" />
-                </li>
-                <li data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li>
-            </ul> -->
-        </div>
-        <div class="app-components">
-          <div class="row">
-            <br/><!-- TODO: TIJDELIJK VOOR LOOKS TEST BUTTONS -->
-            <div v-repeat="component in components">
-              <div class="col s3 center-align" v-on="click: selected = $index">
+          <ul>
+            <li data-row="{{$index + 1}}" data-col="1" data-sizex="1" data-sizey="1" v-repeat="component in components" v-class="selected: selected == $index">
+              <div v-on="click: selected = $index" style="width: 100%; height: 100%; padding: 10px;">
                 <component is="{{component.cmpName}}" cmp="{{component}}"></component>
               </div>
-            </div>
-          </div>
+            </li>
+
+            <!-- <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+              <button style="width:100%; height:100%;">test</button>
+            </li>
+            <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+              <img src="../../../../appy.png" style="width:100%; height:100%;" draggable="false" alt="APPY" />
+            </li>
+            <li data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li> -->
+          </ul>
         </div>
       </div>
     </div>
