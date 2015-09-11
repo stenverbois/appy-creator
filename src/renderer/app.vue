@@ -14,6 +14,10 @@
 
 <script lang="coffee">
 module.exports =
+  # Data gets initiated in main.coffee
+  data: ->
+    userApp: undefined
+
   components:
     header: require './views/header.vue'
     contents: require './views/content'
