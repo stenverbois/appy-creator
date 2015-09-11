@@ -146,6 +146,7 @@ module.exports = (grunt) ->
         new webpack.ProvidePlugin
           $: "jquery"
           jQuery: "jquery"
+        new webpack.IgnorePlugin new RegExp('^fs|ipc')
       ]
 
       resolve: {

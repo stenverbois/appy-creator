@@ -28,7 +28,4 @@ module.exports =
   data: ->
     test: 6
 
-  methods:
-    testfunc2: ->
-      alert("sadface :(")
 </script>
