@@ -2,7 +2,6 @@
 @import "./../../style/variables.less";
 
 .app-window {
-  /*background-color: red;*/
   position: absolute;
   left: @component-bar-width;
   width: ~"calc(100% - @{properties-bar-width} - @{component-bar-width})";
@@ -17,7 +16,7 @@
   ul {
     list-style: none;
     position: absolute;
-    left: 0;
+    margin: auto;
   }
 
   li {
@@ -38,7 +37,7 @@
     <div class="row">
       <div class="col s12">
         <div class="gridster">
-          <ul>
+          <ul class="blue-grey lighten-2">
             <li data-row="{{$index + 1}}" data-col="1" data-sizex="1" data-sizey="1" v-repeat="component in components" v-class="selected: selected == $index">
               <div v-on="click: selected = $index" style="width: 100%; height: 100%; padding: 10px;">
                 <component is="{{component.cmpName}}" cmp="{{component}}"></component>
@@ -73,5 +72,7 @@ module.exports =
       resize:
         enabled: true
       shift_widgets_up: false
-      max_cols: 5
+      max_cols: 4
+      min_cols: 4
+      min_rows: 6
 </script>

@@ -1,6 +1,11 @@
 require 'gridster'
 require 'gridster-css'
 
+window.jQuery = require("jquery");
+window.$ = require("jquery");
+require("materialize-css/dist/css/materialize.min.css");
+require("materialize-css/dist/js/materialize.min.js");
+
 Vue = require 'vue'
 Vue.use require('vue-dnd')
 Vue.config.debug = true

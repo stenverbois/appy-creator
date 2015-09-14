@@ -7,9 +7,11 @@
 </style>
 
 <template>
-  <header></header>
-  <contents></contents>
-  <footer></footer>
+  <header-view></header-view>
+  <div>
+    <contents-view></contents-view>
+    <footer-view></footer-view>
+  </div>
 </template>
 
 <script lang="coffee">
@@ -19,8 +21,8 @@ module.exports =
     userApp: undefined
 
   components:
-    header: require './views/header.vue'
-    contents: require './views/content'
-    footer: require './views/footer.vue'
+    'header-view': require './views/header-view.vue'
+    'contents-view': require './views/content'
+    'footer-view': require './views/footer-view.vue'
 
 </script>
