@@ -29,7 +29,15 @@
   button {
     padding: 0px;
   }
+
+  li > div {
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+  }
+  
 }
+
 </style>
 
 <template>
@@ -39,7 +47,7 @@
         <div class="gridster">
           <ul class="blue-grey lighten-2">
             <li data-row="{{$index + 1}}" data-col="1" data-sizex="1" data-sizey="1" v-repeat="component in components" v-class="selected: selected == $index">
-              <div v-on="click: selected = $index" style="width: 100%; height: 100%; padding: 10px;">
+              <div v-on="click: selected = $index">
                 <component is="{{component.cmpName}}" cmp="{{component}}"></component>
               </div>
             </li>
