@@ -14,6 +14,6 @@ class Button extends Component
         name: 'Value'
         value: 'Sample text'
         type: 'text'
-    @name = ''
+    @name = 'Test'
 
     @cmpName = 'cmp-button'
