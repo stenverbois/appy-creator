@@ -41,6 +41,8 @@ class Application extends EventEmitter
     window = new BrowserWindow
       width: 800
       height: 600
+
+    window.maximize()
     window.loadUrl 'file://' + path.normalize(__dirname + '/../../index.html')
 
     # Set the menu
