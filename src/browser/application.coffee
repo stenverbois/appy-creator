@@ -61,6 +61,9 @@ class Application extends EventEmitter
     @menu.on 'window:toggle-dev-tools', ->
       BrowserWindow.getFocusedWindow().toggleDevTools()
 
+    @menu.on 'get-qrcode', ->
+      console.log("Not implemented yet")
+
   # registerCommands: ->
   #   command.register 'window:reload', => @mainWindow.reload()
   #   command.register 'editor:show-versions', => @showVersions()

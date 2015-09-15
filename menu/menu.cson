@@ -22,6 +22,12 @@
       { label: 'Toggle Chrome Dev Tools', command: 'window:toggle-dev-tools', accelerator: 'CommandOrControl+I' }
     ]
   }
+  {
+    label: '&Appy'
+    submenu:[
+      {label: 'Get QR Code', command:'get-qrcode', accelerator: 'CommandOrControl+C'}
+    ]
+  }
 ]
 
 # 'context-menu':
