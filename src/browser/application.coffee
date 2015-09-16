@@ -63,7 +63,7 @@ class Application extends EventEmitter
     @menu.on 'window:toggle-dev-tools', ->
       BrowserWindow.getFocusedWindow().toggleDevTools()
 
-    @menu.on 'window:close', ->
+    @menu.on 'application:close', ->
       window.close()
       #Kill app too
       app.quit()
