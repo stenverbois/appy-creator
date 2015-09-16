@@ -62,7 +62,7 @@ class Application extends EventEmitter
       BrowserWindow.getFocusedWindow().toggleDevTools()
 
     @menu.on 'get-qrcode', ->
-      console.log("Not implemented yet")
+      getQR()
 
   # registerCommands: ->
   #   command.register 'window:reload', => @mainWindow.reload()
@@ -80,3 +80,12 @@ class Application extends EventEmitter
     @specWindow.loadUrl 'file://' + path.normalize(__dirname + '/../../spec.html')
     @specWindow.on 'close', ->
       @specWindow = null
+
+  getQR = ->
+    @QrWindow = new BrowserWindow
+      width: 400
+      height: 400
+      title: "Qr code"
+    @QrWindow.loadUrl 'file://' + path.normalize(__dirname + '/../renderer/views/qr.vue')
+    @QrWindow.on 'close', ->
+      @QrWindow = null

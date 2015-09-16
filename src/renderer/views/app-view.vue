@@ -20,7 +20,8 @@
   }
 
   li {
-    background-color: #fe2;
+    //Remove background color
+    background-color: rgba(255, 0, 0, 0.0);;
     &.selected {
       background-color: #ff2222;
     }
@@ -35,7 +36,7 @@
     height: 100%;
     padding: 2px;
   }
-  
+
 }
 
 </style>
