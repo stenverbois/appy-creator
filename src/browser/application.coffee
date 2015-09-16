@@ -1,5 +1,7 @@
 fs = require 'fs'
 path = require 'path'
+app = require 'app'
+
 {EventEmitter} = require 'events'
 
 ipc = require 'ipc'
@@ -61,6 +63,11 @@ class Application extends EventEmitter
     @menu.on 'window:toggle-dev-tools', ->
       BrowserWindow.getFocusedWindow().toggleDevTools()
 
+    @menu.on 'window:close', ->
+      window.close()
+      #Kill app too
+      app.quit()
+
     @menu.on 'get-qrcode', ->
       getQR()
 
@@ -86,6 +93,6 @@ class Application extends EventEmitter
       width: 400
       height: 400
       title: "Qr code"
-    @QrWindow.loadUrl 'file://' + path.normalize(__dirname + '/../renderer/views/qr.vue')
+    @QrWindow.loadUrl 'file://' + path.normalize(__dirname + '/../renderer/views/qr.html')
     @QrWindow.on 'close', ->
       @QrWindow = null

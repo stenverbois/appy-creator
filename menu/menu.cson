@@ -6,6 +6,7 @@
       { label: 'New File' }
       { label: 'Open File...' }
       { label: 'Open Folder...' }
+      { label: 'Quit', command:'window:close', accelerator: 'CommandOrControl+Q' }
     ]
   }
   {
