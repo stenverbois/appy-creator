@@ -4,6 +4,6 @@
 
 
 <script lang="coffee">
-    new Vue(el:"qr")
+    new Vue(el:"#qr")
 
 </script>
