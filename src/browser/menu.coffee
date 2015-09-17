@@ -18,4 +18,5 @@ class AppMenu extends EventEmitter
       if item.command
         item.click = => @emit(item.command)
       @translateTemplate(item.submenu) if item.submenu
+      
     template

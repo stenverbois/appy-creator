@@ -25,7 +25,7 @@ class Application extends EventEmitter
     # Load the index.html of the app
     # @mainWindow.loadUrl 'file://' + path.normalize(__dirname + '/../index.html')
 
-  openWithOptions: (options) ->
+  openWithOptions:  (options) ->
     {test} = options
 
     if test
@@ -37,7 +37,7 @@ class Application extends EventEmitter
     @windows.push newWindow
     newWindow.on 'closed', =>
       # Remove app window
-      @windows.splice(idx, 1) for w, idx in @windows when w is appWindow
+      @windows.splice(idx, 1) for w, idx in @windows when w is Menu
 
   openWindow: (options) ->
     window = new BrowserWindow
@@ -54,10 +54,12 @@ class Application extends EventEmitter
     @menu.on 'window:reload', ->
       BrowserWindow.getFocusedWindow().reload()
 
-    @menu.on 'application:show-versions', ->
+    @menu.on 'editor:show-versions', ->
       window.showVersions()
 
-    @menu.on 'application:run-specs', ->
+    @menu.on 'editor:run-specs', =>
+      # Fat arrow needed since we want the function from
+      # Application and not from AppMenu
       @openWithOptions(test: true)
 
     @menu.on 'window:toggle-dev-tools', ->
@@ -70,6 +72,7 @@ class Application extends EventEmitter
 
     @menu.on 'get-qrcode', ->
       getQR()
+
 
   # registerCommands: ->
   #   command.register 'window:reload', => @mainWindow.reload()
