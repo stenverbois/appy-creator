@@ -26,7 +26,7 @@
   {
     label: '&Appy'
     submenu:[
-      {label: 'Get QR Code', command:'get-qrcode', accelerator: 'CommandOrControl+C'}
+      {label: 'Get QR Code', command:'appy:get-qrcode', accelerator: 'CommandOrControl+C'}
     ]
   }
 ]

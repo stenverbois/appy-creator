@@ -70,7 +70,7 @@ class Application extends EventEmitter
       #Kill app too
       app.quit()
 
-    @menu.on 'get-qrcode', ->
+    @menu.on 'appy:get-qrcode', ->
       getQR()
 
 
