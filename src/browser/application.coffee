@@ -25,7 +25,7 @@ class Application extends EventEmitter
     # Load the index.html of the app
     # @mainWindow.loadUrl 'file://' + path.normalize(__dirname + '/../index.html')
 
-  openWithOptions:  (options) ->
+  openWithOptions: (options) ->
     {test} = options
 
     if test
@@ -37,7 +37,7 @@ class Application extends EventEmitter
     @windows.push newWindow
     newWindow.on 'closed', =>
       # Remove app window
-      @windows.splice(idx, 1) for w, idx in @windows when w is Menu
+      @windows.splice(idx, 1) for w, idx in @windows when w is newWindow
 
   openWindow: (options) ->
     window = new BrowserWindow

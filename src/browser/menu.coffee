@@ -15,8 +15,10 @@ class AppMenu extends EventEmitter
   # using the command registery.
   translateTemplate: (template) ->
     for item in template
-      if item.command
-        item.click = => @emit(item.command)
-      @translateTemplate(item.submenu) if item.submenu
-      
+      do (item) =>
+        if item.command
+          item.click = =>
+            @emit(item.command)
+            
+        @translateTemplate(item.submenu) if item.submenu
     template
