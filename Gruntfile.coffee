@@ -121,10 +121,13 @@ module.exports = (grunt) ->
   webpackConfig =
     development:
       # webpack options
-      entry: "./build/src/renderer/main.js"
+      entry:
+        main: "./build/src/renderer/main.js"
+        # qr: ""
+
       output:
         path: "./build"
-        filename: "src/renderer/build.js"
+        filename: "src/[name].entry.js"
 
       module:
         loaders: [
