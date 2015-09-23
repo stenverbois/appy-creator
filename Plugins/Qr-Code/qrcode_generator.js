@@ -55,11 +55,4 @@
         // Set image source
         new_image.src = "appy.jpg";
     };
-})(jQuery);
-
-
-$(document).ready(function(){
-    // How to use
-    $('#test').createQR('2fd4e1c67a2d28fced849ee1bb76e7391b93eb12');
-
 });
