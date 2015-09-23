@@ -1,7 +1,6 @@
 fs = require 'fs'
 path = require 'path'
 app = require 'app'
-
 {EventEmitter} = require 'events'
 
 ipc = require 'ipc'
@@ -12,7 +11,6 @@ Menu = require './menu'
 
 module.exports =
 class Application extends EventEmitter
-
 
   constructor: (options) ->
     @openWithOptions(options)
@@ -80,8 +78,6 @@ class Application extends EventEmitter
   #   command.register 'editor:open-specs', => @openSpecWindow()
   #   command.register 'window:open-dev-tools', => @mainWindow.openDevTools()
   #   # command.get('editor:show-versions')()
-
-
 
   openSpecsWindow: (options) ->
     @specWindow = new BrowserWindow
