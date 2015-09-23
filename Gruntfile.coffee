@@ -123,7 +123,7 @@ module.exports = (grunt) ->
       # webpack options
       entry:
         main: "./build/src/renderer/main.js"
-        # qr: ""
+        qr: "./build/src/renderer/views/qr.js"
 
       output:
         path: "./build"
@@ -157,6 +157,7 @@ module.exports = (grunt) ->
         alias: {
           'gridster': './../../../lib/gridster/jquery.gridster.js'
           'gridster-css': './../../../lib/gridster/jquery.gridster.min.css'
+          'jquery-qrcode': './../../../../lib/qr-code/jquery.qrcode-0.12.0.min.js'
         }
       }
 
