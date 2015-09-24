@@ -48,7 +48,7 @@
         <div class="gridster">
           <ul class="blue-grey lighten-2">
             <li data-row="{{$index + 1}}" data-col="1" data-sizex="1" data-sizey="1" v-repeat="component in components" v-class="selected: selected == $index">
-              <div v-on="click: selected = $index">
+              <div v-on="mousedown: selected = $index">
                 <component is="{{component.cmpName}}" cmp="{{component}}"></component>
               </div>
             </li>
