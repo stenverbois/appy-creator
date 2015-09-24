@@ -9,3 +9,6 @@ class UserApp extends EventEmitter
 
   init: ->
     @components = [new Button('Button1'), new Button('Button2'), new Button('Button3'), new Button('Button4')]
+
+  removeComponent: (idx) ->
+    @components.splice(idx, 1)

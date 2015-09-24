@@ -3,7 +3,7 @@ require './style.less'
 module.exports =
   inherit: true
 
-  template: require('./template.html')
+  template: require './template.html'
   components:
     components: require '../components.vue'
     properties: require '../properties.vue'
