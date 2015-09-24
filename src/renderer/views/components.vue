@@ -17,6 +17,10 @@
       v-dropzone="component: testFunc2()">
       TEST
     </button>
+    <button class="btn"
+            v-on="click: userApp.addButton()">
+      Button
+    </button>
   </div>
 </template>
 
