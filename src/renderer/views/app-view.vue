@@ -83,5 +83,6 @@ module.exports =
       shift_widgets_up: false
       max_cols: 4
       min_cols: 4
-      min_rows: 6
+      min_rows: 10
+      max_rows: 10
 </script>
