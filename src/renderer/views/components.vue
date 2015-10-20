@@ -21,6 +21,16 @@
             v-on="click: userApp.addButton()">
       Button
     </button>
+
+    <button class="btn"
+            v-on="click: userApp.addLabel()">
+        Label
+      </button>
+
+      <button class="btn"
+              v-on="click: userApp.addTextbox()">
+          Textbox
+        </button>
   </div>
 </template>
 
