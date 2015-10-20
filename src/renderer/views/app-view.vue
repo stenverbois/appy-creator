@@ -48,8 +48,9 @@
         <div class="gridster">
           <ul class="blue-grey lighten-2">
             <li data-row="{{$index + 1}}" data-col="1" data-sizex="1" data-sizey="1" v-repeat="component in components" v-class="selected: selected == $index">
+
               <div v-on="mousedown: selected = $index">
-                <component is="{{component.cmpName}}" cmp="{{component}}"></component>
+                <component is="{{component.cmpName}}" cmp="{{component | addToGrid}}"></component>
               </div>
             </li>
 
@@ -76,15 +77,26 @@ module.exports =
     "cmp-label": require '../components/cmp-label.vue'
     "cmp-textbox": require '../components/cmp-textbox.vue'
 
+
+
   attached: ->
-    $(".gridster ul").gridster
-      widget_margins: [10, 10]
-      widget_base_dimensions: [40, 40]
-      resize:
-        enabled: true
-      shift_widgets_up: false
-      max_cols: 4
-      min_cols: 4
-      min_rows: 4
-      max_rows: 6
+    @gridster = $(".gridster ul").gridster(
+                widget_margins: [10, 10]
+                widget_base_dimensions: [40, 40]
+                resize:
+                  enabled: true
+                shift_widgets_up: false
+                max_cols: 4
+                min_cols: 4
+                min_rows: 4
+                max_rows: 6).data 'gridster'
+
+  filters:
+    addToGrid: (value) ->
+      console.log("here")
+      console.log(value)
+      @gridster.addVueComp(value)
+      return value
+
+
 </script>

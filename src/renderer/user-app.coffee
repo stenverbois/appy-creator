@@ -12,7 +12,7 @@ class UserApp extends EventEmitter
     @components = []
 
   init: ->
-    @addComp('Button')
+    
 
   removeComponent: (idx) ->
     @components.splice idx, 1
