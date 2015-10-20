@@ -18,17 +18,17 @@
       TEST
     </button>
     <button class="btn"
-            v-on="click: userApp.addButton()">
+            v-on="click: userApp.addComp('Button')">
       Button
     </button>
 
     <button class="btn"
-            v-on="click: userApp.addLabel()">
+            v-on="click: userApp.addComp('Label')">
         Label
       </button>
 
       <button class="btn"
-              v-on="click: userApp.addTextbox()">
+              v-on="click: userApp.addComp('Textbox')">
           Textbox
         </button>
   </div>
