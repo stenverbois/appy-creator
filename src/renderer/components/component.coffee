@@ -3,4 +3,4 @@
 module.exports =
 class Component extends EventEmitter
   @visible = true
-  @name = "Undefined" 
+  @name = "Undefined"

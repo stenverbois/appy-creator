@@ -7,8 +7,9 @@
 
 <script lang="coffee">
 module.exports =
+  inherit: true
   props: ['cmp']
-  methods:
-    foo: (test, e) ->
-      e.preventDefault()
+
+  attached: ->
+    @addToGrid()
 </script>
