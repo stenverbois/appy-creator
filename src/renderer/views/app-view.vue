@@ -81,22 +81,20 @@ module.exports =
 
   attached: ->
     @gridster = $(".gridster ul").gridster(
-                widget_margins: [10, 10]
-                widget_base_dimensions: [40, 40]
-                resize:
-                  enabled: true
-                shift_widgets_up: false
-                max_cols: 4
-                min_cols: 4
-                min_rows: 4
-                max_rows: 6).data 'gridster'
+      widget_margins: [10, 10]
+      widget_base_dimensions: [40, 40]
+      resize:
+        enabled: true
+      shift_widgets_up: false
+      max_cols: 4
+      min_cols: 4
+      min_rows: 4
+      max_rows: 6
+    ).data 'gridster'
 
   filters:
     addToGrid: (value) ->
-      console.log("here")
-      console.log(value)
       @gridster.addVueComp(value)
-      return value
-
+      value
 
 </script>
