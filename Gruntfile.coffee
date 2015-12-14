@@ -6,20 +6,13 @@ webpack = require 'webpack'
 
 module.exports = (grunt) ->
 
-  # Linting
-  grunt.loadNpmTasks 'grunt-lesslint'
-  grunt.loadNpmTasks 'grunt-coffeelint'
-  grunt.loadNpmTasks 'grunt-contrib-csslint'
-
   # Compiling
   grunt.loadNpmTasks 'grunt-cson'
-  grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
 
   # General building
-  grunt.loadNpmTasks 'grunt-contrib-copy'
-  grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-webpack'
+  grunt.loadNpmTasks 'grunt-contrib-copy'
 
   buildDir = path.resolve 'build'
 
@@ -27,8 +20,7 @@ module.exports = (grunt) ->
     glob_to_multiple:
       expand: true
       src: [
-        'src/**/*.coffee'
-        'spec/**/*.coffee'
+        'src/browser/**/*.coffee'
       ]
       dest: buildDir
       ext: '.js'
@@ -40,67 +32,10 @@ module.exports = (grunt) ->
     glob_to_multiple:
       expand: true
       src: [
-        'menu/*.cson'
+        'menu/**/*.cson'
       ]
       dest: buildDir
       ext: '.json'
-
-  lessConfig =
-    options:
-      paths: [
-        'style'
-      ]
-    glob_to_multiple:
-      expand: true
-      src: [
-        'style/main.less'
-        # '!style/kube/*.less'
-      ]
-      dest: buildDir
-      ext: '.css'
-
-  coffeelintConfig =
-    options:
-      configFile: 'coffeelint.json'
-    src: [
-      'src/**/*.coffee'
-    ]
-    build: [
-      'Gruntfile.coffee'
-    ]
-    test: [
-      'spec/**/*.coffee'
-    ]
-
-  csslintConfig =
-    options:
-      'adjoining-classes': false
-      'duplicate-background-images': false
-      'box-model': false
-      'box-sizing': false
-      'bulletproof-font-face': false
-      'compatible-vendor-prefixes': false
-      'display-property-grouping': false
-      'fallback-colors': false
-      'font-sizes': false
-      'gradients': false
-      'ids': false
-      'important': false
-      'known-properties': false
-      'outline-none': false
-      'overqualified-elements': false
-      'qualified-headings': false
-      'unique-headings': false
-      'universal-selector': false
-      'vendor-prefix': false
-    src: [
-      'style/**/*.css'
-    ]
-
-  lesslintConfig =
-    src: [
-      'style/**/*.less'
-    ]
 
   copyConfig =
     index:
@@ -109,25 +44,19 @@ module.exports = (grunt) ->
     spec:
       src: 'spec.html'
       dest: buildDir + '/spec.html'
-    vue:
-      expand: true
-      src: [
-        'src/renderer/**/*'
-        'src/style/**/*.less'
-        '!src/**/*.coffee'
-      ]
-      dest: buildDir
 
   webpackConfig =
     development:
       # webpack options
       entry:
-        main: "./build/src/renderer/main.js"
-        qr: "./build/src/renderer/views/qr.js"
+        main: "./src/renderer/main"
+        # qr: "./build/src/renderer/views/qr.js"
 
       output:
         path: "./build"
         filename: "src/[name].entry.js"
+
+      target: 'electron'
 
       module:
         loaders: [
@@ -135,7 +64,10 @@ module.exports = (grunt) ->
           { test: /\.html$/, loader: "html" }
           { test: /\.less$/, loader: "style!css!less" }
           { test: /\.css$/, loader: "style!css" }
-          { test: /.(woff|woff2|eot|ttf)$/, loader:"url?prefix=font/&limit=5000" }
+          { test: /\.coffee$/, loader: "coffee" }
+          { test: /\.(coffee\.md|litcoffee)$/, loader: "coffee-loader?literate" }
+          { test: /\.cson$/, loader: "cson" }
+          { test: /\.(woff|woff2|eot|ttf)$/, loader: "url?prefix=font/&limit=5000" }
           {
             test: /\.(jpe?g|png|gif|svg)$/i
             loaders: [
@@ -150,87 +82,30 @@ module.exports = (grunt) ->
         new webpack.ProvidePlugin
           $: "jquery"
           jQuery: "jquery"
-        new webpack.IgnorePlugin new RegExp('^fs|ipc')
       ]
 
-      resolve: {
-        alias: {
-          'gridster': './../../../lib/gridster/jquery.gridster.js'
-          'gridster-css': './../../../lib/gridster/jquery.gridster.min.css'
-          'jquery-qrcode': './../../../../lib/qr-code/jquery.qrcode-0.12.0.min.js'
-        }
-      }
+      resolve:
+        alias:
+          'gridster': './../../lib/gridster/jquery.gridster.js'
+          'gridster-css': './../../lib/gridster/jquery.gridster.min.css'
+          'jquery-qrcode': './../../../lib/qr-code/jquery.qrcode-0.12.0.min.js'
+
+        extensions: ['', '.js', '.coffee', '.json', '.cson']
+
 
       storeStatsTo: "webpackStats" # Stats for later use i.e. <%= xyz.hash %>
       watch: false
       keepalive: false
       devtool: 'source-map'
 
-  watchConfig =
-    src:
-      files: [
-        'src/**/*.*'
-        'lib/**/*.*'
-      ]
-      tasks: [
-        'build'
-      ]
-    spec:
-      files: [
-        'spec/**/*.coffee'
-      ]
-      tasks: [
-        'coffee'
-      ]
-    style:
-      files: [
-        'style/**/*.less'
-        'style/**/*.variables'
-      ]
-      tasks: [
-        'less'
-      ]
-    menu:
-      files: [
-        'menu/**/*.cson'
-      ]
-      tasks: [
-        'cson'
-      ]
-    copy:
-      files: [
-        'spec.html'
-        'index.html'
-      ]
-      tasks: [
-        'copy'
-      ]
-    grunt:
-      files: [
-        'Gruntfile.coffee'
-      ]
-      tasks: [
-        'dev'
-      ]
-
   grunt.initConfig
     coffee: coffeeConfig
     cson: csonConfig
-    less: lessConfig
-
-    coffeelint: coffeelintConfig
-    lesslint: lesslintConfig
-    csslint: csslintConfig
 
     copy: copyConfig
-    watch: watchConfig
     webpack: webpackConfig
 
-  grunt.registerTask 'test', ->
-    console.log 'Working...'
-
-  grunt.registerTask 'compile', ['coffee', 'cson', 'less']
-  grunt.registerTask 'lint', ['coffeelint', 'csslint', 'lesslint']
+  grunt.registerTask 'compile', ['coffee', 'cson']
 
   grunt.registerTask 'build', ['compile', 'copy', 'webpack']
   grunt.registerTask 'dev', ['build', 'watch']

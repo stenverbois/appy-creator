@@ -13,24 +13,19 @@
 <template>
   <div class="components blue-grey lighten-5 z-depth-1">Components
     <button class="btn"
-      v-draggable="button: {a: 'YES'}"
-      v-dropzone="component: testFunc2()">
-      TEST
-    </button>
-    <button class="btn"
             v-on="click: userApp.addComp('Button')">
       Button
     </button>
 
     <button class="btn"
             v-on="click: userApp.addComp('Label')">
-        Label
-      </button>
+      Label
+    </button>
 
-      <button class="btn"
-              v-on="click: userApp.addComp('Textbox')">
-          Textbox
-        </button>
+    <button class="btn"
+            v-on="click: userApp.addComp('Textbox')">
+      Textbox
+    </button>
   </div>
 </template>
 

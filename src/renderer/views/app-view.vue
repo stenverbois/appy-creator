@@ -58,7 +58,7 @@
               <button style="width:100%; height:100%;">test</button>
             </li>
             <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
-              <img src="../../../../appy.png" style="width:100%; height:100%;" draggable="false" alt="APPY" />
+              <img src="../../../appy.png" style="width:100%; height:100%;" draggable="false" alt="APPY" />
             </li>
             <li data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li> -->
           </ul>
