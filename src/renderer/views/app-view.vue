@@ -47,10 +47,10 @@
       <div class="col s12">
         <div class="gridster">
           <ul class="blue-grey lighten-2">
-            <li data-row="{{$index + 1}}" data-col="1" data-sizex="1" data-sizey="1" v-repeat="component in components" v-class="selected: selected == $index">
+            <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" v-for="component in app.components" :class:selected="selected == $index">
 
-              <div v-on="mousedown: selected = $index">
-                <component is="{{component.cmpName}}" cmp="{{component}}"></component>
+              <div @click="$parent.$parent.selected = $index">
+                <component :is="component.cmpName" :cmp="component"></component>
               </div>
             </li>
 
@@ -70,12 +70,13 @@
 
 <script lang="coffee">
 module.exports =
-  inherit: true
+  data: ->
+    app: store.state.app
 
   components:
-    "cmp-button": require '../components/cmp-button.vue'
-    "cmp-label": require '../components/cmp-label.vue'
-    "cmp-textbox": require '../components/cmp-textbox.vue'
+    'cmp-button': require '../components/cmp-button.vue'
+    'cmp-label': require '../components/cmp-label.vue'
+    'cmp-textbox': require '../components/cmp-textbox.vue'
 
   attached: ->
     @gridster = $(".gridster ul").gridster(

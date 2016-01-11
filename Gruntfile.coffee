@@ -108,4 +108,3 @@ module.exports = (grunt) ->
   grunt.registerTask 'compile', ['coffee', 'cson']
 
   grunt.registerTask 'build', ['compile', 'copy', 'webpack']
-  grunt.registerTask 'dev', ['build', 'watch']

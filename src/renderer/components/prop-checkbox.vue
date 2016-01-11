@@ -1,7 +1,7 @@
 <template>
   <div class="col s12">
-    <input id="{{data.name}}" type="checkbox" class="filled-in" v-model="data.value" />
-    <label for="{{data.name}}">{{data.name}}</label>
+    <input :id.once="data.name" type="checkbox" class="filled-in" v-model="data.value" />
+    <label :for="data.name">{{data.name}}</label>
   </div>
 </template>
 

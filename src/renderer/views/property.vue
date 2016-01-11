@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <component is="{{propComponent}}" data="{{data}}"></component>
+  <component :is="propComponent" :data="data"></component>
 </template>
 
 <script lang="coffee">

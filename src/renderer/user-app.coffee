@@ -12,7 +12,6 @@ class UserApp extends EventEmitter
     @components = []
 
   init: ->
-    
 
   removeComponent: (idx) ->
     @components.splice idx, 1

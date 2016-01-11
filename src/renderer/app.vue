@@ -7,8 +7,8 @@
 </style>
 
 <template>
-  <header-view></header-view>
   <div>
+    <header-view></header-view>
     <contents-view></contents-view>
     <footer-view></footer-view>
   </div>
@@ -16,10 +16,6 @@
 
 <script lang="coffee">
 module.exports =
-  # Data gets initiated in main.coffee
-  data: ->
-    userApp: undefined
-
   components:
     'header-view': require './views/header-view.vue'
     'contents-view': require './views/content'

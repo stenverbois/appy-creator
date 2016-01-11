@@ -35,17 +35,17 @@
           <div class="property-title valign-wrapper">
             <h4 class="property-title-text left" contenteditable="true">{{component.name}}</h4>
             <i class="property-title-icon material-icons right"
-               v-on="click: editComponentName()">
+               @click="editComponentName()">
               mode_edit
             </i>
           </div>
           <div class="property-wrapper">
-            <div class="row" v-repeat="propertyData in component.properties">
-              <property data="{{ propertyData }}"></property>
+            <div class="row" v-for="propertyData in component.properties">
+              <property :data="propertyData"></property>
             </div>
           </div>
           <button class="btn red"
-                  v-on="click: removeComponent">
+                  @click="removeComponent">
             Remove
           </button>
         </div>
@@ -60,7 +60,8 @@
 
 <script lang="coffee">
 module.exports =
-  inherit: true
+  data: ->
+    store.state
   props: ['component']
   components:
     property: require './property.vue'
@@ -72,7 +73,7 @@ module.exports =
 
     # Remove the selected component and reset selection
     removeComponent: ->
-      @userApp.removeComponent(@selected)
+      state.removeComponent(@selected)
       @selected = -1
 
     # Is a component selected

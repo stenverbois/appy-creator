@@ -11,9 +11,8 @@
 
 <script lang="coffee">
 module.exports =
-  inherit: true
   props: ['cmp']
 
   attached: ->
-    @addToGrid()
+    @$parent.addToGrid()
 </script>

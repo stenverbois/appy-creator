@@ -57,6 +57,6 @@
   },
   "dependencies": {
     "hammerjs": "^2.0.4",
-    "vue": "^1.0.0-migration"
+    "vue": "^1.0.13"
   }
 }

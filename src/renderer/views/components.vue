@@ -13,17 +13,17 @@
 <template>
   <div class="components blue-grey lighten-5 z-depth-1">Components
     <button class="btn"
-            v-on="click: userApp.addComp('Button')">
+            @click="app.addComp('Button')">
       Button
     </button>
 
     <button class="btn"
-            v-on="click: userApp.addComp('Label')">
+            @click="app.addComp('Label')">
       Label
     </button>
 
     <button class="btn"
-            v-on="click: userApp.addComp('Textbox')">
+            @click="app.addComp('Textbox')">
       Textbox
     </button>
   </div>
@@ -31,9 +31,6 @@
 
 <script lang="coffee">
 module.exports =
-  inherit: true
-
   data: ->
-    test: 6
-
+    store.state
 </script>
