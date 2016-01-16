@@ -3,8 +3,8 @@ path = require 'path'
 app = require 'app'
 {EventEmitter} = require 'events'
 
-ipc = require 'ipc'
-Dialog = require 'dialog'
+ipc = require('electron').ipcMain
+Dialog = require('electron').dialog
 BrowserWindow = require 'browser-window'
 
 Menu = require './menu'
@@ -43,7 +43,7 @@ class Application extends EventEmitter
       height: 600
 
     window.maximize()
-    window.loadUrl 'file://' + path.normalize(__dirname + '/../../index.html')
+    window.loadURL 'file://' + path.normalize(__dirname + '/index.html')
 
     # Set the menu
     @menu = new Menu()
@@ -83,15 +83,15 @@ class Application extends EventEmitter
     @specWindow = new BrowserWindow
       width: 400
       height: 400
-    @specWindow.loadUrl 'file://' + path.normalize(__dirname + '/../../spec.html')
+    @specWindow.loadURL 'file://' + path.normalize(__dirname + '/spec.html')
     @specWindow.on 'close', ->
       @specWindow = null
 
   getQR = ->
-    @QrWindow = new BrowserWindow
-      width: 400
-      height: 400
-      title: "Qr code"
-    @QrWindow.loadUrl 'file://' + path.normalize(__dirname + '/../renderer/views/qr.html')
-    @QrWindow.on 'close', ->
-      @QrWindow = null
+    # @QrWindow = new BrowserWindow
+    #   width: 400
+    #   height: 400
+    #   title: "Qr code"
+    # @QrWindow.loadURL 'file://' + path.normalize(__dirname + '/../renderer/views/qr.html')
+    # @QrWindow.on 'close', ->
+    #   @QrWindow = null

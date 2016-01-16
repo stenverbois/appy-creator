@@ -1,6 +1,6 @@
 Menu = require 'menu'
 
-m = require '../../menu/menu'
+m = require './menu.json'
 
 {EventEmitter} = require 'events'
 
@@ -19,6 +19,6 @@ class AppMenu extends EventEmitter
         if item.command
           item.click = =>
             @emit(item.command)
-            
+
         @translateTemplate(item.submenu) if item.submenu
     template

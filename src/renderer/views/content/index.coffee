@@ -1,4 +1,4 @@
-require './style.less'
+#require './style.less'
 
 module.exports =
   template: require './template.html'
