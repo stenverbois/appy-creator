@@ -14,7 +14,6 @@ window.$ = require("jquery")
 # contenteditable-div
 window.jQuery.fn.selectText = ->
   element = this[0]
-  console.log(this, element)
   if document.body.createTextRange
     range = document.body.createTextRange()
     range.moveToElementText(element)
