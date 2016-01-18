@@ -61,7 +61,8 @@
 <script lang="coffee">
 module.exports =
   data: ->
-    store.state
+    state: store.state
+
   props: ['component']
   components:
     property: require './property.vue'
@@ -73,7 +74,7 @@ module.exports =
 
     # Remove the selected component and reset selection
     removeComponent: ->
-      state.removeComponent(@selected)
+      @state.app.removeComponent(@selected)
       @selected = -1
 
     # Is a component selected

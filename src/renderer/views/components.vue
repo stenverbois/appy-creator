@@ -13,17 +13,17 @@
 <template>
   <div class="components blue-grey lighten-5 z-depth-1">Components
     <button class="btn"
-            @click="app.addComp('Button')">
+            @click="state.app.addComp('Button')">
       Button
     </button>
 
     <button class="btn"
-            @click="app.addComp('Label')">
+            @click="state.app.addComp('Label')">
       Label
     </button>
 
     <button class="btn"
-            @click="app.addComp('Textbox')">
+            @click="state.app.addComp('Textbox')">
       Textbox
     </button>
   </div>
@@ -32,5 +32,5 @@
 <script lang="coffee">
 module.exports =
   data: ->
-    store.state
+    state: store.state
 </script>

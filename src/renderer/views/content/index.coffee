@@ -8,9 +8,9 @@ module.exports =
     'app-view': require '../app-view.vue'
 
   data: ->
-    app: store.state.app
+    state: store.state
     selected: -1
 
   computed:
     selectedComp: ->
-      @app.components[@selected]
+      @state.app.components[@selected]
