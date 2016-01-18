@@ -1,9 +1,11 @@
 {
-  "name": "appy-creat",
+  "name": "appy-creator",
   "version": "0.0.1",
   "description": "App Creator",
   "main": "dist/main.js",
   "author": "Sten Verbois <stenverbois@gmail.com>",
+  "license": "UNLICENSED",
+  "private":"true",
   "contributors": [
     "Thierry Deruyttere <thierryderuyttere@gmail.com>"
   ],
@@ -20,7 +22,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --config build/webpack.dev.conf.js",
-    "build": "rimraf dist && webpack --progress --hide-modules --config build/webpack.prod.conf.js",
+    "build": "rimraf dist && webpack --progress --hide-modules --config build/webpack.prod.conf.js && grunt build",
+    "start": "electron .",
     "test": "karma start build/karma.conf.js --single-run"
   },
   "dependencies": {

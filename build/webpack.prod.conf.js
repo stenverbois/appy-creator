@@ -5,6 +5,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // naming output files with hashes for better caching.
 // dist/index.html will be auto-generated with correct URLs.
+// generate filenames with relative paths because we are building a local app
+config.output.publicPath = './static/'
 config.output.filename = '[name].[chunkhash].js'
 config.output.chunkFilename = '[id].[chunkhash].js'
 

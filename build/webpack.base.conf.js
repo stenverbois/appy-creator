@@ -19,26 +19,26 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.vue$/, loader: 'vue' },
-      { test: /\.less$/, loader: "style!css!less" },
+      { test: /\.coffee$/, loader: "coffee" },
+      { test: /\.cson$/, loader: "cson" },
       { test: /\.css$/, loader: "style!css" },
+      { test: /\.html$/, loader: "html" },
+      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
       { test: /\.json$/, loader: 'json' },
+      { test: /\.less$/, loader: "style!css!less" },
+      { test: /\.vue$/, loader: 'vue' },
       {
         test: /\.(png|jpg|gif|svg)$/, loader: 'url',
         query: {
           limit: 10000,
           name: '[name].[ext]?[hash]'
         }
-      },
-      { test: /\.coffee$/, loader: "coffee" },
-      { test: /\.cson$/, loader: "cson" },
-      { test: /\.html$/, loader: "html" }
-
+      }
     ]
   },
   vue: {
     loaders: {
-      
+      js: 'babel'
     }
   }
 }
