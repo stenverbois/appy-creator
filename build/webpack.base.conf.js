@@ -17,6 +17,7 @@ module.exports = {
       'gridster-css': './../../lib/gridster/jquery.gridster.min.css'
     }
   },
+  target: 'electron',
   module: {
     loaders: [
       { test: /\.coffee$/, loader: "coffee" },
