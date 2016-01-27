@@ -3,7 +3,7 @@ var config = require('./webpack.base.conf')
 config.devtool = 'eval-source-map'
 
 config.devServer = {
-  host: '0.0.0.0',
+  host: 'localhost',
   historyApiFallback: true,
   noInfo: true
 }
