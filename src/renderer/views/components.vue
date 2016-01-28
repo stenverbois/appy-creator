@@ -13,17 +13,17 @@
 <template>
   <div class="components blue-grey lighten-5 z-depth-1">Components
     <button class="btn"
-            @click="state.app.addComp('Button')">
+            @click="state.app.addComponent('Button')">
       Button
     </button>
 
     <button class="btn"
-            @click="state.app.addComp('Label')">
+            @click="state.app.addComponent('Label')">
       Label
     </button>
 
     <button class="btn"
-            @click="state.app.addComp('Textbox')">
+            @click="state.app.addComponent('Textbox')">
       Textbox
     </button>
   </div>
