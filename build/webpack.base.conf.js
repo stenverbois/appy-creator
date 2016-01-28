@@ -23,7 +23,7 @@ module.exports = {
       { test: /\.cson$/, loader: "cson" },
       { test: /\.css$/, loader: "style!css" },
       { test: /\.html$/, loader: "html" },
-      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+      { test: /\.js$/, loader: 'babel', exclude: [/node_modules/, /lib/] },
       { test: /\.json$/, loader: 'json' },
       { test: /\.less$/, loader: "style!css!less" },
       { test: /\.vue$/, loader: 'vue' },
