@@ -16,5 +16,5 @@ class UserApp extends EventEmitter
   removeComponent: (idx) ->
     @components.splice idx, 1
 
-  addComp: (name) ->
+  addComponent: (name) ->
     @components.push new componensClasses[name]
