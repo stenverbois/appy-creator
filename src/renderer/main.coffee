@@ -32,5 +32,6 @@ UserApp = require './user-app'
 global.store =
   state:
     app: new UserApp()
+    selected: -1
 
 app.$mount 'app'

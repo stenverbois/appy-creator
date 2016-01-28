@@ -74,8 +74,8 @@ module.exports =
 
     # Remove the selected component and reset selection
     removeComponent: ->
-      @state.app.removeComponent(@selected)
-      @selected = -1
+      @state.app.removeComponent(@state.selected)
+      @state.selected = -1
 
     # Is a component selected
     isComponentSelected: ->

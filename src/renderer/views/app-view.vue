@@ -21,9 +21,9 @@
 
   li {
     //Remove background color
-    background-color: rgba(255, 0, 0, 0.0);;
+    background-color: rgba(0, 0, 0, 0.0);
     &.selected {
-      background-color: #ff2222;
+      background-color: rgba(255, 0, 0, 1.0);
     }
   }
 
@@ -47,9 +47,8 @@
       <div class="col s12">
         <div class="gridster">
           <ul class="blue-grey lighten-2">
-            <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" v-for="component in state.app.components" :class:selected="selected == $index">
-
-              <div @click="$parent.$parent.selected = $index">
+            <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" v-for="component in state.app.components" :class="{selected: state.selected == $index}">
+              <div @click="state.selected = $index">
                 <component :is="component.cmpName" :cmp="component"></component>
               </div>
             </li>
