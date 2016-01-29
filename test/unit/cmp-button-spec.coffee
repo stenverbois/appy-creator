@@ -1,14 +1,21 @@
 Vue = require 'vue'
-Button = require 'src/renderer/components/cmp-button'
+Vue.config.debug = true
+
+ButtonComponent = require 'src/renderer/components/cmp-button'
+Button = require 'src/renderer/components/button'
 
 describe 'Button component', ->
-  # it 'should render correct contents', ->
-  #   vm = new Vue({
-  #     template: '<div><hello></hello></div>',
-  #     components: { Hello }
-  #   }).$mount()
-  #   expect(vm.$el.querySelector('.hello h1').textContent).toBe 'Hello World!'
+  vm = new Vue(
+    template: '<div><button-component :cmp="buttonObj"></button-component></div>'
+    components: {
+      "button-component": ButtonComponent
+    }
+    data: ->
+      buttonObj: new Button()
+  ).$mount()
+
   it 'has an "attached" hook', ->
-    expect(typeof Button.attached).toBe 'function'
-# also see example testing a component with mocks at
-# https://github.com/vuejs/vue-loader-example/blob/master/test/unit/a.spec.js#L24-L49
+    expect(typeof ButtonComponent.attached).toBe 'function'
+
+  it 'renders the correct default text on the button', ->
+    expect(vm.$el.querySelector('button').textContent).toBe 'Sample text'
