@@ -3,7 +3,7 @@ delete webpackConf.entry
 
 module.exports = function (config) {
   config.set({
-    browsers: ['PhantomJS'],
+    browsers: ['Electron'],
     frameworks: ['jasmine'],
     reporters: ['spec'],
     files: ['../test/unit/index.js'],

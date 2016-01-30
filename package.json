@@ -5,7 +5,7 @@
   "main": "dist/main.js",
   "author": "Sten Verbois <stenverbois@gmail.com>",
   "license": "UNLICENSED",
-  "private":"true",
+  "private": "true",
   "contributors": [
     "Thierry Deruyttere <thierryderuyttere@gmail.com>"
   ],
@@ -55,9 +55,11 @@
     "html-webpack-plugin": "^1.7.0",
     "inject-loader": "^2.0.1",
     "jasmine-core": "^2.4.1",
+    "jasmine-es6-generator": "^0.1.0",
     "jquery": "^2.2.0",
     "json-loader": "^0.5.4",
     "karma": "^0.13.15",
+    "karma-electron-launcher": "^0.1.0",
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-spec-reporter": "0.0.23",
