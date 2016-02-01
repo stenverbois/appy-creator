@@ -3,18 +3,18 @@ Component = require './component'
 module.exports =
 class Image extends Component
 
-    constructor: ->
-      @properties =
+  constructor: ->
+    @properties =
         visibility:
           name: 'Visible'
           value: true
           type: 'checkbox'
 
-        name:
+        file:
           name: 'Image Source'
           value: 'appy.png'
           type: 'text'
 
-  @name = 'Image'
+    @name = 'Test'
 
-  @cmpName = 'cmp-image'
+    @cmpName = 'cmp-image'
