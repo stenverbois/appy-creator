@@ -26,6 +26,11 @@
             @click="state.app.addComponent('Textbox')">
       Textbox
     </button>
+
+     <button class="btn"
+          @click="state.app.addComponent('Image')">
+          Image
+      </button>
   </div>
 </template>
 

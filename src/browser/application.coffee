@@ -53,7 +53,7 @@ class Application extends EventEmitter
       BrowserWindow.getFocusedWindow().reload()
 
     @menu.on 'editor:show-versions', ->
-      window.showVersions()
+      #window.showVersions()
 
     @menu.on 'editor:run-specs', =>
       # Fat arrow needed since we want the function from

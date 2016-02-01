@@ -3,8 +3,8 @@
 Button = require './components/button'
 Label = require './components/label'
 Textbox = require './components/textbox'
-
-componensClasses = {Button: Button, Label: Label, Textbox: Textbox }
+Image = require './components/image'
+componensClasses = {Button: Button, Label: Label, Textbox: Textbox, Image: Image }
 
 module.exports =
 class UserApp extends EventEmitter
