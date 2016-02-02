@@ -76,6 +76,7 @@ module.exports =
     'cmp-button': require '../components/cmp-button.vue'
     'cmp-label': require '../components/cmp-label.vue'
     'cmp-textbox': require '../components/cmp-textbox.vue'
+    'cmp-image': require '../components/cmp-image.vue'
 
   attached: ->
     @gridster = $(".gridster ul").gridster(

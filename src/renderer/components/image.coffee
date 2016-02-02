@@ -5,15 +5,15 @@ class Image extends Component
 
   constructor: ->
     @properties =
-        visibility:
-          name: 'Visible'
-          value: true
-          type: 'checkbox'
+      visibility:
+        name: 'Visible'
+        value: true
+        type: 'checkbox'
 
-        file:
-          name: 'Image Source'
-          value: 'appy.png'
-          type: 'text'
+      file:
+        name: 'Image Source'
+        value: 'appy.png'
+        type: 'text'
 
     @name = 'Test'
 

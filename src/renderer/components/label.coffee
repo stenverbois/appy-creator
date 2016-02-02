@@ -14,7 +14,7 @@ class Label extends Component
         name: 'Value'
         value: 'Sample text'
         type: 'text'
-        
+
     @name = 'Test'
 
     @cmpName = 'cmp-label'
