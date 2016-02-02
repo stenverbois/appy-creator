@@ -1,10 +1,6 @@
 {EventEmitter} = require 'events'
 
-Button = require './components/button'
-Label = require './components/label'
-Textbox = require './components/textbox'
-Image = require './components/image'
-componensClasses = {Button: Button, Label: Label, Textbox: Textbox, Image: Image }
+componentClasses = require('./components/components').classes
 
 module.exports =
 class UserApp extends EventEmitter
@@ -17,4 +13,4 @@ class UserApp extends EventEmitter
     @components.splice idx, 1
 
   addComponent: (name) ->
-    @components.push new componensClasses[name]
+    @components.push new componentClasses[name]

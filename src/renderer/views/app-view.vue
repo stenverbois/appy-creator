@@ -72,11 +72,7 @@ module.exports =
   data: ->
     state: store.state
 
-  components:
-    'cmp-button': require '../components/cmp-button.vue'
-    'cmp-label': require '../components/cmp-label.vue'
-    'cmp-textbox': require '../components/cmp-textbox.vue'
-    'cmp-image': require '../components/cmp-image.vue'
+  components: require('../components/components.coffee').components
 
   attached: ->
     @gridster = $(".gridster ul").gridster(
