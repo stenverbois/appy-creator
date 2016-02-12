@@ -1,6 +1,7 @@
 var path = require('path')
+var webpack = require("webpack")
 
-module.exports = {
+config = {
   entry: {
     app: './src/renderer/main.coffee'
   },
@@ -40,5 +41,44 @@ module.exports = {
     loaders: {
       js: 'babel'
     }
-  }
+  },
+  // plugins: [
+  //   new webpack.IgnorePlugin(new RegExp('electron'))
+  //   // new webpack.ExternalsPlugin("commonjs", [
+  //   //   "app",
+  //   //   "auto-updater",
+  //   //   "browser-window",
+  //   //   "content-tracing",
+  //   //   "dialog",
+  //   //   "global-shortcut",
+  //   //   "ipc",
+  //   //   "ipc-main",
+  //   //   "menu",
+  //   //   "menu-item",
+  //   //   "power-monitor",
+  //   //   "protocol",
+  //   //   "tray",
+  //   //   "remote",
+  //   //   "web-view",
+  //   //   "web-frame",
+  //   //   "clipboard",
+  //   //   "crash-reporter",
+  //   //   "screen",
+  //   //   "shell",
+  //   //   "native-image"
+  //   // ]),
+  // ]
+  externals: [
+    function(context, request, callback) {
+      // Every module prefixed with "global-" becomes external
+      // "global-abc" -> abc
+      if(/^electron/.test(request))
+          return callback(null, "require('electron')")
+      callback()
+    }
+  ]
 }
+
+// config.target = 'electron-renderer'
+
+module.exports = config

@@ -62,12 +62,14 @@
             <li data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li> -->
           </ul>
         </div>
+        <button class="btn" @click="exportTest()">Export</button>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="coffee">
+
 module.exports =
   data: ->
     state: store.state
@@ -93,5 +95,15 @@ module.exports =
   methods:
     addToGrid: ->
       @gridster.addVueComp()
+
+    exportTest: ->
+      # ipcRenderer = require('electron').ipcRenderer;
+      # console.log ipcRenderer.sendSync('synchronous-message', 'ping')
+      #
+      # ipcRenderer.on 'asynchronous-reply', (event, arg) ->
+      #   console.log(arg)
+      classes = require('../components/components.coffee').classes
+      console.log(classes)
+
 
 </script>
