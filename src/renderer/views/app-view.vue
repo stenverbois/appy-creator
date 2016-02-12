@@ -87,6 +87,9 @@ module.exports =
       max_rows: 6
     ).data 'gridster'
 
+  created: ->
+    console.log @$options.components['cmp-button'].options
+
   methods:
     addToGrid: ->
       @gridster.addVueComp()
