@@ -9,8 +9,6 @@ Vue.config.debug = true
 window.jQuery = require("jquery")
 window.$ = require("jquery")
 
-# ipcRenderer = require('electron').ipcRenderer
-
 # SelectText function for selecting text in contenteditable elements
 # source: http://stackoverflow.com/questions/12243898/how-to-select-all-text-in-
 # contenteditable-div

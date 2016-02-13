@@ -1,5 +1,4 @@
 var path = require('path')
-var webpack = require("webpack")
 
 config = {
   entry: {
@@ -10,6 +9,7 @@ config = {
     publicPath: '/static/',
     filename: '[name].js'
   },
+  target: 'electron-renderer',
   resolve: {
     extensions: ['', '.js', '.coffee', '.json', '.cson', '.vue'],
     alias: {
@@ -20,13 +20,13 @@ config = {
   },
   module: {
     loaders: [
-      { test: /\.coffee$/, loader: "coffee" },
-      { test: /\.cson$/, loader: "cson" },
-      { test: /\.css$/, loader: "style!css" },
-      { test: /\.html$/, loader: "html" },
+      { test: /\.coffee$/, loader: 'coffee' },
+      { test: /\.cson$/, loader: 'cson' },
+      { test: /\.css$/, loader: 'style!css' },
+      { test: /\.html$/, loader: 'html' },
       { test: /\.js$/, loader: 'babel', exclude: [/node_modules/, /lib/] },
       { test: /\.json$/, loader: 'json' },
-      { test: /\.less$/, loader: "style!css!less" },
+      { test: /\.less$/, loader: 'style!css!less' },
       { test: /\.vue$/, loader: 'vue' },
       {
         test: /\.(png|jpg|gif|svg)$/, loader: 'url',
@@ -41,42 +41,7 @@ config = {
     loaders: {
       js: 'babel'
     }
-  },
-  // plugins: [
-  //   new webpack.IgnorePlugin(new RegExp('electron'))
-  //   // new webpack.ExternalsPlugin("commonjs", [
-  //   //   "app",
-  //   //   "auto-updater",
-  //   //   "browser-window",
-  //   //   "content-tracing",
-  //   //   "dialog",
-  //   //   "global-shortcut",
-  //   //   "ipc",
-  //   //   "ipc-main",
-  //   //   "menu",
-  //   //   "menu-item",
-  //   //   "power-monitor",
-  //   //   "protocol",
-  //   //   "tray",
-  //   //   "remote",
-  //   //   "web-view",
-  //   //   "web-frame",
-  //   //   "clipboard",
-  //   //   "crash-reporter",
-  //   //   "screen",
-  //   //   "shell",
-  //   //   "native-image"
-  //   // ]),
-  // ]
-  externals: [
-    function(context, request, callback) {
-      // Every module prefixed with "global-" becomes external
-      // "global-abc" -> abc
-      if(/^electron/.test(request))
-          return callback(null, "require('electron')")
-      callback()
-    }
-  ]
+  }
 }
 
 // config.target = 'electron-renderer'

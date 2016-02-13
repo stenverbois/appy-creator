@@ -4,8 +4,6 @@ Application = require './application'
 
 mainEditor = null
 
-# ipcMain = require('electron').ipcMain
-
 # Quit when all windows are closed
 app.on 'window-all-closed', ->
   if process.platform isnt 'darwin'
