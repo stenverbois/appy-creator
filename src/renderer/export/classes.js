@@ -14,7 +14,9 @@
           name: 'Value',
           value: 'Sample text',
           type: 'text'
-        }
+        },
+        width: 50,
+        height: 100
       };
       this.name = 'Test';
       this.cmpName = 'cmp-button';
@@ -25,5 +27,32 @@
   })();
 
   window.ButtonClass = ButtonClass;
+  var TextboxClass;
+
+  TextboxClass = (function() {
+    function TextboxClass() {
+      this.properties = {
+        visibility: {
+          name: 'Visible',
+          value: true,
+          type: 'checkbox'
+        },
+        name: {
+          name: 'Value',
+          value: 'Sample text',
+          type: 'text'
+        },
+        width: 50,
+        height: 50
+      };
+      this.name = 'Test';
+      this.cmpName = 'cmp-button';
+    }
+
+    return TextboxClass;
+
+  })();
+
+  window.TextboxClass = TextboxClass;
 
 }).call(this);

@@ -97,8 +97,12 @@ module.exports =
       @gridster.addVueComp()
 
     exportTest: ->
+      ipc = require('electron').ipcRenderer
       classes = require('../components/components.coffee').classes
       console.log(classes)
+      console.log 'test'
+      console.log classes.Button
+      ipc.send('export:class', classes.Button)
 
 
 </script>

@@ -1,4 +1,7 @@
-# ipcMain = require('electron').ipcMain
-# ipcMain.on 'asynchronous-message', (event, arg) ->
-#   console.log(arg)
-#   event.sender.send 'asynchronous-reply', 'pong'
+fs = require 'fs'
+
+ipc = require('electron').ipcMain
+
+module.exports = do ->
+  ipc.on 'export:class', (event, arg) ->
+    console.log arg

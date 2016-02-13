@@ -12,7 +12,28 @@
   </head>
   <body>
     <app>{{test}}
-      <cmp-button :cmp="classes[0]"></cmp-button>
+      <!-- Generated button code -->
+      <button class="btn" :style="{width: component_1.properties.width+'%', height: component_1.properties.height+'%'}"
+              v-text="computed_1"></button>
+      <!-- End generated button code -->
+
+      <!-- Generated textfield 1 code -->
+      <div class="input-field">
+        <input type="text" class="validate" :style="{width: component_2.properties.width+'%', height: component_2.properties.height+'%'}"
+              v-model="component_2.properties.name.value"
+              v-show="component_2.properties.visibility.value">
+        </input>
+      </div>
+      <!-- End generated textfield 1 code -->
+
+      <!-- Generated textfield 2 code -->
+      <div class="input-field">
+        <input type="text" class="validate" :style="{width: component_3.properties.width+'%', height: component_3.properties.height+'%'}"
+              v-model="component_3.properties.name.value"
+              v-show="component_3.properties.visibility.value">
+        </input>
+      </div>
+      <!-- End generated textfield 2 code -->
     </app>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
