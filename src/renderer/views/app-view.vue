@@ -97,11 +97,6 @@ module.exports =
       @gridster.addVueComp()
 
     exportTest: ->
-      # ipcRenderer = require('electron').ipcRenderer;
-      # console.log ipcRenderer.sendSync('synchronous-message', 'ping')
-      #
-      # ipcRenderer.on 'asynchronous-reply', (event, arg) ->
-      #   console.log(arg)
       classes = require('../components/components.coffee').classes
       console.log(classes)
 
