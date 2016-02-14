@@ -15,7 +15,7 @@
 .gridster {
   ul {
     list-style: none;
-    position: absolute;
+    position: relative;
     margin: auto;
   }
 
@@ -97,12 +97,20 @@ module.exports =
       @gridster.addVueComp()
 
     exportTest: ->
-      ipc = require('electron').ipcRenderer
-      classes = require('../components/components.coffee').classes
-      console.log(classes)
-      console.log 'test'
-      console.log classes.Button
-      ipc.send('export:class', classes.Button)
+      # ipc = require('electron').ipcRenderer
+      # classes = require('../components/components.coffee').classes
+      # ipc.send('export:class', classes.Button)
 
+      # Exporting tests
+      # {Component, Plus} = require '../logic/blocks'
+      #
+      # obj = {name: 'tetxbox', value: 'lulz'}
+      #
+      # c1 = new Component('c1-test', obj)
+      # c2 = new Component('c2-test', obj)
+      # plus = new Plus('plus-test', c1, c2)
+      # console.log c1.export()
+      # console.log plus.export()
 
+      # console.log(JSON.stringify(obj.properties)) for obj in @state.app.components
 </script>

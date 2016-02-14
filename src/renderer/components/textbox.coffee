@@ -3,18 +3,17 @@ Component = require './component'
 module.exports =
 class Textbox extends Component
 
-  constructor: ->
-    @properties =
-      visibility:
-        name: 'Visible'
-        value: true
-        type: 'checkbox'
+  @defaultProperties =
+    visibility:
+      name: 'Visible'
+      value: true
+      type: 'checkbox'
 
-      name:
-        name: 'Value'
-        value: 'Sample text'
-        type: 'text'
+    name:
+      name: 'Value'
+      value: 'Sample text'
+      type: 'text'
 
+  constructor: (@properties=Textbox.defaultProperties) ->
     @name = 'Test'
-
     @cmpName = 'cmp-textbox'

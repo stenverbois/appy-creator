@@ -9,7 +9,7 @@ config = {
     publicPath: '/static/',
     filename: '[name].js'
   },
-  target: 'electron',
+  // target: 'electron',
   resolve: {
     extensions: ['', '.js', '.coffee', '.json', '.cson', '.vue'],
     alias: {
