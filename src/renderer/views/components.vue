@@ -7,11 +7,12 @@
   width: @component-bar-width;
   overflow: hidden;
   height: ~"calc(100% - @{top-bar-height} - @{footer-bar-height})";
+
+  .collapsible-header {
+    background-color: lightgray;
+  }
 }
 
-.collapsible-header{
-    background-color: lightgray;
-}
 
 </style>
 
