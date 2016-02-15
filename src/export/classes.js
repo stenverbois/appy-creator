@@ -54,5 +54,31 @@
   })();
 
   window.TextboxClass = TextboxClass;
+  var LabelClass;
+
+  LabelClass = (function() {
+    function LabelClass() {
+      this.properties = {
+        visibility: {
+          name: 'Visible',
+          value: true,
+          type: 'checkbox'
+        },
+        name: {
+          name: 'Value',
+          value: 'Sample text',
+          type: 'text'
+        },
+        width: 50,
+        height: 50
+      };
+      this.name = 'Test';
+    }
+
+    return LabelClass;
+
+  })();
+
+  window.LabelClass = LabelClass;
 
 }).call(this);

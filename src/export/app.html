@@ -14,7 +14,9 @@
     <app>{{test}}
       <!-- Generated button code -->
       <button class="btn" :style="{width: component_1.properties.width+'%', height: component_1.properties.height+'%'}"
-              v-text="computed_1"></button>
+              v-text="component_1.properties.name.value"
+              @click="method_1">
+      </button>
       <!-- End generated button code -->
 
       <!-- Generated textfield 1 code -->
@@ -32,6 +34,10 @@
               v-model="component_3.properties.name.value"
               v-show="component_3.properties.visibility.value">
         </input>
+      </div>
+      <div class="label"
+        v-text="component_4.properties.name.value"
+        v-show="component_4.properties.visibility.value">
       </div>
       <!-- End generated textfield 2 code -->
     </app>
