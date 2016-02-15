@@ -4,7 +4,6 @@ class Trigger
 
   export: ->
     {
-      name: @name
       component: @component
       action: @action
     }

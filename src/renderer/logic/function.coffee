@@ -11,10 +11,7 @@ module.exports =
         console.error "'#{name}' is not a valid parameter of #{@name}."
 
     export: ->
-      {
-        name: @name
-        parameters: @parameters
-      }
+      @parameters
 
   Plus: class Plus extends Function
     constructor: (@name, @parameters={}) ->
@@ -28,10 +25,7 @@ module.exports =
       @trigger = name
 
     export: ->
-      {
-        name: @name
-        parameters: @parameters
-      }
+      @parameters
 
   Set: class Set extends Action
     constructor: (@name, @parameters={}, @trigger='') ->
