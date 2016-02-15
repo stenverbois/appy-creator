@@ -2,5 +2,4 @@
 
 module.exports =
 class Component extends EventEmitter
-  constructor: () ->
-    @name = "Undefined"
+  constructor: (@name='NoName') ->

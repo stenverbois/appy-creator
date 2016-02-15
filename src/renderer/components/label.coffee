@@ -14,6 +14,5 @@ class Label extends Component
       value: 'Sample text'
       type: 'text'
 
-  constructor: (@properties=Label.defaultProperties) ->
-    @name = 'Test'
+  constructor: (@name, @properties=Label.defaultProperties) ->
     @cmpName = 'cmp-label'

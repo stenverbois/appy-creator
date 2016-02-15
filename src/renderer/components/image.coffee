@@ -14,6 +14,5 @@ class Image extends Component
       value: 'appy.png'
       type: 'text'
 
-  constructor: (@properties=Image.defaultProperties) ->
-    @name = 'Test'
+  constructor: (@name, @properties=Image.defaultProperties) ->
     @cmpName = 'cmp-image'

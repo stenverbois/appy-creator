@@ -14,6 +14,5 @@ class Textbox extends Component
       value: 'Sample text'
       type: 'text'
 
-  constructor: (@properties=Textbox.defaultProperties) ->
-    @name = 'Test'
+  constructor: (@name, @properties=Textbox.defaultProperties) ->
     @cmpName = 'cmp-textbox'
