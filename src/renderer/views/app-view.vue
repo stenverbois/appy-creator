@@ -98,19 +98,24 @@ module.exports =
 
     exportTest: ->
       # ipc = require('electron').ipcRenderer
-      # classes = require('../components/components.coffee').classes
+      {Button, Textbox} = require('../components/components.coffee').classes
       # ipc.send('export:class', classes.Button)
 
       # Exporting tests
-      # {Component, Plus} = require '../logic/blocks'
-      #
-      # obj = {name: 'tetxbox', value: 'lulz'}
-      #
-      # c1 = new Component('c1-test', obj)
-      # c2 = new Component('c2-test', obj)
-      # plus = new Plus('plus-test', c1, c2)
-      # console.log c1.export()
-      # console.log plus.export()
-
       # console.log(JSON.stringify(obj.properties)) for obj in @state.app.components
+
+      button1 = new Button()
+      text1 = new Textbox()
+      text2 = new Textbox()
+
+      {Plus} = require '../logic/function.coffee'
+      plus1 = new Plus()
+      plus1.connectParameter('right', 'text1', 'name')
+      plus1.connectParameter('left', 'text2', 'name')
+
+      button1.properties.name.input =
+        component: 'plus1'
+        output: 'output'
+
+      console.log JSON.stringify(button1.properties)
 </script>
