@@ -12,8 +12,8 @@
   </head>
   <body>
     <app>
-      {{#each component}}
-      <div>{{this}}</div>
+      {{#each components}}
+      <div>{{this.html}}</div>
       {{/each}}
     </app>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script>
@@ -27,10 +27,9 @@
       var vm = new Vue({
         el: 'app',
         data: {
-          component_1: new ButtonClass(),
-          component_2: new TextboxClass(),
-          component_3: new TextboxClass(),
-          component_4: new LabelClass(),
+          {{#each components}}
+          {{this.name}}: {{this.properties}},
+          {{/each}}
         },
         computed: {
           computed_1: function() {
