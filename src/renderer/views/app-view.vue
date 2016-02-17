@@ -107,7 +107,7 @@ module.exports =
             properties: obj.properties
             type: obj.type
 
-      @testJSON = JSON.stringify(compArray, null, "\t")
+      @testJSON = compArray
 
 
     exportTest: ->
