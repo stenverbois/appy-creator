@@ -14,5 +14,7 @@ class Button extends Component
       value: 'Sample text'
       type: 'text'
 
+
   constructor: (@name, @properties=Button.defaultProperties) ->
     @cmpName = 'cmp-button'
+    @type = "ButtonClass"

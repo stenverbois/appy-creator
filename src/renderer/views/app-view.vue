@@ -62,7 +62,7 @@
             <li data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li> -->
           </ul>
         </div>
-        <button class="btn" @click="exportTest()">Export</button>
+        <button class="btn" @click="export()">Export</button>
         <p>Voorbeeld JSON output voor beschreven scenario</p>
         <p><pre>{{testJSON | json}}<pre></p>
       </div>
@@ -98,6 +98,17 @@ module.exports =
   methods:
     addToGrid: ->
       @gridster.addVueComp()
+
+    export: ->
+      @testJSON = ""
+      compArray = {"components": {}, "logic": {}}
+      for obj in @state.app.components
+        compArray["components"][obj.name] =
+            properties: obj.properties
+            type: obj.type
+
+      @testJSON = JSON.stringify(compArray, null, "\t")
+
 
     exportTest: ->
       # ipc = require('electron').ipcRenderer

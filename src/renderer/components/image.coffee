@@ -16,3 +16,4 @@ class Image extends Component
 
   constructor: (@name, @properties=Image.defaultProperties) ->
     @cmpName = 'cmp-image'
+    @type = "ImageClass"

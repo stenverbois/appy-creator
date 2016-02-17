@@ -16,3 +16,4 @@ class Textbox extends Component
 
   constructor: (@name, @properties=Textbox.defaultProperties) ->
     @cmpName = 'cmp-textbox'
+    @type = "TextboxClass"

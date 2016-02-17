@@ -16,4 +16,4 @@ console.log(buttonResult);
 */
 
 var labelResult = labelTemplate({name: "Yay it twerks", visibility: true});
-console.log(labelResult)
+console.log(labelResult);
