@@ -1,0 +1,35 @@
+{
+  "components": {
+    "Button0": {
+      "properties": {
+        "visibility": {
+          "name": "Visible",
+          "value": true,
+          "type": "checkbox"
+        },
+        "name": {
+          "name": "Value",
+          "value": "Sample text",
+          "type": "text"
+        }
+      },
+      "type": "ButtonClass"
+    },
+    "Button1": {
+      "properties": {
+        "visibility": {
+          "name": "Visible",
+          "value": true,
+          "type": "checkbox"
+        },
+        "name": {
+          "name": "Value",
+          "value": "Sample text",
+          "type": "text"
+        }
+      },
+      "type": "ButtonClass"
+    }
+  },
+  "logic": {}
+}
