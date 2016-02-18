@@ -1,19 +1,33 @@
 Handlebars = require('handlebars');
 fs = require('fs');
 
-// To test this file you can just run npm exporter.js
+// To test this file you can just run "node exporter.js"
 // Add new templates here
 var buttonTemplate = Handlebars.compile(fs.readFileSync("./templates/button.html").toString());
 var imageTemplate = Handlebars.compile(fs.readFileSync("./templates/image.html").toString());
 var labelTemplate = Handlebars.compile(fs.readFileSync("./templates/label.html").toString());
 var textboxTemplate = Handlebars.compile(fs.readFileSync("./templates/textbox.html").toString());
 
+function parseProperties(appDescription){
+  for(comp in appDescription["components"]){
+
+    for(prop in appDescription.components[comp].properties){
+      appDescription.components[comp].properties[prop] = appDescription.components[comp].properties[prop].value;
+    }
+
+  }
+  return appDescription
+}
+
+
 // Read json file
 if(process.argv[2]) {
     var appDescription = JSON.parse(fs.readFileSync(process.argv[2]).toString());
+    appDescription = parseProperties(appDescription);
+  
     var htmlOutput = "";
     for(comp in appDescription["components"]){
-      switch(comp["type"]){
+      switch( appDescription["components"][comp]["type"]){
         case "ButtonClass":
               htmlOutput += buttonTemplate(comp["properties"]);
               break;
