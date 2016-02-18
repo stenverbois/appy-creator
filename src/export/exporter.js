@@ -50,7 +50,20 @@ if(process.argv[2]) {
   }
 
   // Logic
+  for(logic in appDescription.logic){
+    // First get the triggers
+    for(trigger in logic.triggers){
 
+    }
+    // Then get the functions
+    for(func in logic.functions){
+
+    }
+    // Then fill in the actions
+    for(action in logic.actions){
+
+    }
+  }
 
 
   //Write HTML output to file
