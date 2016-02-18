@@ -8,7 +8,7 @@ Handlebars.registerHelper('json', function(context) {
     return JSON.stringify(context);
 });
 
-// To test this file you can just run "node exporter.js"
+// To test this file you can just run "node exporter.js file"
 // Add new templates here
 var buttonTemplate = Handlebars.compile(fs.readFileSync("./templates/button.html").toString());
 var imageTemplate = Handlebars.compile(fs.readFileSync("./templates/image.html").toString());
@@ -48,6 +48,10 @@ if(process.argv[2]) {
         break;
     }
   }
+
+  // Logic
+
+
 
   //Write HTML output to file
   console.log(appTemplate(appDescription));

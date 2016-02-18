@@ -9,13 +9,13 @@
         },
         "name": {
           "name": "Value",
-          "value": "Sample text 1",
+          "value": "Sample text",
           "type": "text"
         }
       },
       "type": "ButtonClass"
     },
-    "Button1": {
+    "Label1": {
       "properties": {
         "visibility": {
           "name": "Visible",
@@ -24,12 +24,75 @@
         },
         "name": {
           "name": "Value",
-          "value": "Sample text 2",
+          "value": "Sample text",
           "type": "text"
         }
       },
-      "type": "ButtonClass"
+      "type": "LabelClass"
+    },
+    "Textbox2": {
+      "properties": {
+        "visibility": {
+          "name": "Visible",
+          "value": true,
+          "type": "checkbox"
+        },
+        "name": {
+          "name": "Value",
+          "value": "Sample text",
+          "type": "text"
+        }
+      },
+      "type": "TextboxClass"
+    },
+    "Textbox3": {
+      "properties": {
+        "visibility": {
+          "name": "Visible",
+          "value": true,
+          "type": "checkbox"
+        },
+        "name": {
+          "name": "Value",
+          "value": "Sample text",
+          "type": "text"
+        }
+      },
+      "type": "TextboxClass"
     }
   },
-  "logic": {}
+  "logic": {
+    "triggers": {
+      "trigger1": {
+        "name": "trigger1",
+        "component": "Button0",
+        "action": "click"
+      }
+    },
+    "functions": {
+      "plus1": {
+        "parameters": {
+          "right": {
+            "component": "Textbox3",
+            "output": "name"
+          },
+          "left": {
+            "component": "Textbox2",
+            "output": "name"
+          }
+        },
+        "output": {
+            "component": "Label1",
+            "output": "name"
+          }
+        },
+        "type": "plus"
+      },
+    "actions": {
+        "action1":{
+          "trigger": "trigger1",
+          "function": "plus1"
+        }
+      }
+    }
 }
