@@ -9,7 +9,7 @@
         },
         "name": {
           "name": "Value",
-          "value": "Sample text",
+          "value": "Sample text 1",
           "type": "text"
         }
       },
@@ -24,7 +24,7 @@
         },
         "name": {
           "name": "Value",
-          "value": "Sample text",
+          "value": "Sample text 2",
           "type": "text"
         }
       },

@@ -1,6 +1,13 @@
 Handlebars = require('handlebars');
 fs = require('fs');
 
+// Register Handlebars helper to stringify json
+// Use: {{{json object}}}
+// Source: http://stackoverflow.com/a/10233247
+Handlebars.registerHelper('json', function(context) {
+    return JSON.stringify(context);
+});
+
 // To test this file you can just run "node exporter.js"
 // Add new templates here
 var buttonTemplate = Handlebars.compile(fs.readFileSync("./templates/button.html").toString());
@@ -8,42 +15,43 @@ var imageTemplate = Handlebars.compile(fs.readFileSync("./templates/image.html")
 var labelTemplate = Handlebars.compile(fs.readFileSync("./templates/label.html").toString());
 var textboxTemplate = Handlebars.compile(fs.readFileSync("./templates/textbox.html").toString());
 
-function parseProperties(appDescription){
-  for(comp in appDescription["components"]){
+var appTemplate = Handlebars.compile(fs.readFileSync("./templates/app_page.html").toString());
 
-    for(prop in appDescription.components[comp].properties){
+function parseProperties(appDescription) {
+  for(comp in appDescription.components) {
+    for(prop in appDescription.components[comp].properties) {
       appDescription.components[comp].properties[prop] = appDescription.components[comp].properties[prop].value;
     }
-
   }
   return appDescription
 }
 
-
 // Read json file
 if(process.argv[2]) {
-    var appDescription = JSON.parse(fs.readFileSync(process.argv[2]).toString());
-    appDescription = parseProperties(appDescription);
+  var appDescription = JSON.parse(fs.readFileSync(process.argv[2]).toString());
+  appDescription = parseProperties(appDescription);
 
-    var htmlOutput = "";
-    for(comp in appDescription.components){
-      switch( appDescription.components[comp].type){
-        case "ButtonClass":
-              htmlOutput += buttonTemplate(appDescription.components[comp].properties);
-              break;
-        case "ImageClass":
-              htmlOutput += imageTemplate(appDescription.components[comp].properties);
-              break;
-        case "TextboxClass":
-              htmlOutput += textboxTemplate(appDescription.components[comp].properties);
-              break;
-        case "LabelClass":
-              htmlOutput += labelTemplate(appDescription.components[comp].properties);
-              break;
-      }
+  for(comp in appDescription.components) {
+    component = appDescription.components[comp];
+    switch(component.type) {
+      case "ButtonClass":
+        component.html = buttonTemplate(component.properties);
+        break;
+      case "ImageClass":
+        component.html = imageTemplate(component.properties);
+        break;
+      case "TextboxClass":
+        component.html = textboxTemplate(component.properties);
+        break;
+      case "LabelClass":
+        component.html = labelTemplate(component.properties);
+        break;
     }
-  //Write htmloutput to file.
-  console.log(htmlOutput);
+  }
+
+  //Write HTML output to file
+  console.log(appTemplate(appDescription));
+  fs.writeFileSync("./output.html", appTemplate(appDescription))
 }
 else {
   // Test stuff if we don't want to parse a file

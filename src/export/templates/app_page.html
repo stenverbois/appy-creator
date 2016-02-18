@@ -13,14 +13,15 @@
   <body>
     <app>
       {{#each components}}
-      <div>{{this.html}}</div>
+      <div>
+        {{{this.html}}}
+      </div>
       {{/each}}
     </app>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-    <script>{{classesjs}}</script>
     <script>
       Vue.config.debug = true
 
@@ -28,7 +29,7 @@
         el: 'app',
         data: {
           {{#each components}}
-          {{this.name}}: {{this.properties}},
+          {{@key}}: {{{json this.properties}}},
           {{/each}}
         },
         computed: {
