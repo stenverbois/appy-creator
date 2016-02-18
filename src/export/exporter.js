@@ -10,7 +10,25 @@ var textboxTemplate = Handlebars.compile(fs.readFileSync("./templates/textbox.ht
 
 // Read json file
 if(process.argv[2]) {
-    var appDescription = JSON.parse(fs.readFileSync(process.argv[2]).toString())
+    var appDescription = JSON.parse(fs.readFileSync(process.argv[2]).toString());
+    var htmlOutput = "";
+    for(comp in appDescription["components"]){
+      switch(comp["type"]){
+        case "ButtonClass":
+              htmlOutput += buttonTemplate(comp["properties"]);
+              break;
+        case "ImageClass":
+              htmlOutput += imageTemplate(comp["properties"]);
+              break;
+        case "TextboxClass":
+              htmlOutput += textboxTemplate(comp["properties"]);
+              break;
+        case "LabelClass":
+              htmlOutput += labelTemplate(comp["properties"]);
+              break;
+      }
+    }
+  //Write htmloutput to file.
 }
 else {
   // Test stuff if we don't want to parse a file
