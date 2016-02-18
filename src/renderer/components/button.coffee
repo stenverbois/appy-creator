@@ -3,18 +3,20 @@ Component = require './component'
 module.exports =
 class Button extends Component
 
-  @defaultProperties =
-    visibility:
-      name: 'Visible'
-      value: true
-      type: 'checkbox'
+  @defaultProperties: ->
+    {
+      visibility:
+        name: 'Visible'
+        value: true
+        type: 'checkbox'
 
-    name:
-      name: 'Value'
-      value: 'Sample text'
-      type: 'text'
+      name:
+        name: 'Value'
+        value: 'Sample text'
+        type: 'text'
+    }
 
 
-  constructor: (@name, @properties=Button.defaultProperties) ->
+  constructor: (@name, @properties=Button.defaultProperties()) ->
     @cmpName = 'cmp-button'
     @type = "ButtonClass"
