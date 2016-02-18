@@ -24,25 +24,26 @@ function parseProperties(appDescription){
 if(process.argv[2]) {
     var appDescription = JSON.parse(fs.readFileSync(process.argv[2]).toString());
     appDescription = parseProperties(appDescription);
-  
+
     var htmlOutput = "";
-    for(comp in appDescription["components"]){
-      switch( appDescription["components"][comp]["type"]){
+    for(comp in appDescription.components){
+      switch( appDescription.components[comp].type){
         case "ButtonClass":
-              htmlOutput += buttonTemplate(comp["properties"]);
+              htmlOutput += buttonTemplate(appDescription.components[comp].properties);
               break;
         case "ImageClass":
-              htmlOutput += imageTemplate(comp["properties"]);
+              htmlOutput += imageTemplate(appDescription.components[comp].properties);
               break;
         case "TextboxClass":
-              htmlOutput += textboxTemplate(comp["properties"]);
+              htmlOutput += textboxTemplate(appDescription.components[comp].properties);
               break;
         case "LabelClass":
-              htmlOutput += labelTemplate(comp["properties"]);
+              htmlOutput += labelTemplate(appDescription.components[comp].properties);
               break;
       }
     }
   //Write htmloutput to file.
+  console.log(htmlOutput);
 }
 else {
   // Test stuff if we don't want to parse a file
