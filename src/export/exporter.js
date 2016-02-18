@@ -10,12 +10,13 @@ Handlebars.registerHelper('json', function(context) {
 
 // To test this file you can just run "node exporter.js file"
 // Add new templates here
-var buttonTemplate = Handlebars.compile(fs.readFileSync("./templates/button.html").toString());
-var imageTemplate = Handlebars.compile(fs.readFileSync("./templates/image.html").toString());
-var labelTemplate = Handlebars.compile(fs.readFileSync("./templates/label.html").toString());
-var textboxTemplate = Handlebars.compile(fs.readFileSync("./templates/textbox.html").toString());
+var buttonTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/button.html").toString());
+var imageTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/image.html").toString());
+var labelTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/label.html").toString());
+var textboxTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/textbox.html").toString());
+var appTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/app_page.html").toString());
 
-var appTemplate = Handlebars.compile(fs.readFileSync("./templates/app_page.html").toString());
+
 
 function parseProperties(appDescription) {
   for(comp in appDescription.components) {
@@ -48,23 +49,17 @@ if(process.argv[2]) {
         break;
     }
   }
-
+  var jsString = "<script type=\"javascript\">";
   // Logic
   for(logic in appDescription.logic){
-    // First get the triggers
-    for(trigger in logic.triggers){
-
-    }
-    // Then get the functions
-    for(func in logic.functions){
-
-    }
-    // Then fill in the actions
     for(action in logic.actions){
-
+      var actionInfo = logic.actions[action];
+      var triggerInfo = logic.triggers[actionInfo.trigger];
+      var functionInfo = logic.functions[actionInfo.function];
+      
     }
+    jsString += "</script>"
   }
-
 
   //Write HTML output to file
   console.log(appTemplate(appDescription));
