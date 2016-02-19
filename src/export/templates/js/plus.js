@@ -1,3 +1,3 @@
 function() {
-  return {{right.component}} + {{left.component}};
+  return {{right}} + {{left}};
 }

@@ -26,10 +26,7 @@
           "name": "Value",
           "value": "Sample text",
           "type": "text",
-          "input": {
-            "component": "plus1",
-            "output": "result"
-          }
+          "input": "plus1.result"
         }
       },
       "type": "LabelClass"
@@ -75,19 +72,10 @@
     "functions": {
       "plus1": {
         "parameters": {
-          "right": {
-            "component": "Textbox3",
-            "output": "name"
-          },
-          "left": {
-            "component": "Textbox2",
-            "output": "name"
-          }
+          "right": "Textbox3.name",
+          "left": "Textbox2.name"
         },
-        "output": {
-          "component": "Label1",
-          "output": "name"
-        },
+        "output": "Label1.name",
         "type": "Plus"
       }
     },
