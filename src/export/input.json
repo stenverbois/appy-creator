@@ -25,7 +25,11 @@
         "name": {
           "name": "Value",
           "value": "Sample text",
-          "type": "text"
+          "type": "text",
+          "input": {
+            "component": "plus1",
+            "output": "result"
+          }
         }
       },
       "type": "LabelClass"
@@ -64,7 +68,6 @@
   "logic": {
     "triggers": {
       "trigger1": {
-        "name": "trigger1",
         "component": "Button0",
         "action": "click"
       }
@@ -82,17 +85,17 @@
           }
         },
         "output": {
-            "component": "Label1",
-            "output": "name"
-          }
+          "component": "Label1",
+          "output": "name"
         },
-        "type": "plus"
-      },
+        "type": "Plus"
+      }
+    },
     "actions": {
-        "action1":{
-          "trigger": "trigger1",
-          "function": "plus1"
-        }
+      "action1":{
+        "trigger": "trigger1",
+        "function": "plus1"
       }
     }
+  }
 }

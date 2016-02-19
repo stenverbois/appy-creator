@@ -14,6 +14,7 @@ var buttonTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/button
 var imageTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/image.html").toString());
 var labelTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/label.html").toString());
 var textboxTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/textbox.html").toString());
+var plusTemplate = Handlebars.compile(fs.readFileSync("./templates/js/plus.js").toString());
 var appTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/app_page.html").toString());
 
 
@@ -49,16 +50,22 @@ if(process.argv[2]) {
         break;
     }
   }
-  var jsString = "<script type=\"javascript\">";
+
   // Logic
-  for(logic in appDescription.logic){
-    for(action in logic.actions){
-      var actionInfo = logic.actions[action];
-      var triggerInfo = logic.triggers[actionInfo.trigger];
-      var functionInfo = logic.functions[actionInfo.function];
-      
+  for(f in appDescription.logic.functions) {
+    func = appDescription.logic.functions[f];
+    switch(func.type) {
+      case "Plus":
+        func.js = plusTemplate(func.parameters);
+        break;
     }
-    jsString += "</script>"
+    // TODO: actions
+    // for(action in logic.actions){
+    //   var actionInfo = logic.actions[action];
+    //   var triggerInfo = logic.triggers[actionInfo.trigger];
+    //   var functionInfo = logic.functions[actionInfo.function];
+    //
+    // }
   }
 
   //Write HTML output to file
