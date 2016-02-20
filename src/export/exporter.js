@@ -11,11 +11,14 @@ Handlebars.registerHelper('json', function(context) {
 
 // To test this file you can just run "node exporter.js file"
 // Add new templates here
-var buttonTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/button.html").toString());
-var imageTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/image.html").toString());
-var labelTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/label.html").toString());
-var textboxTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/textbox.html").toString());
-var plusTemplate = Handlebars.compile(fs.readFileSync("./templates/js/plus.js").toString());
+var templates = {
+  Button: Handlebars.compile(fs.readFileSync("./templates/HTML/button.html").toString()),
+  Image: Handlebars.compile(fs.readFileSync("./templates/HTML/image.html").toString()),
+  Label: Handlebars.compile(fs.readFileSync("./templates/HTML/label.html").toString()),
+  Textbox: Handlebars.compile(fs.readFileSync("./templates/HTML/textbox.html").toString()),
+  Plus: Handlebars.compile(fs.readFileSync("./templates/js/plus.js").toString()),
+}
+
 var appTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/app_page.html").toString());
 
 function parseProperties(appDescription) {
@@ -23,7 +26,6 @@ function parseProperties(appDescription) {
     appDescription.components[comp].binding = {};
     for(prop in appDescription.components[comp].properties) {
       // Set default component bindings
-      console.log(appDescription.components[comp].properties[prop].input)
       if(appDescription.components[comp].properties[prop].input) {
         appDescription.components[comp].binding[prop] = appDescription.components[comp].properties[prop].input;
       }
@@ -45,16 +47,14 @@ if(process.argv[2]) {
   // Logic
   for(f in appDescription.logic.functions) {
     func = appDescription.logic.functions[f];
-    switch(func.type) {
-      case "Plus":
-      func.name = f + '_computed';
-      func.js = plusTemplate(_.extend(func.parameters, {'name': f}));
 
-      // Set all outputs of this logic component to null
-      appDescription.components[f] = {};
-      appDescription.components[f].properties = {result: null};
-      break;
-    }
+    func.name = f + '_computed';
+    func.js = templates[func.type](_.extend(func.parameters, {'name': f}));
+
+    // Set all outputs of this logic component to null
+    appDescription.components[f] = {};
+    appDescription.components[f].properties = {result: null};
+
     // TODO: actions
     // for(action in logic.actions){
     //   var actionInfo = logic.actions[action];
@@ -66,24 +66,11 @@ if(process.argv[2]) {
 
   for(comp in appDescription.components) {
     component = appDescription.components[comp];
-    switch(component.type) {
-      case "ButtonClass":
-        component.html = buttonTemplate(component.binding);
-        break;
-      case "ImageClass":
-        component.html = imageTemplate(component.binding);
-        break;
-      case "TextboxClass":
-        component.html = textboxTemplate(component.binding);
-        break;
-      case "LabelClass":
-        component.html = labelTemplate(component.binding);
-        break;
-      default:
-        break;
-    }
+    console.log(component.type)
+    // TODO: if we change this to coffeescript:
+    // component.html = templates[component.type]?(component.binding);
+    component.html = typeof templates[component.type] === "function" ? templates[component.type](component.binding) : void 0;
   }
-
 
   //Write HTML output to file
   console.log(appTemplate(appDescription));

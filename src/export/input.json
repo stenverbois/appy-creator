@@ -19,7 +19,7 @@
           "value": 50
         }
       },
-      "type": "ButtonClass"
+      "type": "Button"
     },
     "Label1": {
       "properties": {
@@ -41,7 +41,7 @@
           "value": 50
         }
       },
-      "type": "LabelClass"
+      "type": "Label"
     },
     "Textbox2": {
       "properties": {
@@ -62,7 +62,7 @@
           "value": 50
         }
       },
-      "type": "TextboxClass"
+      "type": "Textbox"
     },
     "Textbox3": {
       "properties": {
@@ -83,7 +83,7 @@
           "value": 50
         }
       },
-      "type": "TextboxClass"
+      "type": "Textbox"
     }
   },
   "logic": {
