@@ -11,6 +11,12 @@
           "name": "Value",
           "value": "Sample text",
           "type": "text"
+        },
+        "width": {
+          "value": 50
+        },
+        "height": {
+          "value": 50
         }
       },
       "type": "ButtonClass"
@@ -26,7 +32,13 @@
           "name": "Value",
           "value": "Sample text",
           "type": "text",
-          "input": "plus1.result"
+          "input": "Plus1.result"
+        },
+        "width": {
+          "value": 50
+        },
+        "height": {
+          "value": 50
         }
       },
       "type": "LabelClass"
@@ -42,6 +54,12 @@
           "name": "Value",
           "value": "Sample text",
           "type": "text"
+        },
+        "width": {
+          "value": 50
+        },
+        "height": {
+          "value": 50
         }
       },
       "type": "TextboxClass"
@@ -57,6 +75,12 @@
           "name": "Value",
           "value": "Sample text",
           "type": "text"
+        },
+        "width": {
+          "value": 50
+        },
+        "height": {
+          "value": 50
         }
       },
       "type": "TextboxClass"
@@ -64,25 +88,27 @@
   },
   "logic": {
     "triggers": {
-      "trigger1": {
+      "Trigger1": {
         "component": "Button0",
         "action": "click"
       }
     },
     "functions": {
-      "plus1": {
+      "Plus1": {
         "parameters": {
           "right": "Textbox3.name",
           "left": "Textbox2.name"
         },
-        "output": "Label1.name",
+        "outputs": {
+          "result": "Label1.name"
+        },
         "type": "Plus"
       }
     },
     "actions": {
-      "action1":{
-        "trigger": "trigger1",
-        "function": "plus1"
+      "Action1":{
+        "trigger": "Trigger1",
+        "function": "Plus1"
       }
     }
   }

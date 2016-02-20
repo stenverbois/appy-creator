@@ -1,5 +1,6 @@
 Handlebars = require('handlebars');
 fs = require('fs');
+_ = require('underscore');
 
 // Register Handlebars helper to stringify json
 // Use: {{{json object}}}
@@ -17,11 +18,19 @@ var textboxTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/textb
 var plusTemplate = Handlebars.compile(fs.readFileSync("./templates/js/plus.js").toString());
 var appTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/app_page.html").toString());
 
-
-
 function parseProperties(appDescription) {
   for(comp in appDescription.components) {
+    appDescription.components[comp].binding = {};
     for(prop in appDescription.components[comp].properties) {
+      // Set default component bindings
+      console.log(appDescription.components[comp].properties[prop].input)
+      if(appDescription.components[comp].properties[prop].input) {
+        appDescription.components[comp].binding[prop] = appDescription.components[comp].properties[prop].input;
+      }
+      else {
+        appDescription.components[comp].binding[prop] = comp + '.' + prop;
+      }
+
       appDescription.components[comp].properties[prop] = appDescription.components[comp].properties[prop].value;
     }
   }
@@ -33,31 +42,18 @@ if(process.argv[2]) {
   var appDescription = JSON.parse(fs.readFileSync(process.argv[2]).toString());
   appDescription = parseProperties(appDescription);
 
-  for(comp in appDescription.components) {
-    component = appDescription.components[comp];
-    switch(component.type) {
-      case "ButtonClass":
-        component.html = buttonTemplate(component.properties);
-        break;
-      case "ImageClass":
-        component.html = imageTemplate(component.properties);
-        break;
-      case "TextboxClass":
-        component.html = textboxTemplate(component.properties);
-        break;
-      case "LabelClass":
-        component.html = labelTemplate(component.properties);
-        break;
-    }
-  }
-
   // Logic
   for(f in appDescription.logic.functions) {
     func = appDescription.logic.functions[f];
     switch(func.type) {
       case "Plus":
-        func.js = plusTemplate(func.parameters);
-        break;
+      func.name = f + '_computed';
+      func.js = plusTemplate(_.extend(func.parameters, {'name': f}));
+
+      // Set all outputs of this logic component to null
+      appDescription.components[f] = {};
+      appDescription.components[f].properties = {result: null};
+      break;
     }
     // TODO: actions
     // for(action in logic.actions){
@@ -67,6 +63,27 @@ if(process.argv[2]) {
     //
     // }
   }
+
+  for(comp in appDescription.components) {
+    component = appDescription.components[comp];
+    switch(component.type) {
+      case "ButtonClass":
+        component.html = buttonTemplate(component.binding);
+        break;
+      case "ImageClass":
+        component.html = imageTemplate(component.binding);
+        break;
+      case "TextboxClass":
+        component.html = textboxTemplate(component.binding);
+        break;
+      case "LabelClass":
+        component.html = labelTemplate(component.binding);
+        break;
+      default:
+        break;
+    }
+  }
+
 
   //Write HTML output to file
   console.log(appTemplate(appDescription));

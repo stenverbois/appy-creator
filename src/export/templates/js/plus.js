@@ -1,3 +1,4 @@
 function() {
-  return {{right}} + {{left}};
+  this.{{name}}.result = this.{{left}} + this.{{right}};
+  return null;
 }
