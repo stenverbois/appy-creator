@@ -95,6 +95,7 @@
     },
     "functions": {
       "Plus1": {
+        "triggers": ["Trigger1"],
         "parameters": {
           "right": "Textbox3.name",
           "left": "Textbox2.name"
@@ -103,14 +104,6 @@
           "result": "Label1.name"
         },
         "type": "Plus"
-      }
-    },
-    "actions": {
-      "Action1":{
-        "trigger": "Trigger1",
-        "parameters": {
-          "input": "Plus1.result"
-        }
       }
     }
   }

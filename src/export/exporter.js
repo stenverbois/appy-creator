@@ -2,6 +2,7 @@ Handlebars = require('handlebars');
 fs = require('fs');
 _ = require('underscore');
 
+
 // Register Handlebars helper to stringify json
 // Use: {{{json object}}}
 // Source: http://stackoverflow.com/a/10233247
@@ -20,12 +21,14 @@ var templates = {
 }
 
 var appTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/app_page.html").toString());
+var ComponentTriggers = {};
 
 function parseProperties(appDescription) {
   for(comp in appDescription.components) {
     appDescription.components[comp].binding = {};
     for(prop in appDescription.components[comp].properties) {
       // Set default component bindings
+
       if(appDescription.components[comp].properties[prop].input) {
         appDescription.components[comp].binding[prop] = appDescription.components[comp].properties[prop].input;
       }
@@ -39,6 +42,31 @@ function parseProperties(appDescription) {
   return appDescription
 }
 
+function getTrigger(func){
+  func.triggers.forEach(function(t){
+
+    var trigger = appDescription.logic.triggers[t];
+
+    if(!(trigger.component in ComponentTriggers)){
+      ComponentTriggers[trigger.component] = {};
+    }
+
+    ComponentTriggers[trigger.component][trigger.action] = func.name;
+  });
+
+}
+
+function setCompTriggers(){
+  for(comp in appDescription.components) {
+    component = appDescription.components[comp];
+    for(trigger in ComponentTriggers[comp]){
+      // Get all the triggers we have function(s) for
+      component.binding[trigger] = ComponentTriggers[comp][trigger]
+    }
+    console.log(component);
+  }
+}
+
 // Read json file
 if(process.argv[2]) {
   var appDescription = JSON.parse(fs.readFileSync(process.argv[2]).toString());
@@ -46,34 +74,32 @@ if(process.argv[2]) {
 
   // Logic
   for(f in appDescription.logic.functions) {
+
     func = appDescription.logic.functions[f];
 
     func.name = f + '_computed';
     func.js = templates[func.type](_.extend(func.parameters, {'name': f}));
 
+    getTrigger(func);
     // Set all outputs of this logic component to null
     appDescription.components[f] = {};
     appDescription.components[f].properties = {result: null};
 
-    // TODO: actions
-    // for(action in logic.actions){
-    //   var actionInfo = logic.actions[action];
-    //   var triggerInfo = logic.triggers[actionInfo.trigger];
-    //   var functionInfo = logic.functions[actionInfo.function];
-    //
-    // }
   }
+  // Set the functions on the right triggers
+  setCompTriggers();
 
   for(comp in appDescription.components) {
     component = appDescription.components[comp];
-    console.log(component.type)
+    console.log(component.type);
+
     // TODO: if we change this to coffeescript:
     // component.html = templates[component.type]?(component.binding);
     component.html = typeof templates[component.type] === "function" ? templates[component.type](component.binding) : void 0;
   }
 
   //Write HTML output to file
-  console.log(appTemplate(appDescription));
+  //console.log(appTemplate(appDescription));
   fs.writeFileSync("./output.html", appTemplate(appDescription))
 }
 else {
@@ -84,6 +110,7 @@ else {
   console.log(buttonResult);
   */
 
-  var labelResult = labelTemplate({name: "Yay it twerks", visibility: true});
-  console.log(labelResult);
+  //var labelResult = labelTemplate({name: "Yay it twerks", visibility: true});
+  //console.log(labelResult);
+  console.log("no input file");
 }
