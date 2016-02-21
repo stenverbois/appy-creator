@@ -108,7 +108,9 @@
     "actions": {
       "Action1":{
         "trigger": "Trigger1",
-        "function": "Plus1"
+        "parameters": {
+          "input": "Plus1.result"
+        }
       }
     }
   }
