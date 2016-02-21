@@ -59,11 +59,10 @@ function getTrigger(func){
 function setCompTriggers(){
   for(comp in appDescription.components) {
     component = appDescription.components[comp];
-    for(trigger in ComponentTriggers[comp]){
+    for(trigger in ComponentTriggers[comp]) {
       // Get all the triggers we have function(s) for
       component.binding[trigger] = ComponentTriggers[comp][trigger]
     }
-    console.log(component);
   }
 }
 
@@ -71,15 +70,23 @@ function setCompTriggers(){
 if(process.argv[2]) {
   var appDescription = JSON.parse(fs.readFileSync(process.argv[2]).toString());
   appDescription = parseProperties(appDescription);
-
+  appDescription.logic.methods = {}
   // Logic
   for(f in appDescription.logic.functions) {
 
     func = appDescription.logic.functions[f];
+    if(func.triggers.length == 0){
+      func.name = f + '_computed';
+    }else{
+      func.name = f;
 
-    func.name = f + '_computed';
+    }
     func.js = templates[func.type](_.extend(func.parameters, {'name': f}));
+    if(func.triggers.length > 0){
+      appDescription.logic.methods[func.name] = func.js;
+      delete appDescription.logic.functions[f];
 
+    }
     getTrigger(func);
     // Set all outputs of this logic component to null
     appDescription.components[f] = {};
@@ -91,7 +98,7 @@ if(process.argv[2]) {
 
   for(comp in appDescription.components) {
     component = appDescription.components[comp];
-    console.log(component.type);
+    //console.log(component.type);
 
     // TODO: if we change this to coffeescript:
     // component.html = templates[component.type]?(component.binding);
