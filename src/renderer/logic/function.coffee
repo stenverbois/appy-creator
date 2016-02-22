@@ -1,33 +1,24 @@
 module.exports =
   Function: class Function
-    constructor: (@name, @parameters={}) ->
+    constructor: (@name, @parameters={}, @triggers=[]) ->
 
     connectParameter: (name, component, output) ->
       if name in @parameterNames
-        @parameters[name] =
-          component: component
-          output: output
+        @parameters[name] = "#{component}.#{output}"
       else
         console.error "'#{name}' is not a valid parameter of #{@name}."
 
-    export: ->
+    connectTrigger: (name) ->
+      @triggers.push name
+
+    export: -> {
+      @type
       @parameters
+      @triggers
+    }
 
   Plus: class Plus extends Function
     constructor: (@name, @parameters={}) ->
+      @type = "Plus"
       @parameterNames = ['left', 'right']
       @outputNames = ['result']
-
-  Action: class Action extends Function
-    constructor: (@name, @parameters={}, @trigger='') ->
-
-    connectTrigger: (name) ->
-      @trigger = name
-
-    export: ->
-      @parameters
-
-  Set: class Set extends Action
-    constructor: (@name, @parameters={}, @trigger='') ->
-      @parameterNames = ['input']
-      @outputNames = ['output']

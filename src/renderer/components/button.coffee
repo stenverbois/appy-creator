@@ -19,4 +19,4 @@ class Button extends Component
 
   constructor: (@name, @properties=Button.defaultProperties()) ->
     @cmpName = 'cmp-button'
-    @type = "ButtonClass"
+    @type = "Button"

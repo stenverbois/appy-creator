@@ -18,4 +18,4 @@ class Label extends Component
 
   constructor: (@name, @properties=Label.defaultProperties()) ->
     @cmpName = 'cmp-label'
-    @type = "LabelClass"
+    @type = "Label"

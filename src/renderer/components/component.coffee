@@ -5,4 +5,5 @@ class Component extends EventEmitter
   constructor: (@name='NoName') ->
 
   export: ->
+    @type
     @properties
