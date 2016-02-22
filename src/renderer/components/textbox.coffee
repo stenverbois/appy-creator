@@ -8,10 +8,10 @@ class Textbox extends Component
       visibility:
         name: 'Visible'
         value: true
-        type: 'checkbox'
+        type: 'switch'
 
       name:
-        name: 'Value'
+        name: 'Text'
         value: 'Sample text'
         type: 'text'
 

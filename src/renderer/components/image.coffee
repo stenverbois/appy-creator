@@ -8,7 +8,7 @@ class Image extends Component
       visibility:
         name: 'Visible'
         value: true
-        type: 'checkbox'
+        type: 'switch'
 
       file:
         name: 'Image Source'

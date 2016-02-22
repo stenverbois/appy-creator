@@ -11,6 +11,7 @@ module.exports =
   components:
     'prop-checkbox': require('../components/prop-checkbox.vue')
     'prop-text': require('../components/prop-text.vue')
+    'prop-switch': require('../components/prop-switch.vue')
 
   computed:
     propComponent: ->

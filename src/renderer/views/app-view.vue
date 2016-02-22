@@ -1,5 +1,5 @@
 <style lang="less">
-@import "./../../style/variables.less";
+@import "./../../style/main.less";
 
 .app-window {
   position: absolute;
