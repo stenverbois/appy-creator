@@ -7,12 +7,6 @@
   width: @properties-bar-width;
   height: ~"calc(100% - @{top-bar-height} - @{footer-bar-height})";
 
-  .header {
-    font-size: 1.8rem;
-    margin: 10px 0px 0px 15px;
-    color: #ee6e73;
-  }
-
   .property-title {
     .property-title-text {
       text-overflow: ellipsis;
@@ -48,37 +42,26 @@
 <template>
   <div class="properties z-depth-1">
     <div class="row">
-      <div class="">
-        <!-- Show property info when a component is selected -->
-        <div class="" v-if="isComponentSelected()">
-          <div class="property-title valign-wrapper">
-            <!-- <h4 class="property-title-text left" contenteditable="true">{{component.name}}</h4>
-            <i class="property-title-icon material-icons right"
-               @click="editComponentName()">
-              mode_edit
-            </i> -->
-            <div class="header">
-              Properties
-            </div>
-          </div>
-          <!-- <div class="property-wrapper"> -->
-          <ul class="collection">
-            <li class="collection-item" v-for="propertyData in component.properties">
-              <property :data="propertyData"></property>
-            </li>
-            <li class="collection-item center-align">
-              <a class="btn-flat red btn-remove" @click="removeComponent">
-                Remove
-              </a>
-            </li>
-
-          </ul>
-          <!-- </div> -->
-        </div>
-        <!-- Else if no component is selected -->
-        <div class="" v-if="!isComponentSelected()">
-          <h5>Select a component to change its properties!</h5>
-        </div>
+      <div class="view-header">
+        Properties
+      </div>
+      <!-- Show property info when a component is selected -->
+      <div v-if="isComponentSelected()">
+        <ul class="collection">
+          <li class="collection-item" v-for="propertyData in component.properties">
+            <property :data="propertyData"></property>
+          </li>
+          <li class="collection-item center-align">
+            <a class="btn-flat red btn-remove" @click="removeComponent">
+              Remove
+            </a>
+          </li>
+        </ul>
+        <!-- </div> -->
+      </div>
+      <!-- Else if no component is selected -->
+      <div v-else>
+        <p>Select a component to change its properties!</p>
       </div>
     </div>
   </div>

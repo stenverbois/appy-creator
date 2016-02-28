@@ -8,8 +8,10 @@
   overflow: hidden;
   height: ~"calc(100% - @{top-bar-height} - @{footer-bar-height})";
 
-  .collapsible-header {
-    background-color: lightgray;
+  .collapsible {
+    box-shadow: none;
+    border-right: none;
+    border-left: none;
   }
 
   .collection-item {
@@ -23,10 +25,13 @@
 </style>
 
 <template>
-  <div class="components blue-grey lighten-5 z-depth-1">
+  <div class="components z-depth-1">
+    <div class="view-header">
+      Components
+    </div>
     <ul class="collapsible" data-collapsible="accordion">
       <li>
-        <div class="collapsible-header"><i class="material-icons">view_module</i>Standard</div>
+        <div class="collapsible-header blue-grey lighten-5"><i class="material-icons">view_module</i>Standard</div>
         <div class="collapsible-body">
           <ul class="collection">
             <li class="collection-item">
@@ -45,7 +50,7 @@
         </div>
       </li>
       <li>
-        <div class="collapsible-header"><i class="material-icons">settings</i>Other</div>
+        <div class="collapsible-header blue-grey lighten-5"><i class="material-icons">settings</i>Other</div>
         <div class="collapsible-body">
           <p>Stuff</p>
         </div>

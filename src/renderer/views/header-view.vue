@@ -1,38 +1,20 @@
 <style lang="less" scoped>
-@import "./../../style/variables.less";
+@import "./../../style/main.less";
 
-.header {
-  display: flex;
-  flex-direction: row;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: @top-bar-height;
-
-  -webkit-user-select: none;
+.nav-wrapper {
+  .brand-logo {
+    margin-left: 0.6rem;
+  }
 }
 </style>
 
 <template>
-  <!--<div class="header blue-grey lighten-1">
-    <div class="row">
-      Header
-    </div>
-  </div>-->
   <header>
-    <nav class="z-depth-1">
+    <nav>
       <div class="nav-wrapper">
-        <ul id="nav-mobile" class="left">
-          <li><a>Something</a></li>
-          <li><a>Other</a></li>
-          <li><a>More</a></li>
-        </ul>
-
+        <a class="brand-logo">Appy</a>
         <ul id="nav-mobile" class="right">
-          <li><a>Not</a></li>
-          <li><a>Done</a></li>
-          <li><a>Yet</a></li>
+          <li><a>Export</a></li>
         </ul>
       </div>
     </nav>
