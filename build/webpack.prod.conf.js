@@ -16,6 +16,8 @@ var SOURCE_MAP = true
 
 config.devtool = SOURCE_MAP ? 'source-map' : false
 
+config.target = 'electron'
+
 // generate loader string to be used with extract text plugin
 function generateExtractLoaders (loaders) {
   return loaders.map(function (loader) {

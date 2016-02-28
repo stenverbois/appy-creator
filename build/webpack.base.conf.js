@@ -1,6 +1,6 @@
 var path = require('path')
 
-module.exports = {
+config = {
   entry: {
     app: './src/renderer/main.coffee'
   },
@@ -19,13 +19,13 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.coffee$/, loader: "coffee" },
-      { test: /\.cson$/, loader: "cson" },
-      { test: /\.css$/, loader: "style!css" },
-      { test: /\.html$/, loader: "html" },
+      { test: /\.coffee$/, loader: 'coffee' },
+      { test: /\.cson$/, loader: 'cson' },
+      { test: /\.css$/, loader: 'style!css' },
+      { test: /\.html$/, loader: 'html' },
       { test: /\.js$/, loader: 'babel', exclude: [/node_modules/, /lib/] },
       { test: /\.json$/, loader: 'json' },
-      { test: /\.less$/, loader: "style!css!less" },
+      { test: /\.less$/, loader: 'style!css!less' },
       { test: /\.vue$/, loader: 'vue' },
       {
         test: /\.(png|jpg|gif|svg)$/, loader: 'url',
@@ -42,3 +42,7 @@ module.exports = {
     }
   }
 }
+
+// config.target = 'electron-renderer'
+
+module.exports = config

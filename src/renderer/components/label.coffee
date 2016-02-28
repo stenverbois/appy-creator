@@ -3,8 +3,8 @@ Component = require './component'
 module.exports =
 class Label extends Component
 
-  constructor: ->
-    @properties =
+  @defaultProperties: ->
+    {
       visibility:
         name: 'Visible'
         value: true
@@ -14,7 +14,8 @@ class Label extends Component
         name: 'Text'
         value: 'Sample text'
         type: 'text'
+    }
 
-    @name = 'Test'
-
+  constructor: (@name, @properties=Label.defaultProperties()) ->
     @cmpName = 'cmp-label'
+    @type = "Label"
