@@ -1,6 +1,7 @@
 app = require 'app'
 
 Application = require './application'
+require './export'
 
 mainEditor = null
 

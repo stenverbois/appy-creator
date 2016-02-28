@@ -3,8 +3,8 @@ Component = require './component'
 module.exports =
 class Button extends Component
 
-  constructor: ->
-    @properties =
+  @defaultProperties: ->
+    {
       visibility:
         name: 'Visible'
         value: true
@@ -14,6 +14,9 @@ class Button extends Component
         name: 'Text'
         value: 'Sample text'
         type: 'text'
-    @name = 'Test'
+    }
 
+
+  constructor: (@name, @properties=Button.defaultProperties()) ->
     @cmpName = 'cmp-button'
+    @type = "Button"

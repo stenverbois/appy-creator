@@ -1,0 +1,13 @@
+-Wat is de use case da wij willen maken met deze app?
+-Als we een probleem hebben en we gebruiken stackoverflow bijhouden wat de oplossing is en natuurlijk wat het probleem was.
+-Hoe goed zijn wij in het omzeilen van problemen.
+-Wat is het doel dat wij willen bereiken op het eind van het semester?
+-Welke dingen zijn te voorzien en welke dingen zijn niet te voorzien?
+-Architectuur documenten bijhouden voor bijvoorbeeld we willen google maps gebruiken waar zit dit deel dan in mijn code? Wat moet ik aanpassen
+als ik bijvoorbeeld tomtom maps wil gebruiken?
+
+-We moeten kunnen aantonen waar de problemen kunnen zijn en we moeten zorgen dat onze design ermee overweg kan.
+-GUI testing even zo laten.
+-Als we kunnen tonen dat we enkele test scripts kunnen generen dan is het goed voor hem.
+-Als we kunnen aantonen dat we een path door onze graph kunnen generen dan is het ook goed.
+-Telegram stijl: wat is er gelukt, wat is er mislukt, ... .

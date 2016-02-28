@@ -5,6 +5,7 @@ componentClasses = require('./components/components').classes
 module.exports =
 class UserApp extends EventEmitter
   constructor: ->
+    @id = 0
     @components = []
 
   init: ->
@@ -13,4 +14,5 @@ class UserApp extends EventEmitter
     @components.splice idx, 1
 
   addComponent: (name) ->
-    @components.push new componentClasses[name]
+    @components.push new componentClasses[name](name+ @id)
+    @id += 1

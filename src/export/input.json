@@ -1,0 +1,110 @@
+{
+  "components": {
+    "Button0": {
+      "properties": {
+        "visibility": {
+          "name": "Visible",
+          "value": true,
+          "type": "checkbox"
+        },
+        "name": {
+          "name": "Value",
+          "value": "Sample text",
+          "type": "text"
+        },
+        "width": {
+          "value": 50
+        },
+        "height": {
+          "value": 50
+        }
+      },
+      "type": "Button"
+    },
+    "Label1": {
+      "properties": {
+        "visibility": {
+          "name": "Visible",
+          "value": true,
+          "type": "checkbox"
+        },
+        "name": {
+          "name": "Value",
+          "value": "Sample text",
+          "type": "text",
+          "input": "Plus1.result"
+        },
+        "width": {
+          "value": 50
+        },
+        "height": {
+          "value": 50
+        }
+      },
+      "type": "Label"
+    },
+    "Textbox2": {
+      "properties": {
+        "visibility": {
+          "name": "Visible",
+          "value": true,
+          "type": "checkbox"
+        },
+        "name": {
+          "name": "Value",
+          "value": "Sample text",
+          "type": "text"
+        },
+        "width": {
+          "value": 50
+        },
+        "height": {
+          "value": 50
+        }
+      },
+      "type": "Textbox"
+    },
+    "Textbox3": {
+      "properties": {
+        "visibility": {
+          "name": "Visible",
+          "value": true,
+          "type": "checkbox"
+        },
+        "name": {
+          "name": "Value",
+          "value": "Sample text",
+          "type": "text"
+        },
+        "width": {
+          "value": 50
+        },
+        "height": {
+          "value": 50
+        }
+      },
+      "type": "Textbox"
+    }
+  },
+  "logic": {
+    "triggers": {
+      "Trigger1": {
+        "component": "Button0",
+        "action": "click"
+      }
+    },
+    "functions": {
+      "Plus1": {
+        "triggers": ["Trigger1"],
+        "parameters": {
+          "right": "Textbox3.name",
+          "left": "Textbox2.name"
+        },
+        "outputs": {
+          "result": "Label1.name"
+        },
+        "type": "Plus"
+      }
+    }
+  }
+}

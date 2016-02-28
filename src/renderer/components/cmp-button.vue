@@ -12,4 +12,3 @@ module.exports =
   attached: ->
     @$parent.addToGrid()
 </script>
-

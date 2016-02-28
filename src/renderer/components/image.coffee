@@ -3,8 +3,8 @@ Component = require './component'
 module.exports =
 class Image extends Component
 
-  constructor: ->
-    @properties =
+  @defaultProperties: ->
+    {
       visibility:
         name: 'Visible'
         value: true
@@ -14,7 +14,8 @@ class Image extends Component
         name: 'Image Source'
         value: 'appy.png'
         type: 'text'
+    }
 
-    @name = 'Test'
-
+  constructor: (@name, @properties=Image.defaultProperties()) ->
     @cmpName = 'cmp-image'
+    @type = "Image"
