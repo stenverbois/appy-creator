@@ -1,5 +1,5 @@
-<style lang="less" scoped>
-@import "./../../style/variables.less";
+<style lang="scss" scoped>
+@import "./../../style/custom/variables.scss";
 
 .footer {
   position: fixed;

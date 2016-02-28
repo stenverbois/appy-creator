@@ -1,0 +1,12 @@
+@import "palette.scss";
+
+// Redefine materializecss variables
+$secondary-color: $accent-color;
+
+// Define custom variables
+$top-bar-height: 50px;
+
+$component-bar-width: 200px;
+$properties-bar-width: 250px;
+
+$footer-bar-height: 30px;

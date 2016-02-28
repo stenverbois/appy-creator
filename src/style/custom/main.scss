@@ -1,0 +1,26 @@
+// @import "variables.less";
+@import "variables.scss";
+@import "../materializecss/materialize.scss";
+
+html {
+  color: $primary-text-color;
+}
+
+.fill-height {
+  height: 100%;
+}
+
+.view {
+  &.header {
+    font-size: 1.8rem;
+    color: $secondary-text-color;
+  }
+  margin: 10px 0px 0px 15px;
+}
+
+.collapsible {
+  .collapsible-header.active {
+    background-color: $collection-active-bg-color;
+    color: $collection-active-color;
+  }
+}

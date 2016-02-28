@@ -1,11 +1,11 @@
-<style lang="less">
-@import "./../../style/main.less";
+<style lang="scss">
+@import "./../../style/custom/variables.scss";
 
 .app-window {
   position: absolute;
-  left: @component-bar-width;
-  width: ~"calc(100% - @{properties-bar-width} - @{component-bar-width})";
-  height: ~"calc(100% - @{top-bar-height} - @{footer-bar-height})";
+  left: $component-bar-width;
+  width: calc(100% - #{$properties-bar-width} - #{$component-bar-width});
+  height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
 
   .app-components {
 

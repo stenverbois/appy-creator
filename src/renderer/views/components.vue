@@ -1,12 +1,12 @@
-<style lang="less">
-@import "./../../style/variables.less";
+<style lang="scss">
+@import "./../../style/custom/variables.scss";
 
 .components {
   position: absolute;
   left: 0;
-  width: @component-bar-width;
+  width: $component-bar-width;
   overflow: hidden;
-  height: ~"calc(100% - @{top-bar-height} - @{footer-bar-height})";
+  height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
 
   .collapsible {
     box-shadow: none;
@@ -20,37 +20,35 @@
     }
   }
 }
-
-
 </style>
 
 <template>
   <div class="components z-depth-1">
-    <div class="view-header">
+    <div class="view header">
       Components
     </div>
     <ul class="collapsible" data-collapsible="accordion">
       <li>
-        <div class="collapsible-header blue-grey lighten-5"><i class="material-icons">view_module</i>Standard</div>
+        <div class="collapsible-header"><i class="material-icons">view_module</i>Standard</div>
         <div class="collapsible-body">
           <ul class="collection">
             <li class="collection-item">
-              <a class="waves-effect waves-red btn-flat" @click="state.app.addComponent('Button')">Button</a>
+              <a class="btn-flat" @click="state.app.addComponent('Button')">Button</a>
             </li>
             <li class="collection-item">
-              <a class="waves-effect waves-red btn-flat" @click="state.app.addComponent('Label')">Label</a>
+              <a class="btn-flat" @click="state.app.addComponent('Label')">Label</a>
             </li>
             <li class="collection-item">
-              <a class="waves-effect waves-red btn-flat" @click="state.app.addComponent('Textbox')">Textbox</a>
+              <a class="btn-flat" @click="state.app.addComponent('Textbox')">Textbox</a>
             </li>
             <li class="collection-item">
-              <a class="waves-effect waves-red btn-flat" @click="state.app.addComponent('Image')">Image</a>
+              <a class="btn-flat" @click="state.app.addComponent('Image')">Image</a>
             </li>
           </ul>
         </div>
       </li>
       <li>
-        <div class="collapsible-header blue-grey lighten-5"><i class="material-icons">settings</i>Other</div>
+        <div class="collapsible-header"><i class="material-icons">language</i>Other</div>
         <div class="collapsible-body">
           <p>Stuff</p>
         </div>

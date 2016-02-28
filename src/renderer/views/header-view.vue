@@ -1,6 +1,4 @@
-<style lang="less" scoped>
-@import "./../../style/main.less";
-
+<style lang="scss" scoped>
 .nav-wrapper {
   .brand-logo {
     margin-left: 0.6rem;

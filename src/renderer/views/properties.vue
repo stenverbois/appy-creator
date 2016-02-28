@@ -1,31 +1,19 @@
-<style lang="less">
-@import "./../../style/main.less";
+<style lang="scss">
+@import "./../../style/custom/variables.scss";
 
 .properties {
   position: absolute;
   right: 0;
-  width: @properties-bar-width;
-  height: ~"calc(100% - @{top-bar-height} - @{footer-bar-height})";
-
-  .property-title {
-    .property-title-text {
-      text-overflow: ellipsis;
-      &:focus {
-        outline: none;
-      }
-    }
-    .property-title-icon {
-      margin-left: auto;
-    }
-  }
-
-  .property-wrapper {
-    margin-left: -10px;
-  }
+  width: $properties-bar-width;
+  height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
 
   .collection {
     margin-top: 0px;
     border: 0px;
+
+    .collection-item {
+      margin-top: 5px;
+    }
   }
 
   .input-field label {
@@ -42,7 +30,7 @@
 <template>
   <div class="properties z-depth-1">
     <div class="row">
-      <div class="view-header">
+      <div class="view header">
         Properties
       </div>
       <!-- Show property info when a component is selected -->
@@ -52,7 +40,7 @@
             <property :data="propertyData"></property>
           </li>
           <li class="collection-item center-align">
-            <a class="btn-flat red btn-remove" @click="removeComponent">
+            <a class="btn-flat red-text btn-remove" @click="removeComponent">
               Remove
             </a>
           </li>
@@ -60,7 +48,7 @@
         <!-- </div> -->
       </div>
       <!-- Else if no component is selected -->
-      <div v-else>
+      <div class="view text" v-else>
         <p>Select a component to change its properties!</p>
       </div>
     </div>

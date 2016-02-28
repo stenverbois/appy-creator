@@ -26,9 +26,10 @@ config = {
       { test: /\.js$/, loader: 'babel', exclude: [/node_modules/, /lib/] },
       { test: /\.json$/, loader: 'json' },
       { test: /\.less$/, loader: 'style!css!less' },
+      { test: /\.scss$/, loader: 'style!css!sass?sourceMap' },
       { test: /\.vue$/, loader: 'vue' },
       {
-        test: /\.(png|jpg|gif|svg)$/, loader: 'url',
+        test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)$/, loader: 'url',
         query: {
           limit: 10000,
           name: '[name].[ext]?[hash]'
@@ -38,7 +39,8 @@ config = {
   },
   vue: {
     loaders: {
-      js: 'babel'
+      js: 'babel',
+      scss: 'style!css!sass?sourceMap'
     }
   }
 }
