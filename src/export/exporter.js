@@ -2,7 +2,6 @@ Handlebars = require('handlebars');
 fs = require('fs');
 _ = require('underscore');
 
-
 // Register Handlebars helper to stringify json
 // Use: {{{json object}}}
 // Source: http://stackoverflow.com/a/10233247
@@ -18,6 +17,7 @@ var templates = {
   Label: Handlebars.compile(fs.readFileSync("./templates/HTML/label.html").toString()),
   Textbox: Handlebars.compile(fs.readFileSync("./templates/HTML/textbox.html").toString()),
   Plus: Handlebars.compile(fs.readFileSync("./templates/js/plus.js").toString()),
+  GotoPage: Handlebars.compile(fs.readFileSync("./templates/js/gotopage.js").toString()),
 }
 
 var appTemplate = Handlebars.compile(fs.readFileSync("./templates/HTML/app_page.html").toString());
@@ -76,13 +76,24 @@ if(process.argv[2]) {
     appDescription.components[f].properties = {result: null};
   }
 
+  // Pages
+  appDescription.pages = appDescription.pages || {};
+  appDescription.pageNames.forEach(function(pageName) {
+    appDescription.pages[pageName] = {}
+    appDescription.pages[pageName].components = {}
+  });
+
+  // Components
   for(comp in appDescription.components) {
     component = appDescription.components[comp];
-    //console.log(component.type);
 
     // TODO: if we change this to coffeescript:
     // component.html = templates[component.type]?(component.binding);
     component.html = typeof templates[component.type] === "function" ? templates[component.type](component.binding) : void 0;
+
+    if(component.page) {
+      appDescription.pages[component.page].components[comp] = component;
+    }
   }
 
   //Write HTML output to file

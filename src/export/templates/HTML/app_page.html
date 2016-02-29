@@ -12,9 +12,13 @@
   </head>
   <body>
     <app>
-      {{#each components}}
-      <div>
-        {{{this.html}}}
+      {{#each pages}}
+      <div class="page" v-if="activePage == '{{@key}}'">
+        {{#each this.components}}
+        <div>
+          {{{this.html}}}
+        </div>
+        {{/each}}
       </div>
       {{/each}}
 
@@ -28,16 +32,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script>
       Vue.config.debug = true
-
-      var componentList = {
-        {{#each components}}
-        {{@key}}: {{{json this.properties}}},
-        {{/each}}
-      }
-
       var vm = new Vue({
         el: 'app',
-        data: componentList,
+        data: {
+          activePage: 'Page0',
+          {{#each components}}
+          {{@key}}: {{{json this.properties}}},
+          {{/each}}
+        },
         computed: {
           {{#each logic.functions}}
           {{this.name}}: {{{this.js}}},

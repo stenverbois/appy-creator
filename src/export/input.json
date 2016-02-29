@@ -19,7 +19,8 @@
           "value": 50
         }
       },
-      "type": "Button"
+      "type": "Button",
+      "page": "Page0"
     },
     "Label1": {
       "properties": {
@@ -41,7 +42,30 @@
           "value": 50
         }
       },
-      "type": "Label"
+      "type": "Label",
+      "page": "Page0"
+    },
+    "Label6": {
+      "properties": {
+        "visibility": {
+          "name": "Visible",
+          "value": true,
+          "type": "checkbox"
+        },
+        "name": {
+          "name": "Value",
+          "value": "YOU ARE ON THE SECOND PAGE!!!",
+          "type": "text"
+        },
+        "width": {
+          "value": 50
+        },
+        "height": {
+          "value": 50
+        }
+      },
+      "type": "Label",
+      "page": "Page1"
     },
     "Textbox2": {
       "properties": {
@@ -62,7 +86,8 @@
           "value": 50
         }
       },
-      "type": "Textbox"
+      "type": "Textbox",
+      "page": "Page0"
     },
     "Textbox3": {
       "properties": {
@@ -83,13 +108,67 @@
           "value": 50
         }
       },
-      "type": "Textbox"
+      "type": "Textbox",
+      "page": "Page0"
+    },
+    "Button5": {
+      "properties": {
+        "visibility": {
+          "name": "Visible",
+          "value": true,
+          "type": "checkbox"
+        },
+        "name": {
+          "name": "Value",
+          "value": "Goto Next Page",
+          "type": "text"
+        },
+        "width": {
+          "value": 50
+        },
+        "height": {
+          "value": 50
+        }
+      },
+      "type": "Button",
+      "page": "Page0"
+    },
+    "Button6": {
+      "properties": {
+        "visibility": {
+          "name": "Visible",
+          "value": true,
+          "type": "checkbox"
+        },
+        "name": {
+          "name": "Value",
+          "value": "Go Back",
+          "type": "text"
+        },
+        "width": {
+          "value": 50
+        },
+        "height": {
+          "value": 50
+        }
+      },
+      "type": "Button",
+      "page": "Page1"
     }
   },
+  "pageNames": ["Page0", "Page1"],
   "logic": {
     "triggers": {
       "Trigger1": {
         "component": "Button0",
+        "action": "click"
+      },
+      "Trigger2": {
+        "component": "Button5",
+        "action": "click"
+      },
+      "Trigger3": {
+        "component": "Button6",
         "action": "click"
       }
     },
@@ -104,6 +183,20 @@
           "result": "Label1.name"
         },
         "type": "Plus"
+      },
+      "GotoPage2": {
+        "triggers": ["Trigger2"],
+        "parameters": {
+          "page": "Page1"
+        },
+        "type": "GotoPage"
+      },
+      "GotoPage3": {
+        "triggers": ["Trigger3"],
+        "parameters": {
+          "page": "Page0"
+        },
+        "type": "GotoPage"
       }
     }
   }
