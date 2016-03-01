@@ -56,11 +56,11 @@
             properties: obj.properties
             type: obj.type
 
-  
         $.post 'http://localhost:8000/upload/',
           user: 'John Doe'
           title: 'Test'
           file: JSON.stringify(compArray)
+          (data) -> alert("Successfully uploaded appy!")
 
 
 </script>
