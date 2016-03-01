@@ -49,9 +49,10 @@
           <ul class="blue-grey lighten-2">
             <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"
                 :class="{selected: state.selected == $index}"
-                v-for="component in state.app.components">
+                v-for="component in state.app.components"
+                @mousedown="state.selected = $index">
 
-              <div @mousedown="state.selected = $index">
+              <div>
                 <component :is="component.cmpName" :cmp="component"></component>
               </div>
 
@@ -81,8 +82,6 @@ module.exports =
     @gridster = $(".gridster ul").gridster(
       widget_margins: [10, 10]
       widget_base_dimensions: [40, 40]
-      resize:
-        enabled: true
       shift_widgets_up: false
       max_cols: 4
       min_cols: 4
@@ -92,6 +91,7 @@ module.exports =
         stop: =>
           @updateSelectedWidgetProperties()
       resize:
+        enabled: true
         stop: =>
           @updateSelectedWidgetProperties()
     ).data 'gridster'
