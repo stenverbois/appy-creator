@@ -13,8 +13,8 @@ config = {
     extensions: ['', '.js', '.coffee', '.json', '.cson', '.vue'],
     alias: {
       'src': path.resolve(__dirname, '../src'),
-      'gridster': './../../lib/gridster/jquery.gridster.js',
-      'gridster-css': './../../lib/gridster/jquery.gridster.min.css'
+      'gridster': './../../lib/gridster/src/jquery.gridster.js',
+      'gridster-css': './../../lib/gridster/dist/jquery.gridster.min.css'
     }
   },
   module: {
