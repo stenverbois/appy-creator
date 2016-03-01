@@ -10,6 +10,10 @@ class Label extends Component
         value: true
         type: 'switch'
 
+      dim:
+        value: {}
+        type: 'hidden'
+
       name:
         name: 'Text'
         value: 'Sample text'

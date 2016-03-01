@@ -9,7 +9,3 @@ module.exports =
 
   data: ->
     state: store.state
-
-  computed:
-    selectedComp: ->
-      @state.app.components[@state.selected]

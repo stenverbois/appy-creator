@@ -36,7 +36,7 @@
       <!-- Show property info when a component is selected -->
       <div v-if="isComponentSelected()">
         <ul class="collection">
-          <li class="collection-item" v-for="propertyData in component.properties">
+          <li class="collection-item" v-for="propertyData in component.properties" v-if="propertyData.type != 'hidden'">
             <property :data="propertyData"></property>
           </li>
           <li class="collection-item center-align">

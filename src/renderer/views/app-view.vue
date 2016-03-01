@@ -47,14 +47,20 @@
       <div class="col s12">
         <div class="gridster">
           <ul class="blue-grey lighten-2">
-            <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" v-for="component in state.app.components" :class="{selected: state.selected == $index}">
-              <div @click="state.selected = $index">
+            <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"
+                :class="{selected: state.selected == $index}"
+                v-for="component in state.app.components">
+
+              <div @mousedown="state.selected = $index">
                 <component :is="component.cmpName" :cmp="component"></component>
               </div>
+
             </li>
           </ul>
         </div>
+        <pre>{{state.dim | json}}</pre>
         <button class="btn" @click="export()">Export</button>
+        <button class="btn" @click="state.dim.col = 3">t</button>
         <p>Voorbeeld JSON output voor beschreven scenario</p>
         <p><pre>{{testJSON | json}}<pre></p>
       </div>
@@ -63,7 +69,7 @@
 </template>
 
 <script lang="coffee">
-
+Vue = require 'vue'
 module.exports =
   data: ->
     state: store.state
@@ -82,6 +88,12 @@ module.exports =
       min_cols: 4
       min_rows: 6
       max_rows: 6
+      draggable:
+        stop: =>
+          @updateSelectedWidgetProperties()
+      resize:
+        stop: =>
+          @updateSelectedWidgetProperties()
     ).data 'gridster'
 
   created: ->
@@ -90,6 +102,15 @@ module.exports =
   methods:
     addToGrid: ->
       @gridster.addVueComp()
+
+    updateSelectedWidgetProperties: ->
+      widget = $('.gridster li.selected').first()
+      Vue.nextTick =>
+        @state.dim =
+          row: widget.attr("data-row")
+          col: widget.attr("data-col")
+          sizex: widget.attr("data-sizex")
+          sizey: widget.attr("data-sizey")
 
     export: ->
       @testJSON = ""

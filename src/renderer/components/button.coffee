@@ -10,10 +10,15 @@ class Button extends Component
         value: true
         type: 'switch'
 
+      dim:
+        value: {}
+        type: 'hidden'
+
       name:
         name: 'Text'
         value: 'Sample text'
         type: 'text'
+
     }
 
 

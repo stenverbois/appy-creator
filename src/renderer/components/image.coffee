@@ -10,6 +10,10 @@ class Image extends Component
         value: true
         type: 'switch'
 
+      dim:
+        value: {}
+        type: 'hidden'
+
       file:
         name: 'Image Source'
         value: 'appy.png'

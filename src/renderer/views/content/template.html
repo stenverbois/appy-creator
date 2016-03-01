@@ -2,6 +2,6 @@
   <div class="contents">
     <components></components>
     <app-view></app-view>
-    <properties :component="selectedComp"></properties>
+    <properties :component="state.app.components[state.selected]"></properties>
   </div>
 </main>
