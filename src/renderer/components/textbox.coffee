@@ -8,10 +8,18 @@ class Textbox extends Component
       visibility:
         name: 'Visible'
         value: true
-        type: 'checkbox'
+        type: 'switch'
+
+      dim:
+        value: {}
+        type: 'hidden'
+
+      height:
+        value: 100
+        type: 'hidden'
 
       name:
-        name: 'Value'
+        name: 'Text'
         value: 'Sample text'
         type: 'text'
     }

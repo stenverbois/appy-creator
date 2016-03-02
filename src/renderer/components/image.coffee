@@ -8,7 +8,11 @@ class Image extends Component
       visibility:
         name: 'Visible'
         value: true
-        type: 'checkbox'
+        type: 'switch'
+
+      dim:
+        value: {}
+        type: 'hidden'
 
       file:
         name: 'Image Source'

@@ -29,7 +29,6 @@ node_modules
 # Dist folder
 dist
 
-
 # Created by https://www.gitignore.io/api/intellij,linux,osx
 
 ### Intellij ###
@@ -122,4 +121,3 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-

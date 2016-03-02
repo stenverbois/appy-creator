@@ -1,7 +1,7 @@
 <template>
-  <div class="input-field col s12">
+  <div class="input-field">
     <input :id.once="data.name" :type.once="data.type" v-model="data.value" />
-    <label :for="data.name" class="active">{{data.name}}</label>
+    <label :for.once="data.name" class="active">{{data.name}}</label>
   </div>
 </template>
 

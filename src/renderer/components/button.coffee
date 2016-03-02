@@ -8,12 +8,17 @@ class Button extends Component
       visibility:
         name: 'Visible'
         value: true
-        type: 'checkbox'
+        type: 'switch'
+
+      dim:
+        value: {}
+        type: 'hidden'
 
       name:
-        name: 'Value'
+        name: 'Text'
         value: 'Sample text'
         type: 'text'
+
     }
 
 

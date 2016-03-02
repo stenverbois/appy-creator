@@ -1,11 +1,11 @@
-<style lang="less">
-@import "./../../style/variables.less";
+<style lang="scss">
+@import "./../../style/custom/variables.scss";
 
 .app-window {
   position: absolute;
-  left: @component-bar-width;
-  width: ~"calc(100% - @{properties-bar-width} - @{component-bar-width})";
-  height: ~"calc(100% - @{top-bar-height} - @{footer-bar-height})";
+  left: $component-bar-width;
+  width: calc(100% - #{$properties-bar-width} - #{$component-bar-width});
+  height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
 
   .app-components {
 
@@ -47,28 +47,30 @@
       <div class="col s12">
         <div class="gridster">
           <ul class="blue-grey lighten-2">
-            <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" v-for="component in state.app.components" :class="{selected: state.selected == $index}">
-              <div @click="state.selected = $index">
+            <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"
+                :class="{selected: state.selected == $index}"
+                v-for="component in state.app.components"
+                @mousedown="state.selected = $index">
+
+              <div>
                 <component :is="component.cmpName" :cmp="component"></component>
               </div>
-            </li>
 
-            <!-- <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-              <button style="width:100%; height:100%;">test</button>
             </li>
-            <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
-              <img src="../../../appy.png" style="width:100%; height:100%;" draggable="false" alt="APPY" />
-            </li>
-            <li data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li> -->
           </ul>
         </div>
+        <pre>{{state.dim | json}}</pre>
+        <button class="btn" @click="export()">Export</button>
+        <button class="btn" @click="state.dim.col = 3">t</button>
+        <p>Voorbeeld JSON output voor beschreven scenario</p>
+        <p><pre>{{testJSON | json}}<pre></p>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="coffee">
-
+Vue = require 'vue'
 module.exports =
   data: ->
     state: store.state
@@ -80,13 +82,18 @@ module.exports =
     @gridster = $(".gridster ul").gridster(
       widget_margins: [10, 10]
       widget_base_dimensions: [40, 40]
-      resize:
-        enabled: true
       shift_widgets_up: false
       max_cols: 4
       min_cols: 4
-      min_rows: 4
+      min_rows: 6
       max_rows: 6
+      draggable:
+        stop: =>
+          @updateSelectedWidgetProperties()
+      resize:
+        enabled: true
+        stop: =>
+          @updateSelectedWidgetProperties()
     ).data 'gridster'
 
   created: ->
@@ -95,6 +102,15 @@ module.exports =
   methods:
     addToGrid: ->
       @gridster.addVueComp()
+
+    updateSelectedWidgetProperties: ->
+      widget = $('.gridster li.selected').first()
+      Vue.nextTick =>
+        @state.dim =
+          row: widget.attr("data-row")
+          col: widget.attr("data-col")
+          sizex: widget.attr("data-sizex")
+          sizey: widget.attr("data-sizey")
 
     export: ->
       @testJSON = ""

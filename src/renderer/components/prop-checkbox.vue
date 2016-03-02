@@ -1,5 +1,5 @@
 <template>
-  <div class="col s12">
+  <div>
     <input :id.once="data.name" type="checkbox" class="filled-in" v-model="data.value" />
     <label :for="data.name">{{data.name}}</label>
   </div>
