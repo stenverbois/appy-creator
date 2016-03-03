@@ -1,4 +1,4 @@
-<style lang="scss" scoped>
+<style lang="scss">
 .nav-wrapper {
   .brand-logo {
     margin-left: 0.6rem;
@@ -12,18 +12,25 @@
       <div class="nav-wrapper">
         <a class="brand-logo">Appy</a>
         <ul id="nav-mobile" class="left">
-          <li><a>Something</a></li>
-          <li><a>Other</a></li>
-          <li><a>More</a></li>
-          <li><a v-on:click="uploadFile()">Upload</a></li>
         </ul>
 
         <ul id="nav-mobile" class="right">
-          <li><a>Export</a></li>
+          <!-- <li><a @click="uploadFile()">Upload</a></li> -->
+          <li><a class="modal-trigger" href="#upload_modal">Upload</a></li>
         </ul>
       </div>
     </nav>
   </header>
+
+  <div id="upload_modal" class="modal">
+    <div class="modal-content">
+      <h4>Upload to</h4>
+      <input type="text" v-model="uploadURL">
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" @click="uploadFile()">Upload</a>
+    </div>
+  </div>
 
 </template>
 
@@ -31,10 +38,9 @@
   module.exports =
     data: ->
       state: store.state
-      testJSON: {}
+      uploadURL: "localhost:8000"
 
     methods:
-
       uploadFile: ->
         compArray = {"components": {}, "logic": {}}
         for obj in @state.app.components
@@ -42,7 +48,9 @@
             properties: obj.properties
             type: obj.type
 
-        $.post 'http://localhost:8000/upload/',
+        console.log "http://#{@uploadURL}/upload/"
+
+        $.post "http://#{@uploadURL}/upload/",
           user: 'John Doe'
           title: 'Test'
           file: JSON.stringify(compArray)

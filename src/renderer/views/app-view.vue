@@ -60,7 +60,6 @@
           </ul>
         </div>
         <pre>{{state.dim | json}}</pre>
-        <button class="btn" @click="export()">Export</button>
         <button class="btn" @click="state.dim.col = 3">t</button>
         <p>Voorbeeld JSON output voor beschreven scenario</p>
         <p><pre>{{testJSON | json}}<pre></p>
@@ -74,7 +73,6 @@ Vue = require 'vue'
 module.exports =
   data: ->
     state: store.state
-    testJSON: {}
 
   components: require('../components/components.coffee').components
 
@@ -111,15 +109,4 @@ module.exports =
           col: widget.attr("data-col")
           sizex: widget.attr("data-sizex")
           sizey: widget.attr("data-sizey")
-
-    export: ->
-      @testJSON = ""
-      compArray = {"components": {}, "logic": {}}
-      for obj in @state.app.components
-        compArray["components"][obj.name] =
-            properties: obj.properties
-            type: obj.type
-
-      @testJSON = compArray
-
 </script>

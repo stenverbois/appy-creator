@@ -11,6 +11,7 @@ window.$ = require("jquery")
 
 css = require '../style/custom/main.scss'
 
+# Gridster addition to allow dynamic registering of components
 Gridster.prototype.addVueComp = (vueObj) ->
   $w = this.$el.children('li').last()
   return unless $w
@@ -44,6 +45,7 @@ window.jQuery.fn.selectText = ->
     selection.removeAllRanges()
     selection.addRange(range)
 
+
 app = new Vue App
 
 UserApp = require './user-app'
@@ -61,3 +63,8 @@ global.store =
       @state.app.components[@state.selected]
 
 app.$mount 'app'
+
+# Materializecss modal initialization
+$(document).ready ->
+ # the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('.modal-trigger').leanModal()
