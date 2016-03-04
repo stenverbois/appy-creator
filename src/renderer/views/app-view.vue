@@ -81,10 +81,10 @@ module.exports =
       widget_margins: [10, 10]
       widget_base_dimensions: [40, 40]
       shift_widgets_up: false
-      max_cols: 4
-      min_cols: 4
-      min_rows: 6
-      max_rows: 6
+      max_cols: @state.app.info.width
+      min_cols: @state.app.info.width
+      min_rows: @state.app.info.height
+      max_rows: @state.app.info.height
       draggable:
         stop: =>
           @updateSelectedWidgetProperties()

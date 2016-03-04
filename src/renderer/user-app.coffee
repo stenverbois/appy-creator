@@ -6,9 +6,12 @@ module.exports =
 class UserApp extends EventEmitter
   constructor: ->
     @id = 0
-    @info = {}
+    @info =
+      width: 4
+      height: 6
     @components = []
-    @logic = []
+    @functions = []
+    @triggers = []
 
   init: ->
 
@@ -20,8 +23,18 @@ class UserApp extends EventEmitter
     @id += 1
 
   export: ->
-    {
+    returnObject =
       info: @info
-      components: @components
-      logic: @logic
-    }
+      components: {}
+      logic: {}
+
+    for component in @components
+      returnObject.components[component.name] = component.export()
+
+    for func in @functions
+      returnObject.logic.functions[func.name] = func.export()
+
+    for trigger in @triggers
+      returnObject.logic.triggers[trigger.name] = trigger.export()
+
+    returnObject

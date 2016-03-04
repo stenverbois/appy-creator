@@ -11,14 +11,16 @@ module.exports =
     connectTrigger: (name) ->
       @triggers.push name
 
-    export: -> {
-      @type
-      @parameters
-      @triggers
-    }
+    export: ->
+      {
+        @type
+        @parameters
+        @triggers
+      }
 
   Plus: class Plus extends Function
-    constructor: (@name, @parameters={}) ->
+    constructor: (name, parameters={}, triggers=[]) ->
+      super name, parameters, triggers
       @type = "Plus"
       @parameterNames = ['left', 'right']
       @outputNames = ['result']
