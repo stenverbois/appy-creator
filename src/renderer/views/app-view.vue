@@ -102,8 +102,8 @@ module.exports =
       widget = $('.gridster li.selected').first()
       Vue.nextTick =>
         @selectedComponent.properties.dim.value =
-          row: parseInt(widget.attr("data-row"))
-          col: parseInt(widget.attr("data-col"))
-          sizex: parseInt(widget.attr("data-sizex"))
-          sizey: parseInt(widget.attr("data-sizey"))
+          row: parseInt widget.attr("data-row")
+          col: parseInt widget.attr("data-col")
+          width: parseInt widget.attr("data-sizex")
+          height: parseInt widget.attr("data-sizey")
 </script>
