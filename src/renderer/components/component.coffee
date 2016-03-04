@@ -2,7 +2,7 @@
 
 module.exports =
 class Component extends EventEmitter
-  constructor: (@name='NoName') ->
+  constructor: (@name='NoName', @properties) ->
 
   export: ->
     @type

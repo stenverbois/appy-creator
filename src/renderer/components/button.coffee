@@ -22,6 +22,7 @@ class Button extends Component
     }
 
 
-  constructor: (@name, @properties=Button.defaultProperties()) ->
+  constructor: (name, properties=Button.defaultProperties()) ->
+    super name, properties
     @cmpName = 'cmp-button'
     @type = "Button"

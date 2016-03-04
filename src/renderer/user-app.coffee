@@ -6,7 +6,9 @@ module.exports =
 class UserApp extends EventEmitter
   constructor: ->
     @id = 0
+    @info = {}
     @components = []
+    @logic = []
 
   init: ->
 
@@ -16,3 +18,10 @@ class UserApp extends EventEmitter
   addComponent: (name) ->
     @components.push new componentClasses[name](name+ @id)
     @id += 1
+
+  export: ->
+    {
+      info: @info
+      components: @components
+      logic: @logic
+    }

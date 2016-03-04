@@ -44,13 +44,8 @@ module.exports =
 
   methods:
     saveApp: ->
-      compArray = {"components": {}, "logic": {}}
-      for obj in @state.app.components
-        compArray["components"][obj.name] =
-          properties: obj.properties
-          type: obj.type
+      ipc.send 'export:app', JSON.stringify(@state.app.export(), null, 2)
 
-      ipc.send 'export:app', JSON.stringify(compArray, null, 2)
     uploadFile: ->
       compArray = {"components": {}, "logic": {}}
       for obj in @state.app.components

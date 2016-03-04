@@ -20,6 +20,7 @@ class Label extends Component
         type: 'text'
     }
 
-  constructor: (@name, @properties=Label.defaultProperties()) ->
+  constructor: (name, properties=Label.defaultProperties()) ->
+    super name, properties
     @cmpName = 'cmp-label'
     @type = "Label"

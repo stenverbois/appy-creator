@@ -24,6 +24,7 @@ class Textbox extends Component
         type: 'text'
     }
 
-  constructor: (@name, @properties=Textbox.defaultProperties()) ->
+  constructor: (name, properties=Textbox.defaultProperties()) ->
+    super name, properties
     @cmpName = 'cmp-textbox'
     @type = "Textbox"

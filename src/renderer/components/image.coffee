@@ -20,6 +20,7 @@ class Image extends Component
         type: 'text'
     }
 
-  constructor: (@name, @properties=Image.defaultProperties()) ->
+  constructor: (name, properties=Image.defaultProperties()) ->
+    super name, properties
     @cmpName = 'cmp-image'
     @type = "Image"
