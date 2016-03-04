@@ -9,6 +9,7 @@ class UserApp extends EventEmitter
     @info =
       width: 4
       height: 6
+      pageNames: ["Page0"]
     @components = []
     @functions = []
     @triggers = []
