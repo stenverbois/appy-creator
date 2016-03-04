@@ -8,6 +8,7 @@ Vue.config.debug = true
 
 window.jQuery = require("jquery")
 window.$ = require("jquery")
+window.Hammer = require('hammerjs')
 
 css = require '../style/custom/main.scss'
 

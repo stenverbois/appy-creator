@@ -8,4 +8,6 @@ config.devServer = {
   noInfo: true
 }
 
+config.target = 'electron'
+
 module.exports = config

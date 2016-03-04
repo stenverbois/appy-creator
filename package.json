@@ -27,6 +27,7 @@
     "test": "karma start build/karma.conf.js --single-run"
   },
   "dependencies": {
+    "hammerjs": "^2.0.6",
     "vue": "^1.0.0"
   },
   "devDependencies": {

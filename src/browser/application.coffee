@@ -43,7 +43,8 @@ class Application extends EventEmitter
       height: 600
 
     window.maximize()
-    window.loadURL 'file://' + path.normalize(__dirname + '/index.html')
+    # window.loadURL 'file://' + path.normalize(__dirname + '/index.html')
+    window.loadURL 'http://localhost:8080'
 
     # Set the menu
     @menu = new Menu()

@@ -59,10 +59,6 @@
             </li>
           </ul>
         </div>
-        <pre>{{state.dim | json}}</pre>
-        <button class="btn" @click="state.dim.col = 3">t</button>
-        <p>Voorbeeld JSON output voor beschreven scenario</p>
-        <p><pre>{{testJSON | json}}<pre></p>
       </div>
     </div>
   </div>
@@ -75,6 +71,10 @@ module.exports =
     state: store.state
 
   components: require('../components/components.coffee').components
+
+  computed:
+    selectedComponent: ->
+      @state.app.components[@state.selected]
 
   attached: ->
     @gridster = $(".gridster ul").gridster(
@@ -94,9 +94,6 @@ module.exports =
           @updateSelectedWidgetProperties()
     ).data 'gridster'
 
-  created: ->
-    console.log @$options.components['cmp-button'].options
-
   methods:
     addToGrid: ->
       @gridster.addVueComp()
@@ -104,7 +101,7 @@ module.exports =
     updateSelectedWidgetProperties: ->
       widget = $('.gridster li.selected').first()
       Vue.nextTick =>
-        @state.dim =
+        @selectedComponent.properties.dim.value =
           row: widget.attr("data-row")
           col: widget.attr("data-col")
           sizex: widget.attr("data-sizex")

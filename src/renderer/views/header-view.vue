@@ -16,6 +16,7 @@
 
         <ul id="nav-mobile" class="right">
           <!-- <li><a @click="uploadFile()">Upload</a></li> -->
+          <li><a @click="saveApp()">Save</a></li>
           <li><a class="modal-trigger" href="#upload_modal">Upload</a></li>
         </ul>
       </div>
@@ -35,26 +36,35 @@
 </template>
 
 <script lang="coffee">
-  module.exports =
-    data: ->
-      state: store.state
-      uploadURL: "localhost:8000"
+ipc = require('electron').ipcRenderer
+module.exports =
+  data: ->
+    state: store.state
+    uploadURL: "localhost:8000"
 
-    methods:
-      uploadFile: ->
-        compArray = {"components": {}, "logic": {}}
-        for obj in @state.app.components
-          compArray["components"][obj.name] =
-            properties: obj.properties
-            type: obj.type
+  methods:
+    saveApp: ->
+      compArray = {"components": {}, "logic": {}}
+      for obj in @state.app.components
+        compArray["components"][obj.name] =
+          properties: obj.properties
+          type: obj.type
 
-        console.log "http://#{@uploadURL}/upload/"
+      ipc.send 'export:app', JSON.stringify(compArray, null, 2)
+    uploadFile: ->
+      compArray = {"components": {}, "logic": {}}
+      for obj in @state.app.components
+        compArray["components"][obj.name] =
+          properties: obj.properties
+          type: obj.type
 
-        $.post "http://#{@uploadURL}/upload/",
-          user: 'John Doe'
-          title: 'Test'
-          file: JSON.stringify(compArray)
-          (data) -> alert("Successfully uploaded appy!")
+      console.log "http://#{@uploadURL}/upload/"
+
+      $.post "http://#{@uploadURL}/upload/",
+        user: 'John Doe'
+        title: 'Test'
+        file: JSON.stringify(compArray)
+        (data) -> alert("Successfully uploaded appy!")
 
 
 </script>

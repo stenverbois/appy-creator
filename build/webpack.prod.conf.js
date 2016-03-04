@@ -31,6 +31,7 @@ config.vue.loaders = {
   css: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css'])),
   less: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'less'])),
   sass: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'sass'])),
+  scss: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'sass'])),
   stylus: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'stylus']))
 }
 
