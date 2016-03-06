@@ -14,6 +14,10 @@ class Button extends Component
         value: {}
         type: 'hidden'
 
+      page:
+        value: 'Page0'
+        type: 'hidden'
+
       name:
         name: 'Text'
         value: 'Sample text'

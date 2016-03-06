@@ -14,6 +14,10 @@ class Image extends Component
         value: {}
         type: 'hidden'
 
+      page:
+        value: 'Page0'
+        type: 'hidden'
+
       file:
         name: 'Image Source'
         value: 'appy.png'

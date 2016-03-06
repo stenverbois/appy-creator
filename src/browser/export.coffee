@@ -2,5 +2,5 @@ fs = require 'fs'
 {ipcMain} = require 'electron'
 
 module.exports = do ->
-  ipcMain.on 'export:app', (event, arg) ->
-    fs.writeFile('output.appy', arg)
+  ipcMain.on 'export:app', (event, app) ->
+    fs.writeFile('output.appy', app)

@@ -47,19 +47,21 @@ module.exports =
       ipc.send 'export:app', JSON.stringify(@state.app.export(), null, 2)
 
     uploadFile: ->
-      compArray = {"components": {}, "logic": {}}
-      for obj in @state.app.components
-        compArray["components"][obj.name] =
-          properties: obj.properties
-          type: obj.type
-
-      console.log "http://#{@uploadURL}/upload/"
-
-      $.post "http://#{@uploadURL}/upload/",
+      request = require 'request'
+      formData =
         user: 'John Doe'
         title: 'Test'
-        file: JSON.stringify(compArray)
-        (data) -> alert("Successfully uploaded appy!")
+        file: JSON.stringify @state.app.export()
+
+      console.log formData
+      request.post
+        url: "http://#{@uploadURL}/upload/"
+        formData: formData
+        (err, httpResponse, body) ->
+          if err?
+            alert "Upload failed: #{err}"
+          else
+            alert "Successfully uploaded your appy!\nServer responded with #{body}"
 
 
 </script>

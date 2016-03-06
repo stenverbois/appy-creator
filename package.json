@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "hammerjs": "^2.0.6",
+    "request": "^2.65.0",
     "vue": "^1.0.0"
   },
   "devDependencies": {
