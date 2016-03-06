@@ -53,7 +53,6 @@ module.exports =
         title: 'Test'
         file: JSON.stringify @state.app.export()
 
-      console.log formData
       request.post
         url: "http://#{@uploadURL}/upload/"
         formData: formData

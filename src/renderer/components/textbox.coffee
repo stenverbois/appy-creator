@@ -18,10 +18,6 @@ class Textbox extends Component
         value: 'Page0'
         type: 'hidden'
 
-      height:
-        value: 100
-        type: 'hidden'
-
       name:
         name: 'Text'
         value: 'Sample text'
