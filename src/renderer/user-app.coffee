@@ -1,6 +1,8 @@
 {EventEmitter} = require 'events'
 
 componentClasses = require('./components/components').classes
+functionClasses = require('./logic/function.coffee')
+trigger = require('./logic/trigger.coffee')
 
 module.exports =
 class UserApp extends EventEmitter
@@ -24,18 +26,30 @@ class UserApp extends EventEmitter
     @id += 1
 
   export: ->
-    returnObject =
+    app =
       info: @info
       components: {}
       logic: {}
 
     for component in @components
-      returnObject.components[component.name] = component.export()
+      app.components[component.name] = component.export()
 
     for func in @functions
-      returnObject.logic.functions[func.name] = func.export()
+      app.logic.functions[func.name] = func.export()
 
     for trigger in @triggers
-      returnObject.logic.triggers[trigger.name] = trigger.export()
+      app.logic.triggers[trigger.name] = trigger.export()
 
-    returnObject
+    app
+
+  load: (app) ->
+    @info = app.info
+
+    for name, obj in app.components
+      @components.push new componentClasses[obj.type](name, obj.properties)
+
+    for name, obj in app.functions
+      @functions.push new functionClasses[obj.type](name, obj.parameters, obj.triggers)
+
+    for name, obj in app.triggers
+      @triggers.push new Trigger(name, obj.component, obj.action)

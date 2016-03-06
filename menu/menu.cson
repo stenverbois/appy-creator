@@ -2,10 +2,12 @@
   {
     label: '&File'
     submenu: [
-      { label: 'New Window' }
-      { label: 'New File' }
-      { label: 'Open File...' }
-      { label: 'Open Folder...' }
+      { label: 'New Appy' }
+      { label: 'Open Appy...', command: 'application:open' }
+      { type: 'separator' }
+      { label: 'Save', command: 'application:save', accelerator: 'CommandOrControl+S'}
+      { label: 'Save As...', command: 'application:save-as', accelerator: 'CommandOrControl+Shift+S'}
+      { type: 'separator' }
       { label: 'Quit', command:'application:close', accelerator: 'CommandOrControl+Q' }
     ]
   }

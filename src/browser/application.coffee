@@ -24,17 +24,13 @@ class Application extends EventEmitter
     # @mainWindow.loadUrl 'file://' + path.normalize(__dirname + '/../index.html')
 
   openWithOptions: (options) ->
-    {test} = options
-
-    if test
-      newWindow = @openSpecsWindow(options)
-    else
-      newWindow = @openWindow(options)
+    newWindow = @openWindow(options)
 
     @windows ?= []
     @windows.push newWindow
+
+    # Remove app window on closed
     newWindow.on 'closed', =>
-      # Remove app window
       @windows.splice(idx, 1) for w, idx in @windows when w is newWindow
 
   openWindow: (options) ->
@@ -43,50 +39,33 @@ class Application extends EventEmitter
       height: 600
 
     window.maximize()
-    # window.loadURL 'file://' + path.normalize(__dirname + '/index.html')
     window.loadURL 'http://localhost:8080'
 
     # Set the menu
     @menu = new Menu()
     @menu.attach()
 
+    # Window callbacks
     @menu.on 'window:reload', ->
       BrowserWindow.getFocusedWindow().reload()
-
-    @menu.on 'editor:show-versions', ->
-      #window.showVersions()
-
-    @menu.on 'editor:run-specs', =>
-      # Fat arrow needed since we want the function from
-      # Application and not from AppMenu
-      @openWithOptions(test: true)
 
     @menu.on 'window:toggle-dev-tools', ->
       BrowserWindow.getFocusedWindow().toggleDevTools()
 
+    @menu.on 'editor:show-versions', ->
+      # TODO: ?
+
+    @menu.on 'editor:save', ->
+      # ipc.send 'editor:save'
+
+    @menu.on 'editor:save-as', ->
+
+
     @menu.on 'application:close', ->
       window.close()
-      #Kill app too
-      app.quit()
 
     @menu.on 'appy:get-qrcode', ->
       getQR()
-
-
-  # registerCommands: ->
-  #   command.register 'window:reload', => @mainWindow.reload()
-  #   command.register 'editor:show-versions', => @showVersions()
-  #   command.register 'editor:open-specs', => @openSpecWindow()
-  #   command.register 'window:open-dev-tools', => @mainWindow.openDevTools()
-  #   # command.get('editor:show-versions')()
-
-  openSpecsWindow: (options) ->
-    @specWindow = new BrowserWindow
-      width: 400
-      height: 400
-    @specWindow.loadURL 'file://' + path.normalize(__dirname + '/spec.html')
-    @specWindow.on 'close', ->
-      @specWindow = null
 
   getQR = ->
     # @QrWindow = new BrowserWindow
