@@ -29,7 +29,8 @@
       <input type="text" v-model="uploadURL">
     </div>
     <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" @click="uploadFile()">Upload</a>
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat indigo white-text" @click="uploadFile()">Upload</a>
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
     </div>
   </div>
 
