@@ -1,3 +1,9 @@
+# Jquery requires and plugins
+window.jQuery = require("jquery")
+window.$ = require("jquery")
+window.Hammer = require('hammerjs')
+
+# Gridster requires
 Gridster = require 'gridster'
 require 'gridster-css'
 
@@ -5,10 +11,6 @@ Vue = require 'vue'
 App = require './app'
 
 Vue.config.debug = true
-
-window.jQuery = require("jquery")
-window.$ = require("jquery")
-window.Hammer = require('hammerjs')
 
 css = require '../style/custom/main.scss'
 

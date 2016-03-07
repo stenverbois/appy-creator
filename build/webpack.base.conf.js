@@ -14,7 +14,8 @@ config = {
     alias: {
       'src': path.resolve(__dirname, '../src'),
       'gridster': './../../lib/gridster/src/jquery.gridster.js',
-      'gridster-css': './../../lib/gridster/dist/jquery.gridster.min.css'
+      'gridster-css': './../../lib/gridster/dist/jquery.gridster.min.css',
+      'qrcode': './../../../lib/qrcode/jquery.qrcode-0.12.0.min.js'
     }
   },
   module: {
