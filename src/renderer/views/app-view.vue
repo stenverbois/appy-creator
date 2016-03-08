@@ -50,7 +50,7 @@
 
 <template>
   <div class="app-window">
-    <div class="row indigo">
+    <div class="row indigo lighten-1">
       <div class="col s12">
         <ul class="tabs">
           <li class="tab col s3"><a href="#test1" class="active">Design</a></li>

@@ -24,7 +24,7 @@
 
 <template>
   <div class="components z-depth-1">
-    <div class="view header">
+    <div class="view header indigo-text text-lighten-1">
       Components
     </div>
     <ul class="collapsible" data-collapsible="accordion">

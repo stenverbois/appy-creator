@@ -30,7 +30,7 @@
 <template>
   <div class="properties z-depth-1">
     <div class="row">
-      <div class="view header">
+      <div class="view header indigo-text text-lighten-1">
         Properties
       </div>
       <!-- Show property info when a component is selected -->
