@@ -1,5 +1,6 @@
 <style lang="scss">
 @import "./../../style/custom/variables.scss";
+@import "./../../style/materializecss/components/color.scss";
 
 .app-window {
   position: absolute;
@@ -7,8 +8,14 @@
   width: calc(100% - #{$properties-bar-width} - #{$component-bar-width});
   height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
 
-  .app-components {
-
+  .tabs {
+    background-color: rgba(0, 0, 0, 0);
+    overflow-x: hidden; //TODO: Remove this when Materializecss fixes the overflow issue
+    .tab {
+      a {
+        @extend .white-text;
+      }
+    }
   }
 }
 
@@ -43,6 +50,15 @@
 
 <template>
   <div class="app-window">
+    <div class="row indigo">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a href="#test1" class="active">Design</a></li>
+          <li class="tab col s3"><a href="#test2">Logic</a></li>
+          <li class="tab col s3"><a href="#test3">Info</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="row">
       <div class="col s12">
         <div class="gridster">

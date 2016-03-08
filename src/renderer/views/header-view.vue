@@ -1,21 +1,24 @@
 <style lang="scss">
+@import "./../../style/custom/variables.scss";
+
 .nav-wrapper {
+  z-index: 10;
   .brand-logo {
-    margin-left: 0.6rem;
+    width: $component-bar-width;
+    padding-left: 0.6rem;
   }
 }
 </style>
 
 <template>
   <header>
-    <nav>
-      <div class="nav-wrapper">
-        <a class="brand-logo">Appy</a>
+    <nav class="z-depth-0">
+      <div class="nav-wrapper z-depth-1">
+        <a class="brand-logo z-depth-1">Appy</a>
         <ul id="nav-mobile" class="left">
         </ul>
 
         <ul id="nav-mobile" class="right">
-          <!-- <li><a @click="uploadFile()">Upload</a></li> -->
           <li><a @click="saveApp()">Save</a></li>
           <li><a class="modal-trigger" href="#upload_modal">Upload</a></li>
         </ul>
