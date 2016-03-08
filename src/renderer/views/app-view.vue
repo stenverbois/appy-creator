@@ -2,11 +2,15 @@
 @import "./../../style/custom/variables.scss";
 @import "./../../style/materializecss/components/color.scss";
 
-.app-window {
+.app-view {
   position: absolute;
   left: $component-bar-width;
   width: calc(100% - #{$properties-bar-width} - #{$component-bar-width});
   height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
+
+  .tabs-row {
+    margin-bottom: 0;
+  }
 
   .tabs {
     background-color: rgba(0, 0, 0, 0);
@@ -14,6 +18,24 @@
     .tab {
       a {
         @extend .white-text;
+      }
+    }
+  }
+
+  .app-preview {
+    height: calc(100% - #{$tab-bar-height});
+    position: relative;
+    margin-bottom: 0;
+    .valign-wrapper {
+      height: 100%;
+
+      .valign {
+        width: 100%;
+        vertical-align: middle;
+
+        ul {
+          border-radius: 10px;
+        }
       }
     }
   }
@@ -49,8 +71,8 @@
 </style>
 
 <template>
-  <div class="app-window">
-    <div class="row indigo lighten-1">
+  <div class="app-view">
+    <div class="row indigo lighten-1 tabs-row">
       <div class="col s12">
         <ul class="tabs">
           <li class="tab col s3"><a href="#test1" class="active">Design</a></li>
@@ -59,14 +81,15 @@
         </ul>
       </div>
     </div>
-    <div class="row">
-      <div class="col s12">
-        <div class="gridster">
-          <ul class="blue-grey lighten-2">
-            <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"
-                :class="{selected: state.selected == $index}"
-                v-for="component in state.app.components"
-                @mousedown="state.selected = $index">
+    <div class="row app-preview">
+      <div class="valign-wrapper">
+        <div class="valign center">
+          <div class="gridster">
+            <ul class="blue-grey lighten-2">
+              <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"
+              :class="{selected: state.selected == $index}"
+              v-for="component in state.app.components"
+              @mousedown="state.selected = $index">
 
               <div>
                 <component :is="component.cmpName" :cmp="component"></component>
