@@ -117,8 +117,8 @@ module.exports =
 
   attached: ->
     @gridster = $(".gridster ul").gridster(
-      widget_margins: [10, 10]
-      widget_base_dimensions: [40, 40]
+      widget_margins: [0, 0]
+      widget_base_dimensions: [15, 15]
       shift_widgets_up: false
       max_cols: @state.app.info.width
       min_cols: @state.app.info.width
