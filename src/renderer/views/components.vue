@@ -44,6 +44,9 @@
             <li class="collection-item">
               <a class="btn-flat" @click="state.app.addComponent('Image')">Image</a>
             </li>
+            <li class="collection-item">
+              <a class="btn-flat" @click="state.app.addComponent('List')">List</a>
+            </li>
           </ul>
         </div>
       </li>
