@@ -23,5 +23,19 @@ npm start
 npm test
 ```
 
+
+# How to add components?
+
+Go to the folder src/renderer/components
+
+- Add cmp-item.vue file
+- Add item.coffee file
+- Add your item to components.coffee
+
+!! Check your indentation
+
+
+
+
 ## Links
 - [Voorstel in Overleaf](https://www.overleaf.com/3047115qdgrpp)
