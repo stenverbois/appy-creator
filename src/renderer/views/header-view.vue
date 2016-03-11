@@ -7,6 +7,12 @@
     width: $component-bar-width;
     padding-left: 0.6rem;
   }
+  ul li a {
+    padding: 0 20px;
+  }
+  .separator {
+    border-right: 3px solid $secondary-color;
+  }
 }
 </style>
 
@@ -14,11 +20,13 @@
   <header>
     <nav class="z-depth-0">
       <div class="nav-wrapper z-depth-1">
-        <a class="brand-logo z-depth-1">Appy</a>
         <ul id="nav-mobile" class="left">
+          <li><a class="brand-logo z-depth-1">Appy</a></li>
         </ul>
-
         <ul id="nav-mobile" class="right">
+          <li><a @click="gotoDesignPage()">Design</a></li>
+          <li><a @click="gotoLogicPage()">Logic</a></li>
+          <li><a class="separator" @click="gotoInfoPage()">Info</a></li>
           <li><a @click="saveApp()">Save</a></li>
           <li><a class="modal-trigger" href="#upload_modal">Upload</a></li>
         </ul>
@@ -80,6 +88,15 @@ module.exports =
             $(@$refs.qr.$el).empty()
             @$refs.qr.renderQR(body)
             $('#qr_modal').openModal();
+
+    gotoDesignPage: ->
+      @$dispatch('nav-design')
+
+    gotoLogicPage: ->
+      @$dispatch('nav-logic')
+
+    gotoInfoPage: ->
+      @$dispatch('nav-info')
 
 
 </script>

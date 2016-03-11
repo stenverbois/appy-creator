@@ -1,11 +1,14 @@
-#require './style.less'
-
 module.exports =
+  data: ->
+    state: store.state
+
+  props: ['page']
+
   template: require './template.html'
+
   components:
     components: require '../components.vue'
     properties: require '../properties.vue'
-    'app-view': require '../app-view.vue'
-
-  data: ->
-    state: store.state
+    designView: require '../app-view.vue'
+    logicView: require '../logic-view.vue'
+    infoView: require '../info-view.vue'

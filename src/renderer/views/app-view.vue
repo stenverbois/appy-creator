@@ -8,19 +8,19 @@
   width: calc(100% - #{$properties-bar-width} - #{$component-bar-width});
   height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
 
-  .tabs-row {
-    margin-bottom: 0;
-  }
-
-  .tabs {
-    background-color: rgba(0, 0, 0, 0);
-    overflow-x: hidden; //TODO: Remove this when Materializecss fixes the overflow issue
-    .tab {
-      a {
-        @extend .white-text;
-      }
-    }
-  }
+  // .tabs-row {
+  //   margin-bottom: 0;
+  // }
+  //
+  // .tabs {
+  //   background-color: rgba(0, 0, 0, 0);
+  //   overflow-x: hidden; //TODO: Remove this when Materializecss fixes the overflow issue
+  //   .tab {
+  //     a {
+  //       @extend .white-text;
+  //     }
+  //   }
+  // }
 
   .app-preview {
     height: calc(100% - #{$tab-bar-height});
@@ -34,7 +34,7 @@
         vertical-align: middle;
 
         ul {
-          border-radius: 10px;
+          // border-radius: 10px;
         }
       }
     }
@@ -72,20 +72,11 @@
 
 <template>
   <div class="app-view">
-    <div class="row indigo lighten-1 tabs-row">
-      <div class="col s12">
-        <ul class="tabs">
-          <li class="tab col s3"><a href="#test1" class="active">Design</a></li>
-          <li class="tab col s3"><a href="#test2">Logic</a></li>
-          <li class="tab col s3"><a href="#test3">Info</a></li>
-        </ul>
-      </div>
-    </div>
     <div class="row app-preview">
       <div class="valign-wrapper">
         <div class="valign center">
           <div class="gridster">
-            <ul class="blue-grey lighten-2">
+            <ul class="blue-grey lighten-2 card">
               <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"
               :class="{selected: state.selected == $index}"
               v-for="component in state.app.components"
@@ -118,7 +109,7 @@ module.exports =
   attached: ->
     @gridster = $(".gridster ul").gridster(
       widget_margins: [0, 0]
-      widget_base_dimensions: [15, 15]
+      widget_base_dimensions: [20, 20]
       shift_widgets_up: false
       max_cols: @state.app.info.width
       min_cols: @state.app.info.width
