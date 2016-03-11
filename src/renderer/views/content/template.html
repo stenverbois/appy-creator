@@ -1,7 +1,9 @@
 <main>
   <div class="contents">
     <components></components>
-    <component :is="page"></component>
+    <div class="content">
+      <component :is="page"></component>
+    </div>
     <properties :component="state.app.components[state.selected]"></properties>
   </div>
 </main>

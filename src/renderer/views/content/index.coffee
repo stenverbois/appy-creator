@@ -1,3 +1,4 @@
+require './style.scss'
 module.exports =
   data: ->
     state: store.state

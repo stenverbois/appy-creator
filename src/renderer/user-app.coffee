@@ -9,6 +9,8 @@ class UserApp extends EventEmitter
   constructor: ->
     @id = 0
     @info =
+      author: "John Doe"
+      appName: "MyAwesomeApp"
       width: 20
       height: 30
       pageNames: ["Page0"]

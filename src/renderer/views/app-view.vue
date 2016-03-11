@@ -2,26 +2,19 @@
 @import "./../../style/custom/variables.scss";
 @import "./../../style/materializecss/components/color.scss";
 
-.app-view {
-  position: absolute;
-  left: $component-bar-width;
-  width: calc(100% - #{$properties-bar-width} - #{$component-bar-width});
-  height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
+.app-preview {
+  height: calc(100%);
+  position: relative;
+  margin-bottom: 0;
+  .valign-wrapper {
+    height: 100%;
 
-  .app-preview {
-    height: calc(100%);
-    position: relative;
-    margin-bottom: 0;
-    .valign-wrapper {
-      height: 100%;
+    .valign {
+      width: 100%;
+      vertical-align: middle;
 
-      .valign {
-        width: 100%;
-        vertical-align: middle;
-
-        ul {
-          // border-radius: 10px;
-        }
+      ul {
+        // border-radius: 10px;
       }
     }
   }
@@ -57,24 +50,22 @@
 </style>
 
 <template>
-  <div class="app-view">
-    <div class="row app-preview">
-      <div class="valign-wrapper">
-        <div class="valign center">
-          <div class="gridster">
-            <ul class="blue-grey lighten-2 card">
-              <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"
-              :class="{selected: state.selected == $index}"
-              v-for="component in state.app.components"
-              @mousedown="state.selected = $index">
+  <div class="row app-preview">
+    <div class="valign-wrapper">
+      <div class="valign center">
+        <div class="gridster">
+          <ul class="blue-grey lighten-2 card">
+            <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"
+            :class="{selected: state.selected == $index}"
+            v-for="component in state.app.components"
+            @mousedown="state.selected = $index">
 
-              <div>
-                <component :is="component.cmpName" :cmp="component"></component>
-              </div>
+            <div>
+              <component :is="component.cmpName" :cmp="component"></component>
+            </div>
 
-            </li>
-          </ul>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

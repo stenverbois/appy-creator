@@ -61,11 +61,6 @@ global.store =
   state:
     app: new UserApp()
     selected: -1
-    dim:
-      row: 1
-      col: 1
-      sizex: 1
-      sizey: 1
     selectedComp: =>
       @state.app.components[@state.selected]
 
