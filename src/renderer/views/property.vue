@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <component :is="propComponent" :data="data"></component>
+  <component :is="propComponent" :data.sync="data"></component>
 </template>
 
 <script lang="coffee">
@@ -12,6 +12,7 @@ module.exports =
     'prop-checkbox': require('../components/prop-checkbox.vue')
     'prop-text': require('../components/prop-text.vue')
     'prop-switch': require('../components/prop-switch.vue')
+    'prop-range': require('../components/prop-range.vue')
 
   computed:
     propComponent: ->
