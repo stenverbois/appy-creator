@@ -1,14 +1,29 @@
 <style lang="scss">
 @import "./../../style/custom/variables.scss";
+@import "./../../style/materializecss/components/color.scss";
 
-.app-window {
+.app-view {
   position: absolute;
   left: $component-bar-width;
   width: calc(100% - #{$properties-bar-width} - #{$component-bar-width});
   height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
 
-  .app-components {
+  .app-preview {
+    height: calc(100%);
+    position: relative;
+    margin-bottom: 0;
+    .valign-wrapper {
+      height: 100%;
 
+      .valign {
+        width: 100%;
+        vertical-align: middle;
+
+        ul {
+          // border-radius: 10px;
+        }
+      }
+    }
   }
 }
 
@@ -42,15 +57,16 @@
 </style>
 
 <template>
-  <div class="app-window">
-    <div class="row">
-      <div class="col s12">
-        <div class="gridster">
-          <ul class="blue-grey lighten-2">
-            <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"
-                :class="{selected: state.selected == $index}"
-                v-for="component in state.app.components"
-                @mousedown="state.selected = $index">
+  <div class="app-view">
+    <div class="row app-preview">
+      <div class="valign-wrapper">
+        <div class="valign center">
+          <div class="gridster">
+            <ul class="blue-grey lighten-2 card">
+              <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"
+              :class="{selected: state.selected == $index}"
+              v-for="component in state.app.components"
+              @mousedown="state.selected = $index">
 
               <div>
                 <component :is="component.cmpName" :cmp="component"></component>
@@ -78,8 +94,8 @@ module.exports =
 
   attached: ->
     @gridster = $(".gridster ul").gridster(
-      widget_margins: [10, 10]
-      widget_base_dimensions: [40, 40]
+      widget_margins: [0, 0]
+      widget_base_dimensions: [20, 20]
       shift_widgets_up: false
       max_cols: @state.app.info.width
       min_cols: @state.app.info.width

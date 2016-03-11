@@ -1,7 +1,7 @@
 <main>
   <div class="contents">
     <components></components>
-    <app-view></app-view>
+    <component :is="page"></component>
     <properties :component="state.app.components[state.selected]"></properties>
   </div>
 </main>
