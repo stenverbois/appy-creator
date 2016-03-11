@@ -56,6 +56,7 @@
 
 <script lang="coffee">
 ipc = require('electron').ipcRenderer
+fs = require 'fs'
 module.exports =
   data: ->
     state: store.state
@@ -68,7 +69,7 @@ module.exports =
 
   methods:
     saveApp: ->
-      ipc.send 'export:app', JSON.stringify(@state.app.export(), null, 2)
+      fs.writeFile 'output.appy', JSON.stringify(@state.app.export(), null, 2)
 
     uploadFile: ->
       request = require 'request'
