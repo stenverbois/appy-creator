@@ -113,6 +113,8 @@ module.exports =
   methods:
     addToGrid: ->
       @gridster.addVueComp()
+      Vue.nextTick =>
+        @updateSelectedWidgetProperties()
 
     updateSelectedWidgetProperties: ->
       widget = $('.gridster li.selected').first()

@@ -19,9 +19,8 @@ css = require '../style/custom/main.scss'
 
 # Gridster addition to allow dynamic registering of components
 Gridster.prototype.addVueComp = (vueObj) ->
-
   $w = this.$el.children('li').last()
-  console.log($w);
+  store.state.selected = $w.index()
   return unless $w
 
   $w.addClass('gs-w').hide()
