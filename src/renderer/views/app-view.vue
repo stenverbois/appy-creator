@@ -8,22 +8,8 @@
   width: calc(100% - #{$properties-bar-width} - #{$component-bar-width});
   height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
 
-  // .tabs-row {
-  //   margin-bottom: 0;
-  // }
-  //
-  // .tabs {
-  //   background-color: rgba(0, 0, 0, 0);
-  //   overflow-x: hidden; //TODO: Remove this when Materializecss fixes the overflow issue
-  //   .tab {
-  //     a {
-  //       @extend .white-text;
-  //     }
-  //   }
-  // }
-
   .app-preview {
-    height: calc(100% - #{$tab-bar-height});
+    height: calc(100%);
     position: relative;
     margin-bottom: 0;
     .valign-wrapper {
