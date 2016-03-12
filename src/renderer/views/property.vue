@@ -14,6 +14,7 @@ module.exports =
     'prop-switch': require('../components/prop-switch.vue')
     'prop-range': require('../components/prop-range.vue')
     'prop-button': require('../components/prop-button.vue')
+    'prop-listbox': require('../components/prop-listbox.vue')
 
   computed:
     propComponent: ->

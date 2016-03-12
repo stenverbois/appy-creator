@@ -28,6 +28,10 @@ module.exports =
           type: 'button'
           items: ""
           #func: ""
+
+        select:
+          type: 'listbox'
+          items: ""
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
@@ -36,8 +40,7 @@ module.exports =
       @type = "List"
       @items = []
       properties.add.items = @items
-
-
+      properties.select.items = @items
 
     methods:
       addItem: ->

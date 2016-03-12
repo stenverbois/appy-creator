@@ -39,6 +39,7 @@
           <li class="collection-item" v-for="propertyData in component.properties" v-if="propertyData.type != 'hidden'">
             <property :data.sync="propertyData"></property>
           </li>
+
           <li class="collection-item center-align">
             <a class="btn-flat red-text btn-remove" @click="removeComponent">
               Remove
