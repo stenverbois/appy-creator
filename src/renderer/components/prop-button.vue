@@ -9,5 +9,4 @@
   module.exports =
     props: ['data']
 
-
 </script>

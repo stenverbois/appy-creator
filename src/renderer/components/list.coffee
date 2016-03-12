@@ -26,12 +26,11 @@ module.exports =
         add:
           value: 'Add Item'
           type: 'button'
-          items: ""
-          func:  ""
 
-        select:
-          type: 'listbox'
-          items: ""
+        delete:
+          value: 'Delete'
+          type: 'button'
+          func: ""
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
@@ -40,10 +39,13 @@ module.exports =
       @type = "List"
       @items = []
       properties.add.func = (@addItem)
-
+      properties.delete.func = (@removeItem)
 
     addItem: =>
       new_index = @items.length
       @items.push({index: new_index, message: "New Item", name: "item_" + new_index})
+
+    removeItem: (index) =>
+      @items.splice(index, 1)
 
 
