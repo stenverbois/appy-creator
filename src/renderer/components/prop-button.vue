@@ -7,11 +7,12 @@
 
 <script lang="coffee">
   module.exports =
+    data: ->
+
     props: ['data']
 
     methods:
       addItem: ->
-        @data.items.push("New Item")
-
+        @data.items.push({index: @data.items.length, message: "New Item"})
 
 </script>
