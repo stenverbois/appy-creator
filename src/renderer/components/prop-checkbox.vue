@@ -8,4 +8,6 @@
 <script lang="coffee">
 module.exports =
   props: ['data']
+
+
 </script>

@@ -26,10 +26,21 @@ module.exports =
         add:
           value: 'Add Item'
           type: 'button'
-
+          items: ""
+          #func: ""
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
       super name, properties
       @cmpName = 'cmp-list'
       @type = "List"
+      @items = []
+      properties.add.items = @items
+
+
+
+    methods:
+      addItem: ->
+        @items.push("New Item")
+
+
