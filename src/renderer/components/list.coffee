@@ -22,6 +22,11 @@ module.exports =
           name: 'Text'
           value: 'Sample text'
           type: 'text'
+
+        add:
+          value: 'Add Item'
+          type: 'button'
+
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
