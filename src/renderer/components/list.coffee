@@ -27,7 +27,7 @@ module.exports =
           value: 'Add Item'
           type: 'button'
           items: ""
-          #func: ""
+          func:  ""
 
         select:
           type: 'listbox'
@@ -39,11 +39,11 @@ module.exports =
       @cmpName = 'cmp-list'
       @type = "List"
       @items = []
-      properties.add.items = @items
-      properties.select.items = @items
+      properties.add.func = (@addItem)
 
-    methods:
-      addItem: ->
-        @items.push("New Item")
+
+    addItem: =>
+      new_index = @items.length
+      @items.push({index: new_index, message: "New Item", name: "item_" + new_index})
 
 
