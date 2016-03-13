@@ -2,7 +2,9 @@
 </style>
 
 <template>
-  <component :is="propComponent" :data.sync="data"></component>
+  <div>
+    <component :is="propComponent" :data.sync="data"></component>
+  </div>
 </template>
 
 <script lang="coffee">
@@ -15,6 +17,7 @@ module.exports =
     'prop-range': require '../components/prop-range.vue'
     'prop-button': require '../components/prop-button.vue'
     'prop-select': require '../components/prop-select.vue'
+    'prop-nested': require '../components/prop-nested.vue'
 
   computed:
     propComponent: ->

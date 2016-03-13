@@ -37,6 +37,14 @@ module.exports =
           value: 'Delete item'
           type: 'button'
           func: null
+
+        test:
+          type: 'nested'
+          value:
+            name:
+              name:'test'
+              type: 'text'
+              value: 'boe'
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
