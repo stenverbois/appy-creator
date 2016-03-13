@@ -98,6 +98,7 @@ module.exports =
       min_cols: @state.app.info.width
       min_rows: @state.app.info.height
       max_rows: @state.app.info.height
+      auto_move_widgets: false
       draggable:
         stop: =>
           @updateSelectedWidgetProperties()

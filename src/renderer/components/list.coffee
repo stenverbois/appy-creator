@@ -31,6 +31,7 @@ module.exports =
           value: 'Delete'
           type: 'button'
           func: ""
+
       }
 
     constructor: (name, properties=List.defaultProperties()) ->

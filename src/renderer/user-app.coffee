@@ -11,8 +11,8 @@ class UserApp extends EventEmitter
     @info =
       author: "John Doe"
       appName: "MyAwesomeApp"
-      width: 20
-      height: 30
+      width: 10
+      height: 20
       pageNames: ["Page0"]
     @components = []
     @functions = []
