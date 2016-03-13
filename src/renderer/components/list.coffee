@@ -47,6 +47,7 @@ module.exports =
       @properties.add.func = @addItem
       @properties.delete.func = @removeItem
       @properties.items.func = @setText
+      @selected = 0
 
 
     getItemFromArray: (array, key, value) ->
@@ -56,9 +57,8 @@ module.exports =
 
 
     setText: (selected) =>
-      val = @getItemFromArray(@properties.items.items, "index", selected)
-      console.log val
-      @properties.item_value.value = val.message
+      @selected = selected
+      @properties.item_value.value = @getItemFromArray(@properties.items.items, "index", selected).message
 
     addItem: =>
       @properties.items.items.push {index: @index, message: "New Item", name: "item_" + @index}
@@ -67,8 +67,11 @@ module.exports =
       # Update materializecss select box
       $('select').material_select()
 
-    removeItem: (index) =>
-      @properties.items.items.splice index, 1
+    removeItem: =>
+      item = @getItemFromArray(@properties.items.items, "index", @selected)
+      items = @properties.items.items
+
+      items.splice items.indexOf(item), 1
 
       # Update materializecss select box
       $('select').material_select()
