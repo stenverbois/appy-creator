@@ -18,36 +18,44 @@ module.exports =
           value: 'Page0'
           type: 'hidden'
 
-        name:
-          name: 'Text'
-          value: 'Sample text'
-          type: 'text'
-
         add:
           value: 'Add Item'
-          type: 'button'
-
-        delete:
-          value: 'Delete'
           type: 'button'
           func: null
 
         items:
           type: 'select'
           items: []
+          selected: null
+
+        item_value:
+          name: 'Item value'
+          value: ''
+          type: 'text'
+
+        delete:
+          value: 'Delete'
+          type: 'button'
+          func: null
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
       super name, properties
       @cmpName = 'cmp-list'
       @type = "List"
-
+      @index = 0
       @properties.add.func = @addItem
       @properties.delete.func = @removeItem
+      @properties.items.func = @setText
+
+    setText: (selected) =>
+      val = @properties.items.items.filter( (item) ->
+                          item.index is selected);
+      @properties.item_value.value = val["0"].message
 
     addItem: =>
-      newIndex = @properties.items.items.length
-      @properties.items.items.push {index: newIndex, message: "New Item", name: "item_" + newIndex}
+      @properties.items.items.push {index: @index, message: "New Item", name: "item_" + @index}
+      @index += 1
 
       # Update materializecss select box
       $('select').material_select()
