@@ -1,7 +1,7 @@
 <template>
   <div>
     <label>Select Item</label>
-    <select class="browser-default" v-model="data.selected" v-on:change="data.func(data.selected)">
+    <select class="browser-default" v-on:change="data.func(data.selected)">
       <option v-for="item in data.items" v-bind:value="item.index">{{item.name}}</option>
     </select>
   </div>

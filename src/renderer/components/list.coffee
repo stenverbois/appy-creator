@@ -55,10 +55,9 @@ module.exports =
         if item[key] is value
           return item
 
-
-    setText: (selected) =>
-      @selected = selected
-      @properties.item_value.value = @getItemFromArray(@properties.items.items, "index", selected).message
+    setText: =>
+      @selected = parseInt($('select').val())
+      @properties.item_value.value = @getItemFromArray(@properties.items.items, "index", @selected).message
 
     addItem: =>
       @properties.items.items.push {index: @index, message: "New Item", name: "item_" + @index}
@@ -70,7 +69,6 @@ module.exports =
     removeItem: =>
       item = @getItemFromArray(@properties.items.items, "index", @selected)
       items = @properties.items.items
-
       items.splice items.indexOf(item), 1
 
       # Update materializecss select box
