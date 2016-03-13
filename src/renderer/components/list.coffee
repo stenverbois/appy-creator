@@ -34,7 +34,7 @@ module.exports =
           type: 'text'
 
         delete:
-          value: 'Delete'
+          value: 'Delete item'
           type: 'button'
           func: null
       }
@@ -48,10 +48,17 @@ module.exports =
       @properties.delete.func = @removeItem
       @properties.items.func = @setText
 
+
+    getItemFromArray: (array, key, value) ->
+      for item in array
+        if item[key] is value
+          return item
+
+
     setText: (selected) =>
-      val = @properties.items.items.filter( (item) ->
-                          item.index is selected);
-      @properties.item_value.value = val["0"].message
+      val = @getItemFromArray(@properties.items.items, "index", selected)
+      console.log val
+      @properties.item_value.value = val.message
 
     addItem: =>
       @properties.items.items.push {index: @index, message: "New Item", name: "item_" + @index}
