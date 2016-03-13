@@ -20,8 +20,8 @@ class UserApp extends EventEmitter
 
   init: ->
 
-  removeComponent: (idx) ->
-    @components.splice idx, 1
+  removeComponent: (index) ->
+    @components.splice index, 1
 
   addComponent: (name) ->
     @components.push new componentClasses[name](name+ @id)

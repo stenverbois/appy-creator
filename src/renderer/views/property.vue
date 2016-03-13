@@ -9,12 +9,12 @@
 module.exports =
   props: ['data']
   components:
-    'prop-checkbox': require('../components/prop-checkbox.vue')
-    'prop-text': require('../components/prop-text.vue')
-    'prop-switch': require('../components/prop-switch.vue')
-    'prop-range': require('../components/prop-range.vue')
-    'prop-button': require('../components/prop-button.vue')
-    'prop-listbox': require('../components/prop-listbox.vue')
+    'prop-checkbox': require '../components/prop-checkbox.vue'
+    'prop-text': require '../components/prop-text.vue'
+    'prop-switch': require '../components/prop-switch.vue'
+    'prop-range': require '../components/prop-range.vue'
+    'prop-button': require '../components/prop-button.vue'
+    'prop-select': require '../components/prop-select.vue'
 
   computed:
     propComponent: ->

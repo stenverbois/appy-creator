@@ -1,6 +1,7 @@
 <template>
-  <div class="listbox">
-    <select style="width: 100%; height: 100%; overflow: hidden;">
+  <div class="">
+    <label>Select Item</label>
+    <select class="browser-default">
       <option v-for="item in data.items">{{item.name}}</option>
     </select>
   </div>

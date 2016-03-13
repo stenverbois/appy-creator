@@ -30,23 +30,30 @@ module.exports =
         delete:
           value: 'Delete'
           type: 'button'
-          func: ""
+          func: null
 
+        items:
+          type: 'select'
+          items: []
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
       super name, properties
       @cmpName = 'cmp-list'
       @type = "List"
-      @items = []
-      properties.add.func = (@addItem)
-      properties.delete.func = (@removeItem)
+
+      @properties.add.func = @addItem
+      @properties.delete.func = @removeItem
 
     addItem: =>
-      new_index = @items.length
-      @items.push({index: new_index, message: "New Item", name: "item_" + new_index})
+      newIndex = @properties.items.items.length
+      @properties.items.items.push {index: newIndex, message: "New Item", name: "item_" + newIndex}
+
+      # Update materializecss select box
+      $('select').material_select()
 
     removeItem: (index) =>
-      @items.splice(index, 1)
+      @properties.items.items.splice index, 1
 
-
+      # Update materializecss select box
+      $('select').material_select()

@@ -20,7 +20,7 @@
 <script lang="coffee">
 module.exports =
   data: ->
-    page: ""
+    page: "designView"
 
   components:
     'header-view': require './views/header-view.vue'

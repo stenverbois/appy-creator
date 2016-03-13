@@ -66,7 +66,8 @@ global.store =
 
 app.$mount 'app'
 
-# Materializecss modal initialization
+# Materializecss initialization
 $(document).ready ->
  # the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('.modal-trigger').leanModal()
+  $('select').material_select()
