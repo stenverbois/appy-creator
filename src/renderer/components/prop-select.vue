@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <label>Select Item</label>
     <select class="browser-default">
       <option v-for="item in data.items">{{item.name}}</option>
