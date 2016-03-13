@@ -52,9 +52,9 @@ module.exports =
       @cmpName = 'cmp-list'
       @type = "List"
       @index = 0
-      @properties.add.func = @addItem
-      @properties.delete.func = @removeItem
-      @properties.items.func = @setText
+      @properties.add.onclick = @addItem
+      @properties.delete.onclick = @removeItem
+      @properties.items.onchange = @setText
       @selected = 0
 
 
