@@ -1,9 +1,14 @@
 <template>
   <div>
-    <li v-for="propertyData in data.value" v-if="isEditableProperty(propertyData)">
-      <!-- Cleaner: <property :data="propertyData"></property> -->
-      <component :is="'prop-' + propertyData.type" :data.sync="propertyData"></component>
-    </li>
+    <div v-show="data.value != null">
+      <li v-for="propertyData in data.value" v-if="isEditableProperty(propertyData)">
+        <!-- Cleaner: <property :data="propertyData"></property> -->
+        <component :is="'prop-' + propertyData.type" :data.sync="propertyData"></component>
+      </li>
+    </div>
+    <div v-else>
+      <p v-text="data.emptyMsg"></p>
+    </div>
   </div>
 </template>
 

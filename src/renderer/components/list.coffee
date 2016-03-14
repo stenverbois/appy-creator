@@ -37,6 +37,7 @@ module.exports =
         selectedItemProperties:
           type: 'nested'
           value: null
+          emptyMsg: 'Select an item to change it.'
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
@@ -65,15 +66,16 @@ module.exports =
       @items().push
         index: @index
         name: "item_#{@index}"
-        visible:
-          type: 'switch'
-          value: true
         message:
           name: 'Text'
           type: 'text'
           value: 'New Item'
+        visible:
+          type: 'switch'
+          value: true
 
       @properties.itemSelect.selected = @index
+      @onSelectionChange()
       @index += 1
 
       # Update materializecss select box
