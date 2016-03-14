@@ -36,7 +36,7 @@
       <!-- Show property info when a component is selected -->
       <div v-if="isComponentSelected()">
         <ul class="collection">
-          <li class="collection-item" v-for="propertyData in component.properties" v-if="propertyData.type != 'hidden'">
+          <li class="collection-item" v-for="propertyData in component.properties" v-if="isEditableProperty(propertyData)">
             <property :data.sync="propertyData"></property>
           </li>
           <li class="collection-item center-align">
@@ -77,4 +77,7 @@ module.exports =
     # Is a component selected
     isComponentSelected: ->
       if @component then true else false
+
+    isEditableProperty: (property) ->
+      property.type? and property.type isnt 'hidden'
 </script>

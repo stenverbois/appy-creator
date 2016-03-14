@@ -1,6 +1,6 @@
 <template>
   <div>
-    <li v-for="propertyData in data.value" v-if="propertyData.type != 'hidden'">
+    <li v-for="propertyData in data.value" v-if="isEditableProperty(propertyData)">
       <!-- Cleaner: <property :data="propertyData"></property> -->
       <component :is="'prop-' + propertyData.type" :data.sync="propertyData"></component>
     </li>
@@ -10,6 +10,7 @@
 <script lang="coffee">
 module.exports =
   props: ['data']
+
   components:
     property: require '../views/property.vue'
     'prop-checkbox': require '../components/prop-checkbox.vue'
@@ -19,4 +20,8 @@ module.exports =
     'prop-button': require '../components/prop-button.vue'
     'prop-select': require '../components/prop-select.vue'
     'prop-nested': require '../components/prop-nested.vue'
+
+  methods:
+    isEditableProperty: (property) ->
+      property.type? and property.type isnt 'hidden'
 </script>

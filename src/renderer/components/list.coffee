@@ -1,4 +1,5 @@
 Component = require './component'
+Vue = require 'vue'
 
 module.exports =
   class List extends Component
@@ -23,28 +24,19 @@ module.exports =
           type: 'button'
           func: null
 
-        items:
+        itemSelect:
           type: 'select'
-          items: []
+          options: []
           selected: null
-
-        item_value:
-          name: 'Item value'
-          value: ''
-          type: 'text'
 
         delete:
           value: 'Delete item'
           type: 'button'
           func: null
 
-        test:
+        selectedItemProperties:
           type: 'nested'
-          value:
-            name:
-              name:'test'
-              type: 'text'
-              value: 'boe'
+          value: null
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
@@ -52,32 +44,45 @@ module.exports =
       @cmpName = 'cmp-list'
       @type = "List"
       @index = 0
+
       @properties.add.onclick = @addItem
       @properties.delete.onclick = @removeItem
-      @properties.items.onchange = @setText
-      @selected = 0
+      @properties.itemSelect.onchange = @onSelectionChange
 
+    onSelectionChange: =>
+      Vue.nextTick =>
+        @properties.selectedItemProperties.value = @items()[@properties.itemSelect.selected]
 
     getItemFromArray: (array, key, value) ->
       for item in array
         if item[key] is value
           return item
 
-    setText: =>
-      @selected = parseInt($('select').val())
-      @properties.item_value.value = @getItemFromArray(@properties.items.items, "index", @selected).message
+    items: =>
+      @properties.itemSelect.options
 
     addItem: =>
-      @properties.items.items.push {index: @index, message: "New Item", name: "item_" + @index}
+      @items().push
+        index: @index
+        name: "item_#{@index}"
+        visible:
+          type: 'switch'
+          value: true
+        message:
+          name: 'Text'
+          type: 'text'
+          value: 'New Item'
+
+      @properties.itemSelect.selected = @index
       @index += 1
 
       # Update materializecss select box
       $('select').material_select()
 
     removeItem: =>
-      item = @getItemFromArray(@properties.items.items, "index", @selected)
-      items = @properties.items.items
-      items.splice items.indexOf(item), 1
+      items = @items()
+      itemToRemove = @getItemFromArray(items, 'index', @properties.itemSelect.selected)
+      items.splice items.indexOf(itemToRemove), 1
 
       # Update materializecss select box
       $('select').material_select()

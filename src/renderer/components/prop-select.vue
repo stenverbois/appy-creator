@@ -1,8 +1,8 @@
 <template>
   <div>
     <label>Select Item</label>
-    <select class="browser-default" @change="data.onchange">
-      <option v-for="item in data.items" :value="item.index">{{item.name}}</option>
+    <select class="browser-default" v-model="data.selected" @change="data.onchange">
+      <option v-for="option in data.options" :value="option.index">{{option.name}}</option>
     </select>
   </div>
 </template>
