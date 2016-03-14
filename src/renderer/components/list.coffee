@@ -46,24 +46,24 @@ module.exports =
       @type = "List"
       @index = 0
 
+      @items = []
+      @properties.itemSelect.options = @items
+
       @properties.add.onclick = @addItem
       @properties.delete.onclick = @removeItem
       @properties.itemSelect.onchange = @onSelectionChange
 
     onSelectionChange: =>
       Vue.nextTick =>
-        @properties.selectedItemProperties.value = @items()[@properties.itemSelect.selected]
+        @properties.selectedItemProperties.value = @items[@properties.itemSelect.selected]
 
     getItemFromArray: (array, key, value) ->
       for item in array
         if item[key] is value
           return item
 
-    items: =>
-      @properties.itemSelect.options
-
     addItem: =>
-      @items().push
+      @items.push
         index: @index
         name: "item_#{@index}"
         message:
@@ -83,9 +83,8 @@ module.exports =
 
     removeItem: =>
       # Remove item from item list
-      items = @items()
-      itemToRemove = @getItemFromArray(items, 'index', @properties.itemSelect.selected)
-      items.splice items.indexOf(itemToRemove), 1
+      itemToRemove = @getItemFromArray(@items, 'index', @properties.itemSelect.selected)
+      @items.splice @items.indexOf(itemToRemove), 1
 
       # Reset selected item to none
       @properties.itemSelect.selected = null
