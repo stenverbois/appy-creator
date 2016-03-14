@@ -82,9 +82,14 @@ module.exports =
       $('select').material_select()
 
     removeItem: =>
+      # Remove item from item list
       items = @items()
       itemToRemove = @getItemFromArray(items, 'index', @properties.itemSelect.selected)
       items.splice items.indexOf(itemToRemove), 1
+
+      # Reset selected item to none
+      @properties.itemSelect.selected = null
+      @properties.selectedItemProperties.value = null
 
       # Update materializecss select box
       $('select').material_select()
