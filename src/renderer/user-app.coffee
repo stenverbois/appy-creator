@@ -20,18 +20,27 @@ class UserApp extends EventEmitter
 
   init: ->
 
+  addComponent: (name) ->
+    @components.push new componentClasses[name](name + @id)
+    @id += 1
+
   removeComponent: (index) ->
     @components.splice index, 1
 
-  addComponent: (name) ->
-    @components.push new componentClasses[name](name+ @id)
+  addFunction: (name) ->
+    @functions.push new functionClasses[name](name + @id)
     @id += 1
+
+  removeFunction: (index) ->
+    @functions.splice index, 1
 
   export: ->
     app =
       info: @info
       components: {}
-      logic: {}
+      logic:
+        functions: {}
+        triggers: {}
 
     for component in @components
       app.components[component.name] = component.export()
