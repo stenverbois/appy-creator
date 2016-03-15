@@ -32,20 +32,8 @@
         <div class="collapsible-header"><i class="material-icons">view_module</i>Standard</div>
         <div class="collapsible-body">
           <ul class="collection">
-            <li class="collection-item">
-              <a class="btn-flat" @click="state.app.addComponent('Button')">Button</a>
-            </li>
-            <li class="collection-item">
-              <a class="btn-flat" @click="state.app.addComponent('Label')">Label</a>
-            </li>
-            <li class="collection-item">
-              <a class="btn-flat" @click="state.app.addComponent('Textbox')">Textbox</a>
-            </li>
-            <li class="collection-item">
-              <a class="btn-flat" @click="state.app.addComponent('Image')">Image</a>
-            </li>
-            <li class="collection-item">
-              <a class="btn-flat" @click="state.app.addComponent('List')">List</a>
+            <li class="collection-item" v-for="component in components">
+              <a class="btn-flat" @click="state.app.addComponent(component)">{{component}}</a>
             </li>
           </ul>
         </div>
@@ -64,4 +52,8 @@
 module.exports =
   data: ->
     state: store.state
+    components: []
+
+  ready: ->
+    @components = Object.keys require('../components/components.coffee').classes
 </script>
