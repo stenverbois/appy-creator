@@ -27,6 +27,10 @@ class UserApp extends EventEmitter
   removeComponent: (index) ->
     @components.splice index, 1
 
+  addTriggers: =>
+    @triggers.push new trigger("Trigger" + @id)
+    @id += 1
+
   addFunction: (name) ->
     @functions.push new functionClasses[name](name + @id)
     @id += 1

@@ -22,6 +22,7 @@ class Image extends Component
         name: 'Image Source'
         value: 'appy.png'
         type: 'text'
+    
     }
 
   constructor: (name, properties=Image.defaultProperties()) ->

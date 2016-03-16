@@ -36,6 +36,10 @@
       <!-- Show property info when a component is selected -->
       <div v-if="isComponentSelected()">
         <ul class="collection">
+          <li class="collection-item">
+            <b>Component name</b>
+            <input v-model="component.name">
+          </li>
           <li class="collection-item" v-for="propertyData in component.properties" v-if="isEditableProperty(propertyData)">
             <property :data.sync="propertyData"></property>
           </li>

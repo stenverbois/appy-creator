@@ -1,6 +1,7 @@
 module.exports =
   Function: class Function
     constructor: (@name, @parameters={}, @triggers=[]) ->
+      @triggers = ["Trigger1"]
 
     connectParameter: (name, component, output) ->
       if name in @parameterNames
@@ -24,3 +25,4 @@ module.exports =
       @type = "Plus"
       @parameterNames = ['left', 'right']
       @outputNames = ['result']
+
