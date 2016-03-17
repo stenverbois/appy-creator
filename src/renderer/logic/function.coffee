@@ -25,4 +25,3 @@ module.exports =
       @type = "Plus"
       @parameterNames = ['left', 'right']
       @outputNames = ['result']
-
