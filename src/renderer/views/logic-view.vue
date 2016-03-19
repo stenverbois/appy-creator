@@ -33,9 +33,10 @@
             </div>
           </div>
           <!-- Triggers -->
+          <a class="btn" @click="func.addTrigger">Add trigger</a>
           <div class="row" v-for="trigger in func.triggers">
             <div class="input-field col s6">
-              <input :id.once="trigger" type="text" v-model="trigger">
+              <input :id.once="trigger" type="text" v-model="trigger.name">
               <label :for.once="trigger">Trigger</label>
             </div>
           </div>

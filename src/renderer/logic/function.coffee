@@ -1,8 +1,8 @@
 module.exports =
   Function: class Function
     constructor: (@name, @parameters={}, @triggers=[]) ->
-      @triggers = ["Trigger1"]
-
+      @triggers = []
+      @triggerIndex = 1
     connectParameter: (name, component, output) ->
       if name in @parameterNames
         @parameters[name] = "#{component}.#{output}"
@@ -11,6 +11,10 @@ module.exports =
 
     connectTrigger: (name) ->
       @triggers.push name
+
+    addTrigger: =>
+      @triggers.push({index: @triggerIndex, name: ""})
+      @triggerIndex += 1
 
     export: ->
       {
