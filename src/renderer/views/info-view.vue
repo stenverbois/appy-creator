@@ -54,10 +54,10 @@ module.exports =
       max: 60
 
   components:
-    'prop-checkbox': require('../components/prop-checkbox.vue')
-    'prop-text': require('../components/prop-text.vue')
-    'prop-switch': require('../components/prop-switch.vue')
-    'prop-range': require('../components/prop-range.vue')
+    'prop-checkbox': require('../properties/prop-checkbox.vue')
+    'prop-text': require('../properties/prop-text.vue')
+    'prop-switch': require('../properties/prop-switch.vue')
+    'prop-range': require('../properties/prop-range.vue')
 
   methods:
     saveInfo: ->

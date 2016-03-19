@@ -11,13 +11,13 @@
 module.exports =
   props: ['data']
   components:
-    'prop-checkbox': require '../components/prop-checkbox.vue'
-    'prop-text': require '../components/prop-text.vue'
-    'prop-switch': require '../components/prop-switch.vue'
-    'prop-range': require '../components/prop-range.vue'
-    'prop-button': require '../components/prop-button.vue'
-    'prop-select': require '../components/prop-select.vue'
-    'prop-nested': require '../components/prop-nested.vue'
+    'prop-checkbox': require '../properties/prop-checkbox.vue'
+    'prop-text': require '../properties/prop-text.vue'
+    'prop-switch': require '../properties/prop-switch.vue'
+    'prop-range': require '../properties/prop-range.vue'
+    'prop-button': require '../properties/prop-button.vue'
+    'prop-select': require '../properties/prop-select.vue'
+    'prop-nested': require '../properties/prop-nested.vue'
 
   computed:
     propComponent: ->
