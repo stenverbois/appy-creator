@@ -20,6 +20,8 @@
     </div>
   </div>
   <a class="btn" @click="state.app.addFunction('Plus')">Plus</a>
+  <a class="btn" @click="state.app.addFunction('AddTextToList')">AddTextToList</a>
+
   <div class="row">
     <div class="card col s3" v-for="func in state.app.functions">
       <div class="title" v-text="func.name"></div>

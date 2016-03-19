@@ -29,3 +29,10 @@ module.exports =
       @type = "Plus"
       @parameterNames = ['left', 'right']
       @outputNames = ['result']
+
+  AddTextToList: class AddTextToList extends Function
+    constructor:  (name, parameters={}, triggers=[]) ->
+      super name, parameters, triggers
+      @type = "Add text to list"
+      @parameterNames = ['Text input', 'list']
+      @outputNames = ['list name']
