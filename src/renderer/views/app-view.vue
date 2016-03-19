@@ -31,7 +31,9 @@
     //Remove background color
     background-color: rgba(0, 0, 0, 0.0);
     &.selected {
-      background-color: rgba(255, 0, 0, 1.0);
+      border-color: red;
+      border-width: medium;
+      border-style: solid;
     }
   }
 
