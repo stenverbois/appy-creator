@@ -83,8 +83,9 @@ module.exports =
         filters: [{ name: 'Appy', extensions: ['appy'] }]
         properties: [ 'openFile' ]
 
-      fs.readFile appy_path?[0], (err, data) =>
-        @state.app.load(JSON.parse(data))
+      if appy_path?[0]
+        fs.readFile appy_path[0], (err, data) =>
+          @state.app.load(JSON.parse(data))
 
     uploadFile: ->
       request = require 'request'
