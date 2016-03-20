@@ -2,7 +2,7 @@
   <div class="contents">
     <components></components>
     <div class="content">
-      <component :is="page"></component>
+      <component :is="page" keep-alive></component>
     </div>
     <properties :component="state.app.components[state.selected]"></properties>
   </div>
