@@ -28,6 +28,7 @@
           <li><a @click="gotoLogicPage()">Logic</a></li>
           <li><a class="separator" @click="gotoInfoPage()">Info</a></li>
           <li><a @click="saveApp()">Save</a></li>
+          <li><a @click="loadApp()">Load</a></li>
           <li><a class="modal-trigger" href="#upload_modal">Upload</a></li>
         </ul>
       </div>
@@ -55,8 +56,11 @@
 </template>
 
 <script lang="coffee">
-ipc = require('electron').ipcRenderer
 fs = require 'fs'
+ipc = require('electron').ipcRenderer
+remote = require('electron').remote
+dialog = remote.dialog
+
 module.exports =
   data: ->
     state: store.state
@@ -69,7 +73,18 @@ module.exports =
 
   methods:
     saveApp: ->
-      fs.writeFile 'output.appy', JSON.stringify(@state.app.export(), null, 2)
+      appy_path = dialog.showSaveDialog
+        filters: [{ name: 'Appy', extensions: ['appy'] }]
+
+      fs.writeFile appy_path, JSON.stringify(@state.app.export(), null, 2)
+
+    loadApp: ->
+      appy_path = dialog.showOpenDialog
+        filters: [{ name: 'Appy', extensions: ['appy'] }]
+        properties: [ 'openFile' ]
+
+      fs.readFile appy_path?[0], (err, data) =>
+        @state.app.load(JSON.parse(data))
 
     uploadFile: ->
       request = require 'request'

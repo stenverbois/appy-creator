@@ -19,6 +19,10 @@ class UserApp extends EventEmitter
     @triggers = []
 
   init: ->
+    @info = {}
+    @components = []
+    @functions = []
+    @triggers = []
 
   addComponent: (name) ->
     @components.push new componentClasses[name](name + @id)
@@ -58,13 +62,15 @@ class UserApp extends EventEmitter
     app
 
   load: (app) ->
+    @init()
+
     @info = app.info
 
-    for name, obj in app.components
+    for name, obj of app.components
       @components.push new componentClasses[obj.type](name, obj.properties)
 
-    for name, obj in app.functions
+    for name, obj of app.logic.functions
       @functions.push new functionClasses[obj.type](name, obj.parameters, obj.triggers)
 
-    for name, obj in app.triggers
+    for name, obj of app.logic.triggers
       @triggers.push new Trigger(name, obj.component, obj.action)
