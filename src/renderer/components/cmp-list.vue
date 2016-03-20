@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul v-show="cmp.properties.visibility.value">
-      <li v-for="item in cmp.items" track-by="index">
+      <li v-for="item in cmp.properties.items" track-by="index">
         <div v-show="item.visible.value">
           {{ item.message.value }}
         </div>

@@ -38,6 +38,9 @@ module.exports =
           type: 'nested'
           value: null
           emptyMsg: 'Select an item to change it.'
+
+
+        items: []
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
@@ -46,8 +49,7 @@ module.exports =
       @type = "List"
       @index = 0
 
-      @items = []
-      @properties.itemSelect.options = @items
+      @properties.itemSelect.options = @properties.items
 
       @properties.add.onclick = @addItem
       @properties.delete.onclick = @removeItem
@@ -55,7 +57,7 @@ module.exports =
 
     onSelectionChange: =>
       Vue.nextTick =>
-        @properties.selectedItemProperties.value = @items[@properties.itemSelect.selected]
+        @properties.selectedItemProperties.value = @properties.items[@properties.itemSelect.selected]
 
     getItemFromArray: (array, key, value) ->
       for item in array
@@ -63,7 +65,7 @@ module.exports =
           return item
 
     addItem: =>
-      @items.push
+      @properties.items.push
         index: @index
         name: "item_#{@index}"
         message:
@@ -83,8 +85,8 @@ module.exports =
 
     removeItem: =>
       # Remove item from item list
-      itemToRemove = @getItemFromArray(@items, 'index', @properties.itemSelect.selected)
-      @items.splice @items.indexOf(itemToRemove), 1
+      itemToRemove = @getItemFromArray(@properties.items, 'index', @properties.itemSelect.selected)
+      @properties.items.splice @properties.items.indexOf(itemToRemove), 1
 
       # Reset selected item to none
       @properties.itemSelect.selected = null
