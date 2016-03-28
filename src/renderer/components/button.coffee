@@ -22,6 +22,7 @@ class Button extends Component
         name: 'Text'
         value: 'Sample text'
         type: 'text'
+        primary: true
     }
 
 

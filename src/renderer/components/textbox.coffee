@@ -22,6 +22,7 @@ class Textbox extends Component
         name: 'Text'
         value: 'Sample text'
         type: 'text'
+        primary: true
     }
 
   constructor: (name, properties=Textbox.defaultProperties()) ->

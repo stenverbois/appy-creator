@@ -3,7 +3,8 @@
     <div v-show="data.value != null">
       <!-- <pre>{{data | json}}</pre> -->
       <div v-for="comp in data.value">
-        <li v-for="propertyData in comp.properties" v-if="isEditableProperty(propertyData)">
+        {{comp.type}}
+        <li v-for="propertyData in comp.properties" v-if="isPrimaryProperty(propertyData)">
           <!-- Cleaner:  -->
           <!-- <property :data="propertyData"></property> -->
           <component :is="'prop-' + propertyData.type" :data.sync="propertyData"></component>
@@ -32,6 +33,9 @@ module.exports =
     'prop-nested': require './prop-nested.vue'
 
   methods:
-    isEditableProperty: (property) ->
-      property.type? and property.type isnt 'hidden'
+    isPrimaryProperty: (property) ->
+      property.type? and
+      property.type isnt 'hidden' and
+      property.primary? and
+      property.primary is true
 </script>

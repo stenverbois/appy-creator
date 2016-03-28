@@ -22,6 +22,7 @@ class Label extends Component
         name: 'Text'
         value: 'Sample text'
         type: 'text'
+        primary: true
     }
 
   constructor: (name, properties=Label.defaultProperties()) ->
