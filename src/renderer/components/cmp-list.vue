@@ -1,10 +1,14 @@
 <template>
   <div>
     <ul v-show="cmp.properties.visibility.value">
-      <li v-for="item in cmp.properties.items" track-by="index">
-        <div v-show="item.visible.value">
-          {{ item.message.value }}
-        </div>
+      <li v-for="item in cmp.properties.items">
+        <ul>
+          <li v-for="component in item.components">
+            <div>
+              <component :is="component.cmpName" :cmp="component"></component>
+            </div>
+          </li>
+        </ul>
       </li>
     </ul>
 </div>
@@ -14,6 +18,9 @@
 module.exports =
   props: ['cmp']
 
+  components:
+    'cmp-button': require('./cmp-button.vue')
+
   attached: ->
-    @$parent.addToGrid()
+    @$parent.addToGrid?()
 </script>

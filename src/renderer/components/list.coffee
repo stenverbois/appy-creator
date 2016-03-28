@@ -1,6 +1,8 @@
 Component = require './component'
 Vue = require 'vue'
 
+Button = require('./button.coffee')
+
 module.exports =
   class List extends Component
 
@@ -39,8 +41,12 @@ module.exports =
           value: null
           emptyMsg: 'Select an item to change it.'
 
-
         items: []
+
+        newItemProperties: (index) ->
+          index: index
+          name: 'item'
+          components: [new Button(), new Button(), new Button(), new Button(), new Button(), new Button(), new Button(), new Button()]
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
@@ -57,7 +63,7 @@ module.exports =
 
     onSelectionChange: =>
       Vue.nextTick =>
-        @properties.selectedItemProperties.value = @properties.items[@properties.itemSelect.selected]
+        @properties.selectedItemProperties.value = @properties.items[@properties.itemSelect.selected]?.components
 
     getItemFromArray: (array, key, value) ->
       for item in array
@@ -65,16 +71,17 @@ module.exports =
           return item
 
     addItem: =>
-      @properties.items.push
-        index: @index
-        name: "item_#{@index}"
-        message:
-          name: 'Text'
-          type: 'text'
-          value: 'New Item'
-        visible:
-          type: 'switch'
-          value: true
+      @properties.items.push @properties.newItemProperties(@index)
+        ## Old new item
+        # index: @index
+        # name: "item_#{@index}"
+        # message:
+        #   name: 'Text'
+        #   type: 'text'
+        #   value: 'New Item'
+        # visible:
+        #   type: 'switch'
+        #   value: true
 
       @properties.itemSelect.selected = @index
       @onSelectionChange()

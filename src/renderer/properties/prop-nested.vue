@@ -1,11 +1,15 @@
 <template>
   <div>
     <div v-show="data.value != null">
-      <li v-for="propertyData in data.value" v-if="isEditableProperty(propertyData)">
-        <!-- Cleaner:  -->
-        <!-- <property :data="propertyData"></property> -->
-        <component :is="'prop-' + propertyData.type" :data.sync="propertyData"></component>
-      </li>
+      <!-- <pre>{{data | json}}</pre> -->
+      <div v-for="comp in data.value">
+        <li v-for="propertyData in comp.properties" v-if="isEditableProperty(propertyData)">
+          <!-- Cleaner:  -->
+          <!-- <property :data="propertyData"></property> -->
+          <component :is="'prop-' + propertyData.type" :data.sync="propertyData"></component>
+          <!-- <component :is="''" :data.sync="comp.properties[0]"></component> -->
+        </li>
+      </div>
     </div>
     <div v-else>
       <p v-text="data.emptyMsg"></p>

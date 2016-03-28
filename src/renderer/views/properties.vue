@@ -6,6 +6,7 @@
   right: 0;
   width: $properties-bar-width;
   height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
+  overflow: auto;
 
   .collection {
     margin-top: 0px;
