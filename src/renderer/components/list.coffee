@@ -1,7 +1,12 @@
 Component = require './component'
 Vue = require 'vue'
 
-Button = require('./button.coffee')
+# TODO: Remove when we have a better way of assigning the components for each
+# list element
+Button = require './button'
+Label = require './label'
+Textbox = require './textbox'
+Image = require './image'
 
 module.exports =
   class List extends Component
@@ -45,8 +50,8 @@ module.exports =
 
         newItemProperties: (index) ->
           index: index
-          name: 'item'
-          components: [new Button(), new Button(), new Button(), new Button(), new Button(), new Button(), new Button(), new Button()]
+          name: "item_#{index}"
+          components: [new Button(), new Label()]
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
@@ -72,16 +77,6 @@ module.exports =
 
     addItem: =>
       @properties.items.push @properties.newItemProperties(@index)
-        ## Old new item
-        # index: @index
-        # name: "item_#{@index}"
-        # message:
-        #   name: 'Text'
-        #   type: 'text'
-        #   value: 'New Item'
-        # visible:
-        #   type: 'switch'
-        #   value: true
 
       @properties.itemSelect.selected = @index
       @onSelectionChange()

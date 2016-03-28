@@ -14,5 +14,5 @@ module.exports =
   props: ['cmp']
 
   attached: ->
-    @$parent.addToGrid()
+    @$parent.addToGrid?()
 </script>
