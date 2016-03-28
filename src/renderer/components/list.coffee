@@ -63,7 +63,7 @@ module.exports =
 
     onSelectionChange: =>
       Vue.nextTick =>
-        @properties.selectedItemProperties.value = @properties.items[@properties.itemSelect.selected]?.components
+        @properties.selectedItemProperties.value = @getItemFromArray(@properties.items, 'index', @properties.itemSelect.selected).components
 
     getItemFromArray: (array, key, value) ->
       for item in array
