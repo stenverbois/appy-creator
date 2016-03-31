@@ -88,8 +88,6 @@ module.exports =
     created: ->
       window.addEventListener('keyup', this.previous)
 
-
-
   attached: ->
     @gridster = $(".gridster ul").gridster(
       widget_margins: [0, 0]

@@ -29,6 +29,16 @@
     </div>
     <ul class="collapsible" data-collapsible="accordion">
       <li>
+        <div class="collapsible-header"><i class="material-icons">view_module</i>Generic Items</div>
+        <div class="collapsible-body">
+          <ul class="collection">
+            <li class="collection-item" v-for="item in state.app.generic_items">
+              <a class="btn-flat" @click="state.app.addComponent(component)">{{item}}</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li>
         <div class="collapsible-header"><i class="material-icons">view_module</i>Standard</div>
         <div class="collapsible-body">
           <ul class="collection">
@@ -56,4 +66,5 @@ module.exports =
 
   ready: ->
     @components = Object.keys require('../components/components.coffee').classes
+
 </script>

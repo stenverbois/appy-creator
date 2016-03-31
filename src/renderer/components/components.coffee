@@ -12,3 +12,6 @@ module.exports =
     Textbox: require './textbox'
     Image: require './image'
     List: require './list'
+
+  generic:
+    List: ""
