@@ -30,7 +30,6 @@ module.exports =
 
   methods:
     nav: (page) ->
-      console.log(page)
       @page = "#{page}View"
 
 </script>

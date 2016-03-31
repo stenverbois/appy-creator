@@ -70,8 +70,6 @@ module.exports =
   methods:
 
     showView: (generic_name, parent_name) ->
-      console.log(generic_name + " " + parent_name)
-      console.log("emit: " + 'nav-'+generic_name)
       @$dispatch('nav-'+generic_name, parent_name)
 
 </script>
