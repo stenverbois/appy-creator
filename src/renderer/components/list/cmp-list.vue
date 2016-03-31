@@ -21,11 +21,11 @@ module.exports =
   # TODO: The reason we can't require('./components.coffee').components here
   # is because of circular dependecy?
   components:
-    'cmp-button': require './cmp-button.vue'
-    'cmp-label': require './cmp-label.vue'
-    'cmp-textbox': require './cmp-textbox.vue'
-    'cmp-image': require './cmp-image.vue'
-    'cmp-list': require './cmp-list.vue'
+    'cmp-button': require './../button/cmp-button.vue'
+    'cmp-label': require './../label/cmp-label.vue'
+    'cmp-textbox': require './../textbox/cmp-textbox.vue'
+    'cmp-image': require './../image/cmp-image.vue'
+    'cmp-list': require './../list/cmp-list.vue'
 
   attached: ->
     @$parent.addToGrid?()

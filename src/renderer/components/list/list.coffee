@@ -1,12 +1,12 @@
-Component = require './component'
+Component = require './../component'
 Vue = require 'vue'
 
 # TODO: Remove when we have a better way of assigning the components for each
 # list element
-Button = require './button'
-Label = require './label'
-Textbox = require './textbox'
-Image = require './image'
+Button = require './../button/button'
+Label = require './../label/label'
+Textbox = require './../textbox/textbox'
+Image = require './../image/image'
 
 module.exports =
   class List extends Component

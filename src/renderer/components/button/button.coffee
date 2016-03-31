@@ -1,7 +1,7 @@
-Component = require './component'
+Component = require './../component'
 
 module.exports =
-class Textbox extends Component
+class Button extends Component
 
   @defaultProperties: ->
     {
@@ -25,7 +25,8 @@ class Textbox extends Component
         primary: true
     }
 
-  constructor: (name, properties=Textbox.defaultProperties()) ->
+
+  constructor: (name, properties=Button.defaultProperties()) ->
     super name, properties
-    @cmpName = 'cmp-textbox'
-    @type = "Textbox"
+    @cmpName = 'cmp-button'
+    @type = "Button"
