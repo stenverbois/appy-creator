@@ -85,9 +85,6 @@ module.exports =
     selectedComponent: ->
       @state.app.components[@state.selected]
 
-    created: ->
-      window.addEventListener('keyup', this.previous)
-
   attached: ->
     @gridster = $(".gridster ul").gridster(
       widget_margins: [0, 0]
