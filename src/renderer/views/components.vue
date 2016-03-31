@@ -33,7 +33,7 @@
         <div class="collapsible-body">
           <ul class="collection">
             <li class="collection-item" v-for="item in state.app.generic_items">
-              <a class="btn-flat" @click="state.app.addComponent(component)">{{item}}</a>
+              <a class="btn-flat" @click="showView(item.gnrcName, item.parentListName)">item {{item.parentListName}}</a>
             </li>
           </ul>
         </div>
@@ -66,5 +66,12 @@ module.exports =
 
   ready: ->
     @components = Object.keys require('../components/components.coffee').classes
+
+  methods:
+
+    showView: (generic_name, parent_name) ->
+      console.log(generic_name + " " + parent_name)
+      console.log("emit: " + 'nav-'+generic_name)
+      @$dispatch('nav-'+generic_name, parent_name)
 
 </script>

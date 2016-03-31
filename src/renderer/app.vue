@@ -12,7 +12,8 @@
                  @nav-logic="nav('logic')"
                  @nav-info="nav('info')">
     </header-view>
-    <contents-view :page="page"></contents-view>
+
+    <contents-view :page="page" @nav-itemlist="nav('itemList')"></contents-view>
     <footer-view></footer-view>
   </div>
 </template>
@@ -29,6 +30,7 @@ module.exports =
 
   methods:
     nav: (page) ->
+      console.log(page)
       @page = "#{page}View"
 
 </script>

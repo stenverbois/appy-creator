@@ -30,7 +30,7 @@ class UserApp extends EventEmitter
   addComponent: (name) ->
     @components.push new componentClasses[name](name + @id)
     if name of genericItemsPages
-      @generic_items.push name
+      @generic_items.push new genericItemsPages[name](name+@id)
     @id += 1
 
   removeComponent: (index) ->

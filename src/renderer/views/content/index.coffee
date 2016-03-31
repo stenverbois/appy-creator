@@ -13,3 +13,4 @@ module.exports =
     designView: require '../app-view.vue'
     logicView: require '../logic-view.vue'
     infoView: require '../info-view.vue'
+    itemListView: require '../../components/list/generic_list_item.vue'

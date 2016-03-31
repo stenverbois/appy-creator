@@ -14,4 +14,4 @@ module.exports =
     List: require './list/list'
 
   generic:
-    List: ""
+    List: require './list/list_generic'
