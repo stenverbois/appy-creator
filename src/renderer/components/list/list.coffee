@@ -58,7 +58,7 @@ module.exports =
         newItemProperties: (index) ->
           index: index
           name: "item_#{index}"
-          components: [new Button(), new Label()]
+          components: []
       }
 
     constructor: (name, properties=List.defaultProperties()) ->

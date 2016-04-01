@@ -6,6 +6,7 @@
   height: calc(100%);
   position: relative;
   margin-bottom: 0;
+
   .valign-wrapper {
     height: 100%;
 
@@ -17,6 +18,11 @@
         // border-radius: 10px;
       }
     }
+  }
+
+  .back {
+    margin: 2rem;
+    position: absolute;
   }
 }
 
@@ -53,13 +59,15 @@
 
 <template>
   <div class="row list-item-view">
+    <a class="btn-floating btn-large waves-effect waves-light back"
+       @click="navBack"><i class="material-icons">arrow_back</i></a>
     <div class="valign-wrapper">
       <div class="valign center">
         <div class="gridster">
           <ul class="blue-grey lighten-2 card">
             <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"
             :class="{selected: state.selected == $index}"
-            v-for="component in list.newItemComponents"
+            v-for="component in list.properties.newItemComponents"
             @mousedown="state.selected = $index">
 
             <div>
@@ -120,4 +128,7 @@ module.exports =
       #     col: parseInt(widget.attr("data-col")) - 1
       #     width: parseInt widget.attr("data-sizex")
       #     height: parseInt widget.attr("data-sizey")
+
+    navBack: ->
+      @$dispatch('nav-design-app')
 </script>

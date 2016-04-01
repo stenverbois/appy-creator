@@ -8,12 +8,8 @@
 
 <template>
   <div>
-    <header-view @nav-design="nav('design-app')"
-                 @nav-logic="nav('logic')"
-                 @nav-info="nav('info')">
-    </header-view>
-
-    <contents-view :page="page" :list="list" @nav-listitem="nav('listItem', $arguments)"></contents-view>
+    <header-view></header-view>
+    <content-view :page="page" :list="list"></content-view>
     <footer-view></footer-view>
   </div>
 </template>
@@ -26,12 +22,26 @@ module.exports =
 
   components:
     'header-view': require './views/header-view.vue'
-    'contents-view': require './views/content.vue'
+    'content-view': require './views/content-view.vue'
     'footer-view': require './views/footer-view.vue'
 
   methods:
-    nav: (page, args) ->
+    nav: (page, list) ->
+      @list = list
       @page = "#{page}-view"
-      @list = args?[0]
+
+  events:
+    'nav-design-app': ->
+      @nav('design-app')
+
+    'nav-logic': ->
+      @nav('logic')
+
+    'nav-info': ->
+      @nav('info')
+
+    'nav-listitem': (arg) ->
+      console.log arg in store.state.app.components
+      @nav('design-list-item', arg)
 
 </script>

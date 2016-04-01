@@ -26,8 +26,12 @@ class UserApp extends EventEmitter
     @functions = []
     @triggers = []
 
-  addComponent: (name) ->
-    @components.push new componentClasses[name](name + @id)
+  addComponent: (name, list) ->
+    if list?
+      list.push new componentClasses[name](name + @id)
+    else
+      @components.push new componentClasses[name](name + @id)
+
     @id += 1
 
   removeComponent: (index) ->

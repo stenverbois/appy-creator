@@ -107,7 +107,7 @@ module.exports =
             $('#qr_modal').openModal();
 
     gotoDesignPage: ->
-      @$dispatch('nav-design')
+      @$dispatch('nav-design-app')
 
     gotoLogicPage: ->
       @$dispatch('nav-logic')

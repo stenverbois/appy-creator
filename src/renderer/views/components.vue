@@ -54,8 +54,11 @@ module.exports =
     state: store.state
     components: []
 
-  ready: ->
+  created: ->
     @components = Object.keys require('../components/components.coffee').classes
+
+  ready: ->
+    $('.collapsible', @$el).collapsible?()
 
   methods:
     add: (component) ->

@@ -59,6 +59,8 @@ UserApp = require './user-app'
 
 global.store =
   broadcast: (args...) ->
+    # Also emit because broadcast doesn't trigger on the instance itself
+    app.$emit(args...)
     app.$broadcast(args...)
 
   state:
