@@ -58,6 +58,9 @@ app = new Vue App
 UserApp = require './user-app'
 
 global.store =
+  broadcast: (args...) ->
+    app.$broadcast(args...)
+
   state:
     app: new UserApp()
     selected: -1

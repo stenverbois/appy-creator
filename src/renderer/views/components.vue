@@ -29,16 +29,6 @@
     </div>
     <ul class="collapsible" data-collapsible="accordion">
       <li>
-        <div class="collapsible-header"><i class="material-icons">view_module</i>Generic Items</div>
-        <div class="collapsible-body">
-          <ul class="collection">
-            <li class="collection-item" v-for="item in state.app.generic_items">
-              <a class="btn-flat" @click="showView(item.gnrcName, item.parentListName)">item {{item.parentListName}}</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li>
         <div class="collapsible-header"><i class="material-icons">view_module</i>Standard</div>
         <div class="collapsible-body">
           <ul class="collection">
@@ -66,10 +56,5 @@ module.exports =
 
   ready: ->
     @components = Object.keys require('../components/components.coffee').classes
-
-  methods:
-
-    showView: (generic_name, parent_name) ->
-      @$dispatch('nav-'+generic_name, parent_name)
 
 </script>

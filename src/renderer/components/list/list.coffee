@@ -29,7 +29,7 @@ module.exports =
         add:
           value: 'Add Item'
           type: 'button'
-          func: null
+          onclick: null
 
         itemSelect:
           type: 'select'
@@ -39,14 +39,21 @@ module.exports =
         delete:
           value: 'Delete item'
           type: 'button'
-          func: null
+          onclick: null
 
         selectedItemProperties:
           type: 'nested'
           value: null
           emptyMsg: 'Select an item to change it.'
 
+        editNewItem:
+          value: 'Edit items'
+          type: 'button'
+          onclick: null
+
         items: []
+
+        newItemComponents: []
 
         newItemProperties: (index) ->
           index: index
@@ -64,6 +71,7 @@ module.exports =
 
       @properties.add.onclick = @addItem
       @properties.delete.onclick = @removeItem
+      @properties.editNewItem.onclick = @OpenEditNewItem
       @properties.itemSelect.onchange = @onSelectionChange
 
     onSelectionChange: =>
@@ -96,3 +104,6 @@ module.exports =
 
       # Update materializecss select box
       $('select').material_select()
+
+    OpenEditNewItem: =>
+      store.broadcast('nav-listitem', this)

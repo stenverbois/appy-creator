@@ -1,7 +1,6 @@
 {EventEmitter} = require 'events'
 
 componentClasses = require('./components/components').classes
-genericItemsPages = require('./components/components').generic
 functionClasses = require('./logic/function.coffee')
 trigger = require('./logic/trigger.coffee')
 
@@ -29,8 +28,6 @@ class UserApp extends EventEmitter
 
   addComponent: (name) ->
     @components.push new componentClasses[name](name + @id)
-    if name of genericItemsPages
-      @generic_items.push new genericItemsPages[name](name+@id)
     @id += 1
 
   removeComponent: (index) ->

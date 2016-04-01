@@ -13,7 +13,7 @@
                  @nav-info="nav('info')">
     </header-view>
 
-    <contents-view :page="page" @nav-itemlist="nav('itemList')"></contents-view>
+    <contents-view :page="page" :list="list" @nav-listitem="nav('listItem', $arguments)"></contents-view>
     <footer-view></footer-view>
   </div>
 </template>
@@ -22,14 +22,16 @@
 module.exports =
   data: ->
     page: "designView"
+    list: null
 
   components:
     'header-view': require './views/header-view.vue'
-    'contents-view': require './views/content'
+    'contents-view': require './views/content.vue'
     'footer-view': require './views/footer-view.vue'
 
   methods:
-    nav: (page) ->
+    nav: (page, args) ->
       @page = "#{page}View"
+      @list = args?[0]
 
 </script>
