@@ -64,8 +64,6 @@ global.store =
   state:
     app: new UserApp()
     selected: -1
-    selectedComp: =>
-      @state.app.components[@state.selected]
 
 app.$mount 'app'
 

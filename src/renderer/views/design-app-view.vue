@@ -13,9 +13,9 @@
     <div class="contents">
       <components @add-component="addComponent($arguments)"></components>
       <div class="content">
-        <design-view></design-view>
+        <app-view></app-view>
       </div>
-      <properties :component="state.app.components[state.selected]"></properties>
+      <properties :component="selectedComponent"></properties>
     </div>
   </main>
 </template>
@@ -25,12 +25,14 @@ module.exports =
   data: ->
     state: store.state
 
-  props: ['page', 'list']
+  computed:
+    selectedComponent: ->
+      @state.app.components[@state.selected]
 
   components:
     'components': require './components.vue'
     'properties': require './properties.vue'
-    'design-view': require './app-view.vue'
+    'app-view': require './app-view.vue'
 
   methods:
     addComponent: (args) ->
