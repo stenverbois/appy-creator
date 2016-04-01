@@ -13,7 +13,7 @@
     <div class="contents">
       <components></components>
       <div class="content">
-        <component :is="page" :list="list" keep-alive></component>
+        <design-view></design-view>
       </div>
       <properties :component="state.app.components[state.selected]"></properties>
     </div>
@@ -28,11 +28,7 @@ module.exports =
   props: ['page', 'list']
 
   components:
-    components: require './components.vue'
-    properties: require './properties.vue'
-    designView: require './app-view.vue'
-    logicView: require './logic-view.vue'
-    infoView: require './info-view.vue'
-    listItemView: require './list-item-view.vue'
-
+    'components': require './components.vue'
+    'properties': require './properties.vue'
+    'design-view': require './app-view.vue'
 </script>

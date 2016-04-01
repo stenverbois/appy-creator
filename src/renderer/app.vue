@@ -8,7 +8,7 @@
 
 <template>
   <div>
-    <header-view @nav-design="nav('design')"
+    <header-view @nav-design="nav('design-app')"
                  @nav-logic="nav('logic')"
                  @nav-info="nav('info')">
     </header-view>
@@ -21,7 +21,7 @@
 <script lang="coffee">
 module.exports =
   data: ->
-    page: "designView"
+    page: "design-app-view"
     list: null
 
   components:
@@ -31,7 +31,7 @@ module.exports =
 
   methods:
     nav: (page, args) ->
-      @page = "#{page}View"
+      @page = "#{page}-view"
       @list = args?[0]
 
 </script>

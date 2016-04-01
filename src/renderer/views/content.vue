@@ -1,6 +1,6 @@
 <template>
   <div>
-    <edit-app-view :page="page"></edit-app-view>
+    <component :is="page"></component>
   </div>
 </template>
 
@@ -8,5 +8,8 @@
 module.exports =
   props: ['page']
   components:
-    "edit-app-view": require './edit-app-view.vue'
+    'design-app-view': require './design-app-view.vue'
+    'design-list-item-view': require './list-item-view.vue'
+    'logic-view': require './logic-view.vue'
+    'info-view': require './info-view.vue'
 </script>
