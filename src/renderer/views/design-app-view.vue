@@ -11,7 +11,7 @@
 <template>
   <main>
     <div class="contents">
-      <components></components>
+      <components @add-component="addComponent($arguments)"></components>
       <div class="content">
         <design-view></design-view>
       </div>
@@ -31,4 +31,8 @@ module.exports =
     'components': require './components.vue'
     'properties': require './properties.vue'
     'design-view': require './app-view.vue'
+
+  methods:
+    addComponent: (args) ->
+      @state.app.addComponent(args?[0])
 </script>
