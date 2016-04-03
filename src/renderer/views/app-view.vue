@@ -61,7 +61,6 @@
             :class="{selected: state.selected == $index}"
             v-for="component in state.app.components"
             @mousedown="state.selected = $index">
-
             <div>
               <component :is="component.cmpName" :cmp="component"></component>
             </div>

@@ -58,7 +58,7 @@ module.exports =
         newItemProperties: (index) ->
           index: index
           name: "item_#{index}"
-          components: []
+          components: @newItemComponents
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
