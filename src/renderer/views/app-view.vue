@@ -117,4 +117,16 @@ module.exports =
           col: parseInt(widget.attr("data-col")) - 1
           width: parseInt widget.attr("data-sizex")
           height: parseInt widget.attr("data-sizey")
+
+    restoreFromList: ->
+      Vue.nextTick =>
+        for widget, idx in @gridster.$widgets
+          widget_dim = @state.app.components[idx]?.properties.dim.value
+          if widget_dim
+            @gridster.move_widget $(widget), widget_dim.col+1, widget_dim.row+1
+            @gridster.resize_widget $(widget), widget_dim.width, widget_dim.height
+
+  events:
+    'app:reload': ->
+      @restoreFromList()
 </script>
