@@ -103,6 +103,8 @@ module.exports =
           @updateSelectedWidgetProperties()
     ).data 'gridster'
 
+    @restoreFromList()
+
   methods:
     addToGrid: ->
       @gridster.addVueComp()

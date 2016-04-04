@@ -13,7 +13,7 @@
     <div class="contents">
       <components @add-component="addComponent($arguments)"></components>
       <div class="content">
-        <list-item-view :list="list"></list-item-view>
+        <list-item-view :list.sync="list" :selected.sync="selected"></list-item-view>
       </div>
       <properties :component="selectedComponent"></properties>
     </div>
@@ -25,11 +25,13 @@ module.exports =
   data: ->
     state: store.state
 
+    selected: -1
+
   props: ['list']
 
   computed:
     selectedComponent: ->
-      @state.app.components[@state.selected]
+      @list.properties.newItemComponents[@selected]
 
   components:
     'components': require './components.vue'

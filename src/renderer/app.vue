@@ -41,7 +41,6 @@ module.exports =
       @nav('info')
 
     'nav-listitem': (arg) ->
-      console.log arg in store.state.app.components
       @nav('design-list-item', arg)
 
 </script>

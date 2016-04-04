@@ -66,9 +66,9 @@
         <div class="gridster">
           <ul class="blue-grey lighten-2 card">
             <li data-row="1" data-col="1" data-sizex="1" data-sizey="1"
-            :class="{selected: state.selected == $index}"
+            :class="{selected: selected == $index}"
             v-for="component in list.properties.newItemComponents"
-            @mousedown="state.selected = $index">
+            @mousedown="selected = $index">
 
             <div>
               <component :is="component.cmpName" :cmp="component"></component>
@@ -87,13 +87,13 @@ module.exports =
   data: ->
     state: store.state
 
-  props: ['list']
+  props: ['list', 'selected']
 
   components: require('../components/components.coffee').components
 
-  # computed:
-  #   selectedComponent: ->
-  #     @state.app.components[@state.selected]
+  computed:
+    selectedComponent: ->
+      @list.properties.newItemComponents[@selected]
 
   attached: ->
     @gridster = $(".gridster ul").gridster(
@@ -114,6 +114,8 @@ module.exports =
           @updateSelectedWidgetProperties()
     ).data 'gridster'
 
+    @restoreFromList()
+
   methods:
     addToGrid: ->
       @gridster.addVueComp()
@@ -122,13 +124,22 @@ module.exports =
 
     updateSelectedWidgetProperties: ->
       widget = $('.gridster li.selected').first()
-      # Vue.nextTick =>
-      #   @selectedComponent.properties.dim.value =
-      #     row: parseInt(widget.attr("data-row")) - 1
-      #     col: parseInt(widget.attr("data-col")) - 1
-      #     width: parseInt widget.attr("data-sizex")
-      #     height: parseInt widget.attr("data-sizey")
+      Vue.nextTick =>
+        @selectedComponent?.properties.dim.value =
+          row: parseInt(widget.attr("data-row")) - 1
+          col: parseInt(widget.attr("data-col")) - 1
+          width: parseInt widget.attr("data-sizex")
+          height: parseInt widget.attr("data-sizey")
 
     navBack: ->
       @$dispatch('nav-design-app')
+
+    restoreFromList: ->
+      Vue.nextTick =>
+        for widget, idx in @gridster.$widgets
+          widget_dim = @list.properties.newItemComponents[idx]?.properties.dim.value
+          if widget_dim
+            @gridster.move_widget $(widget), widget_dim.col+1, widget_dim.row+1
+            @gridster.resize_widget $(widget), widget_dim.width, widget_dim.height
+
 </script>
