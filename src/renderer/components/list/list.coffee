@@ -57,7 +57,7 @@ module.exports =
 
         newItemProperties: (index) ->
           index: index
-          name: "item_#{index}"
+          name: name + "item_#{index}"
           components: []
       }
 
