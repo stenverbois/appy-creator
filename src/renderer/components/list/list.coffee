@@ -51,7 +51,7 @@ module.exports =
           type: 'button'
           onclick: null
 
-        items: []
+        genitems: []
 
         newItemComponents: []
 
@@ -67,7 +67,7 @@ module.exports =
       @type = "List"
       @index = 0
 
-      @properties.itemSelect.options = @properties.items
+      @properties.itemSelect.options = @properties.genitems
 
       @properties.add.onclick = @addItem
       @properties.delete.onclick = @removeItem
@@ -76,7 +76,7 @@ module.exports =
 
     onSelectionChange: =>
       Vue.nextTick =>
-        @properties.selectedItemProperties.value = @getItemFromArray(@properties.items, 'index', @properties.itemSelect.selected).components
+        @properties.selectedItemProperties.value = @getItemFromArray(@properties.genitems, 'index', @properties.itemSelect.selected).components
 
     getItemFromArray: (array, key, value) ->
       for item in array
@@ -90,7 +90,7 @@ module.exports =
           return item
 
     addItem: =>
-      @properties.items.push @createNewItem()
+      @properties.genitems.push @createNewItem()
 
       @properties.itemSelect.selected = @index
       @onSelectionChange()
@@ -101,8 +101,8 @@ module.exports =
 
     removeItem: =>
       # Remove item from item list
-      itemToRemove = @getItemFromArray(@properties.items, 'index', @properties.itemSelect.selected)
-      @properties.items.splice @properties.items.indexOf(itemToRemove), 1
+      itemToRemove = @getItemFromArray(@properties.genitems, 'index', @properties.itemSelect.selected)
+      @properties.genitems.splice @properties.genitems.indexOf(itemToRemove), 1
 
       # Reset selected item to none
       @properties.itemSelect.selected = null

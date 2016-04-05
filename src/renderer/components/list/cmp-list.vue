@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul v-show="cmp.properties.visibility.value">
-      <li v-for="item in cmp.properties.items">
+      <li v-for="item in cmp.properties.genitems">
         <ul>
           <li v-for="component in item.components">
             <div>
