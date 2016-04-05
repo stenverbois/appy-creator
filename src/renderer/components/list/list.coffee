@@ -113,3 +113,21 @@ module.exports =
 
     OpenEditNewItem: =>
       store.broadcast('nav-listitem', this)
+
+
+    export: ->
+      json = {
+        @type
+        @properties
+
+        }
+      #remove clutter
+      delete json.properties.itemSelect
+      delete json.properties.delete
+      delete json.properties.add
+      delete json.properties.editNewItem
+      delete json.properties.itemSelect
+      delete json.properties.selectedItemProperties
+      delete json.properties.newItemComponents
+
+      json
