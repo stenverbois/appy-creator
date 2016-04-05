@@ -58,7 +58,7 @@ module.exports =
         newItemProperties: (index) ->
           index: index
           name: "item_#{index}"
-          components: @newItemComponents
+          components: []
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
@@ -83,8 +83,14 @@ module.exports =
         if item[key] is value
           return item
 
+
+    createNewItem: =>
+          item = @properties.newItemProperties(@index)
+          item.components = jQuery.extend(true, [], @properties.newItemComponents)
+          return item
+
     addItem: =>
-      @properties.items.push @properties.newItemProperties(@index)
+      @properties.items.push @createNewItem()
 
       @properties.itemSelect.selected = @index
       @onSelectionChange()
