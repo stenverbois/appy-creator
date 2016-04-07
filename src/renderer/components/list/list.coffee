@@ -88,8 +88,10 @@ module.exports =
       item = @properties.newItemProperties(@index)
       for newComponent in @properties.newItemComponents
         item.data[newComponent.name] = jQuery.extend(true, {}, newComponent.properties)
+        for propName, prop of item.data[newComponent.name]
+          if 'value' of prop
+            item.data[newComponent.name][propName] = prop.value
 
-      console.log item
       return item
 
     addItem: =>
@@ -119,11 +121,8 @@ module.exports =
 
 
     export: ->
-      json = {
-        @type
-        @properties
+      json = super()
 
-        }
       #remove clutter
       delete json.properties.itemSelect
       delete json.properties.delete
