@@ -58,7 +58,7 @@ module.exports =
         newItemProperties: (index) ->
           index: index
           name: name + "item_#{index}"
-          components: []
+          data: {}
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
@@ -76,7 +76,7 @@ module.exports =
 
     onSelectionChange: =>
       Vue.nextTick =>
-        @properties.selectedItemProperties.value = @getItemFromArray(@properties.genitems, 'index', @properties.itemSelect.selected).components
+        @properties.selectedItemProperties.value = @getItemFromArray(@properties.genitems, 'index', @properties.itemSelect.selected).data
 
     getItemFromArray: (array, key, value) ->
       for item in array
@@ -85,9 +85,12 @@ module.exports =
 
 
     createNewItem: =>
-          item = @properties.newItemProperties(@index)
-          item.components = jQuery.extend(true, [], @properties.newItemComponents)
-          return item
+      item = @properties.newItemProperties(@index)
+      for newComponent in @properties.newItemComponents
+        item.data[newComponent.name] = jQuery.extend(true, {}, newComponent.properties)
+
+      console.log item
+      return item
 
     addItem: =>
       @properties.genitems.push @createNewItem()
@@ -128,6 +131,8 @@ module.exports =
       delete json.properties.editNewItem
       delete json.properties.itemSelect
       delete json.properties.selectedItemProperties
-      delete json.properties.newItemComponents
 
       json
+
+    dataFields: ->
+      ['visibility', 'dim', 'page', 'genitems']

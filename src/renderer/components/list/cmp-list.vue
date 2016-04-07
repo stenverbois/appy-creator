@@ -3,9 +3,10 @@
     <ul v-show="cmp.properties.visibility.value">
       <li v-for="item in cmp.properties.genitems">
         <ul>
-          <li v-for="component in item.components">
+          <li v-for="component in item.data">
             <div>
-              <component :is="component.cmpName" :cmp="component"></component>
+              {{component | json}}
+              <!-- <component :is="component.cmpName" :cmp="component"></component> -->
             </div>
           </li>
         </ul>
