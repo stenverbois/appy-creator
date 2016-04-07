@@ -92,7 +92,7 @@ module.exports =
       formData =
         user: 'john'
         title: 'test'
-        file: JSON.stringify @state.app.export()
+        file: JSON.stringify(@state.app.export(), null, 2)
 
       request.post
         url: "http://#{@uploadURL}/upload/"
