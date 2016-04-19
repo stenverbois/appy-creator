@@ -8,9 +8,8 @@
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
     opacity: 0.8;
-    width: 80px;
-    height: 80px;
-    line-height: 80px;
+    width: 130px;
+    height: 90px;
     cursor: pointer;
     text-align: center;
     z-index: 20;
@@ -42,26 +41,6 @@
     border: 1px dotted red;
 }
 
-#flowchartWindow1 {
-    top: 34em;
-    left: 5em;
-}
-
-#flowchartWindow2 {
-    top: 7em;
-    left: 36em;
-}
-
-#flowchartWindow3 {
-    top: 27em;
-    left: 48em;
-}
-
-#flowchartWindow4 {
-    top: 23em;
-    left: 22em;
-}
-
 .flowchart-demo .jsplumb-connector {
     z-index: 4;
 }
@@ -74,17 +53,16 @@
 .flowchart-demo .aLabel {
     background-color: white;
     padding: 0.4em;
-    font: 12px sans-serif;
     color: #444;
     z-index: 21;
-    border: 1px dotted gray;
+    border: 0px;
     opacity: 0.8;
     cursor: pointer;
 }
 
 .flowchart-demo .aLabel.jsplumb-hover {
-    background-color: #5C96BC;
-    color: white;
+    /*background-color: #5C96BC;*/
+    /*color: white;*/
     border: 1px solid white;
 }
 
@@ -102,6 +80,10 @@ path, .jsplumb-endpoint {
 
 .jsplumb-overlay {
     background-color:transparent;
+}
+
+.block-title {
+  top: 0;
 }
 </style>
 
@@ -142,17 +124,15 @@ module.exports =
       property.type? and property.type isnt 'hidden'
 
     add: (comp) ->
-      $("#canvas").append("<div class=\"window jtk-node\" id=\"flowchartWindow#{@id}\"><strong>#{comp.name}</strong><br/><br/></div>");
-      @addDynEndPoints("Window#{@id}", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
-      @instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
+      $("#canvas").append("<div class=\"window jtk-node\" id=\"flowchartWindow#{@id}\"><strong class=\"block-title\">#{comp.name}</strong></div>");
+      @addDynEndPoints("Window#{@id}", ["RightMiddle"], ["LeftMiddle"]);
+      @instance.draggable($(".flowchart-demo .window"), { grid: [20, 20] });
       @id = @id + 1
 
     addDynEndPoints: (toId, sourceAnchors, targetAnchors) ->
       for source in sourceAnchors
         sourceUUID = toId + source;
-        @instance.addEndpoint("flowchart" + toId, @sourceEndpoint, {
-        anchor: source, uuid: sourceUUID
-        });
+        @instance.addEndpoint("flowchart" + toId, @sourceEndpoint, { anchor: source, uuid: sourceUUID });
 
       for target in targetAnchors
         targetUUID = toId + target;
@@ -171,15 +151,15 @@ module.exports =
                 visible:true,
                 id:"ARROW",
                 events:{
-                    click: -> alert("you clicked on the arrow overlay")
+                    # click: -> alert("you clicked on the arrow overlay")
                 }
             } ],
             [ "Label", {
-                location: 0.1,
+                location: 0.3,
                 id: "label",
                 cssClass: "aLabel",
                 events:{
-                    tap: -> alert("hey")
+                    # tap: -> alert("hey")
                 }
             }]
         ],
@@ -206,12 +186,12 @@ module.exports =
       # // .. and this is the hover style.
     connectorHoverStyle =
       lineWidth: 4,
-      strokeStyle: "#216477",
+      # strokeStyle: "#216477",
       outlineWidth: 2,
       outlineColor: "white"
     endpointHoverStyle =
-      fillStyle: "#216477",
-      strokeStyle: "#216477"
+      # fillStyle: "#216477",
+      # strokeStyle: "#216477"
       # // the definition of source endpoints (the small blue ones)
     @sourceEndpoint =
       endpoint: "Dot",
@@ -221,6 +201,7 @@ module.exports =
         radius: 7,
         lineWidth: 3
       isSource: true,
+      maxConnections: -1,
       connector: [ "Flowchart", { stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true } ],
       connectorStyle: connectorPaintStyle,
       hoverPaintStyle: endpointHoverStyle,
@@ -229,10 +210,10 @@ module.exports =
       overlays: [
         [
           "Label", {
-            location: [0.5, 1.5],
-            label: "Drag",
+            location: [-1, 0.5],
+            label: "Action",
             cssClass: "endpointSourceLabel",
-            visible:false
+            visible: true
           }
         ]
       ]
@@ -249,7 +230,9 @@ module.exports =
       ]
 
     init = (connection) ->
-      connection.getOverlay("label").setLabel("<ul v-for=\"trigger in triggers\"><li v-text=\"trigger\"></li></ul>");
+      connection.getOverlay("label").setLabel("<select class=\"browser-default\">
+                                                <option value=\"onclick\">On Click</option>
+                                               </select>");
 
     # // suspend drawing and initialise.
     @instance.batch(=>
