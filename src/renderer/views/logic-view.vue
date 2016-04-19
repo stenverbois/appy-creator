@@ -109,6 +109,9 @@ path, .jsplumb-endpoint {
   <div class="row" v-for="component in state.app.components">
     <a class="btn" @click="add(component)">{{component.name}}</a>
   </div>
+  <div class="row" v-for="func in functions">
+    <a class="btn" @click="">{{func}}</a>
+  </div>
   <div class="row">
     <div class="col s12">
       <div class="jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan" id="canvas">
@@ -131,8 +134,10 @@ module.exports =
     sourceEndpoint: null
     targetEndpoint: null
     basictype: null
+    functions: Object.keys require('./../logic/functions.coffee').classes
 
-  methods:
+
+methods:
     isEditableProperty: (property) ->
       property.type? and property.type isnt 'hidden'
 
@@ -140,7 +145,7 @@ module.exports =
       $("#canvas").append("<div class=\"window jtk-node\" id=\"flowchartWindow#{@id}\"><strong>#{comp.name}</strong><br/><br/></div>");
       @addDynEndPoints("Window#{@id}", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
       @instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
-      @instance.registerConnectionType("basic", @basicType);
+      #@instance.registerConnectionType("basic", @basicType);
       @id = @id + 1
 
     addDynEndPoints: (toId, sourceAnchors, targetAnchors) ->

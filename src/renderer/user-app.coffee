@@ -3,6 +3,7 @@
 componentClasses = require('./components/components').classes
 functionClasses = require('./logic/function.coffee')
 trigger = require('./logic/trigger.coffee')
+functionClasses = require('./logic/functions.coffee').classes
 
 module.exports =
 class UserApp extends EventEmitter

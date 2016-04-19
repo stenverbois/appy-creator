@@ -1,5 +1,5 @@
 module.exports =
-  Function: class Function
+  class Function
     constructor: (@name, @parameters={}, @triggers=[]) ->
       @triggers = []
       @triggerIndex = 1
@@ -22,17 +22,3 @@ module.exports =
         @parameters
         @triggers
       }
-
-  Plus: class Plus extends Function
-    constructor: (name, parameters={}, triggers=[]) ->
-      super name, parameters, triggers
-      @type = "Plus"
-      @parameterNames = ['left', 'right']
-      @outputNames = ['result']
-
-  AddTextToList: class AddTextToList extends Function
-    constructor:  (name, parameters={}, triggers=[]) ->
-      super name, parameters, triggers
-      @type = "AddTextToList"
-      @parameterNames = ['text', 'list']
-      @outputNames = ['list name']
