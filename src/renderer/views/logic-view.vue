@@ -145,7 +145,6 @@ module.exports =
       $("#canvas").append("<div class=\"window jtk-node\" id=\"flowchartWindow#{@id}\"><strong>#{comp.name}</strong><br/><br/></div>");
       @addDynEndPoints("Window#{@id}", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
       @instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
-      #@instance.registerConnectionType("basic", @basicType);
       @id = @id + 1
 
     addDynEndPoints: (toId, sourceAnchors, targetAnchors) ->
@@ -250,10 +249,10 @@ module.exports =
       ]
 
     init = (connection) ->
-      connection.getOverlay("label").setLabel("<ul><li v-for=\"trigger in triggers\">{{ trigger }} </li></ul>");
+      connection.getOverlay("label").setLabel("<ul v-for=\"trigger in triggers\"><li v-text=\"trigger\"></li></ul>");
 
     # // suspend drawing and initialise.
-    @instance.batch(->
+    @instance.batch(=>
 
         #_addEndpoints("Window4", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
         #_addEndpoints("Window2", ["LeftMiddle", "BottomCenter"], ["TopCenter", "RightMiddle"]);
