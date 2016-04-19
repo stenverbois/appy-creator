@@ -106,13 +106,17 @@ path, .jsplumb-endpoint {
 </style>
 
 <template>
+  <div class="row" v-for="component in state.app.components">
+    <a class="btn" @click="add(component)">{{component.name}}</a>
+  </div>
   <div class="row">
     <div class="col s12">
       <div class="jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan" id="canvas">
-          <div class="window jtk-node" id="flowchartWindow1"><strong>1</strong><br/><br/></div>
+
+          <!--<div class="window jtk-node" id="flowchartWindow1"><strong>1</strong><br/><br/></div>
           <div class="window jtk-node" id="flowchartWindow2"><strong>2</strong><br/><br/></div>
           <div class="window jtk-node" id="flowchartWindow3"><strong>3</strong><br/><br/></div>
-          <div class="window jtk-node" id="flowchartWindow4"><strong>4</strong><br/><br/></div>
+          <div class="window jtk-node" id="flowchartWindow4"><strong>4</strong><br/><br/></div>-->
       </div>
     </div>
   </div>
@@ -122,13 +126,37 @@ path, .jsplumb-endpoint {
 module.exports =
   data: ->
     state: store.state
+    id: 0
+    instance: null
+    sourceEndpoint: null
+    targetEndpoint: null
+    basictype: null
 
   methods:
     isEditableProperty: (property) ->
       property.type? and property.type isnt 'hidden'
 
+    add: (comp) ->
+      $("#canvas").append("<div class=\"window jtk-node\" id=\"flowchartWindow#{@id}\"><strong>#{comp.name}</strong><br/><br/></div>");
+      @addDynEndPoints("Window#{@id}", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
+      @instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
+      @instance.registerConnectionType("basic", @basicType);
+      @id = @id + 1
+
+    addDynEndPoints: (toId, sourceAnchors, targetAnchors) ->
+      for source in sourceAnchors
+        sourceUUID = toId + source;
+      @instance.addEndpoint("flowchart" + toId, @sourceEndpoint, {
+        anchor: source, uuid: sourceUUID
+      });
+
+      for target in targetAnchors
+        targetUUID = toId + target;
+      @instance.addEndpoint("flowchart" + toId, @targetEndpoint, { anchor: target, uuid: targetUUID });
+
+
   ready: ->
-    instance = window.jsp = jsPlumb.getInstance({
+    @instance = window.jsp = jsPlumb.getInstance({
         # // default drag options
         DragOptions: { cursor: 'pointer', zIndex: 2000 },
         # // the overlays to decorate each connection with.  note that the label overlay uses a function to generate the label text; in this
@@ -154,7 +182,7 @@ module.exports =
         Container: "canvas"
     });
 
-    basicType = {
+    @basicType = {
         connector: "StateMachine",
         paintStyle: { strokeStyle: "red", lineWidth: 4 },
         hoverPaintStyle: { strokeStyle: "blue" },
@@ -162,7 +190,7 @@ module.exports =
             "Arrow"
         ]
     };
-    instance.registerConnectionType("basic", basicType);
+    @instance.registerConnectionType("basic", @basicType);
 
       # // this is the paint style for the connecting lines..
     connectorPaintStyle =
@@ -181,7 +209,7 @@ module.exports =
       fillStyle: "#216477",
       strokeStyle: "#216477"
       # // the definition of source endpoints (the small blue ones)
-    sourceEndpoint =
+    @sourceEndpoint =
       endpoint: "Dot",
       paintStyle:
         strokeStyle: "#7AB02C",
@@ -205,7 +233,7 @@ module.exports =
         ]
       ]
       # // the definition of target endpoints (will appear when the user drags a connection)
-    targetEndpoint =
+    @targetEndpoint =
       endpoint: "Dot",
       paintStyle: { fillStyle: "#7AB02C", radius: 11 },
       hoverPaintStyle: endpointHoverStyle,
@@ -222,16 +250,16 @@ module.exports =
     _addEndpoints = (toId, sourceAnchors, targetAnchors) ->
         for source in sourceAnchors
             sourceUUID = toId + source;
-            instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
+            @instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
                 anchor: source, uuid: sourceUUID
             });
 
         for target in targetAnchors
             targetUUID = toId + target;
-            instance.addEndpoint("flowchart" + toId, targetEndpoint, { anchor: target, uuid: targetUUID });
+            @instance.addEndpoint("flowchart" + toId, targetEndpoint, { anchor: target, uuid: targetUUID });
 
     # // suspend drawing and initialise.
-    instance.batch(->
+    @instance.batch(->
 
         _addEndpoints("Window4", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
         _addEndpoints("Window2", ["LeftMiddle", "BottomCenter"], ["TopCenter", "RightMiddle"]);
@@ -239,48 +267,49 @@ module.exports =
         _addEndpoints("Window1", ["LeftMiddle", "RightMiddle"], ["TopCenter", "BottomCenter"]);
 
         # // listen for new connections; initialise them the same way we initialise the connections at startup.
-        instance.bind("connection", (connInfo, originalEvent) ->
+        @instance.bind("connection", (connInfo, originalEvent) ->
             init(connInfo.connection);
         );
 
         # // make all the window divs draggable
-        instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
+        @instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
         # // THIS DEMO ONLY USES getSelector FOR CONVENIENCE. Use your library's appropriate selector
         # // method, or document.querySelectorAll:
         # //jsPlumb.draggable(document.querySelectorAll(".window"), { grid: [20, 20] });
 
         # // connect a few up
-        instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"], editable: true});
-        instance.connect({uuids: ["Window2LeftMiddle", "Window4LeftMiddle"], editable: true});
-        instance.connect({uuids: ["Window4TopCenter", "Window4RightMiddle"], editable: true});
-        instance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"], editable: true});
-        instance.connect({uuids: ["Window4BottomCenter", "Window1TopCenter"], editable: true});
-        instance.connect({uuids: ["Window3BottomCenter", "Window1BottomCenter"], editable: true});
+        #instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"], editable: true});
+        #instance.connect({uuids: ["Window2LeftMiddle", "Window4LeftMiddle"], editable: true});
+        #instance.connect({uuids: ["Window4TopCenter", "Window4RightMiddle"], editable: true});
+        #instance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"], editable: true});
+        #instance.connect({uuids: ["Window4BottomCenter", "Window1TopCenter"], editable: true});
+        #instance.connect({uuids: ["Window3BottomCenter", "Window1BottomCenter"], editable: true});
         # //
 
         # //
         # // listen for clicks on connections, and offer to delete connections on click.
         # //
-        instance.bind("click", (conn, originalEvent) ->
+        @instance.bind("click", (conn, originalEvent) ->
           #  // if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
             #  //   instance.detach(conn);
             conn.toggleType("basic");
         );
 
-        instance.bind("connectionDrag", (connection) ->
+        @instance.bind("connectionDrag", (connection) ->
             console.log("connection " + connection.id + " is being dragged. suspendedElement is ", connection.suspendedElement, " of type ", connection.suspendedElementType);
         );
 
-        instance.bind("connectionDragStop", (connection) ->
+        @instance.bind("connectionDragStop", (connection) ->
             console.log("connection " + connection.id + " was dragged");
         );
 
-        instance.bind("connectionMoved", (params) ->
+        @instance.bind("connectionMoved", (params) ->
             console.log("connection " + params.connection.id + " was moved");
         );
     );
 
-    jsPlumb.fire("jsPlumbDemoLoaded", instance);
+    jsPlumb.fire("jsPlumbDemoLoaded", @instance);
+
 
 
 
