@@ -15,18 +15,27 @@ class UserApp extends EventEmitter
       height: 20
       pageNames: ["Page0"]
     @components = []
+    @generic_items = []
     @functions = []
     @triggers = []
 
   init: ->
     @info = {}
     @components = []
+    @generic_items = []
     @functions = []
     @triggers = []
 
-  addComponent: (name) ->
-    @components.push new componentClasses[name](name + @id)
-    @id += 1
+  addComponent: (name, list) ->
+    while true
+      @id += 1
+      nameAlreadyUsed = @components.some (component) => component.name is name + @id
+      break unless nameAlreadyUsed
+
+    if list?
+      list.push new componentClasses[name](name + @id)
+    else
+      @components.push new componentClasses[name](name + @id)
 
   removeComponent: (index) ->
     @components.splice index, 1
@@ -43,6 +52,10 @@ class UserApp extends EventEmitter
     @functions.splice index, 1
 
   export: ->
+
+    unless @isValidApp()
+      return
+
     app =
       info: @info
       components: {}
@@ -74,3 +87,9 @@ class UserApp extends EventEmitter
 
     for name, obj of app.logic.triggers
       @triggers.push new Trigger(name, obj.component, obj.action)
+
+    store.broadcast('app:reload')
+
+  isValidApp: ->
+    # Future checks
+    true

@@ -33,7 +33,7 @@
         <div class="collapsible-body">
           <ul class="collection">
             <li class="collection-item" v-for="component in components">
-              <a class="btn-flat" @click="state.app.addComponent(component)">{{component}}</a>
+              <a class="btn-flat" @click="add(component)">{{component}}</a>
             </li>
           </ul>
         </div>
@@ -54,6 +54,14 @@ module.exports =
     state: store.state
     components: []
 
-  ready: ->
+  created: ->
     @components = Object.keys require('../components/components.coffee').classes
+
+  ready: ->
+    $('.collapsible', @$el).collapsible?()
+
+  methods:
+    add: (component) ->
+      @$dispatch('add-component', component)
+
 </script>

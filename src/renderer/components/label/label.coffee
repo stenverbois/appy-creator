@@ -1,4 +1,4 @@
-Component = require './component'
+Component = require './../component'
 
 module.exports =
 class Label extends Component

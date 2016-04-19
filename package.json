@@ -29,7 +29,7 @@
   "dependencies": {
     "hammerjs": "^2.0.6",
     "request": "2.65.*",
-    "vue": "^1.0.0"
+    "vue": "^1.0.20"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -43,7 +43,7 @@
     "cson-loader": "^0.1.0",
     "css-loader": "^0.23.0",
     "electron-packager": "^5.2.0",
-    "electron-prebuilt": "^0.36.3",
+    "electron-prebuilt": "^0.37.4",
     "eslint": "^1.10.3",
     "eslint-friendly-formatter": "^1.2.2",
     "eslint-loader": "^1.2.0",

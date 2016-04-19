@@ -1,12 +1,12 @@
-Component = require './component'
+Component = require './../component'
 Vue = require 'vue'
 
 # TODO: Remove when we have a better way of assigning the components for each
 # list element
-Button = require './button'
-Label = require './label'
-Textbox = require './textbox'
-Image = require './image'
+Button = require './../button/button'
+Label = require './../label/label'
+Textbox = require './../textbox/textbox'
+Image = require './../image/image'
 
 module.exports =
   class List extends Component
@@ -29,7 +29,7 @@ module.exports =
         add:
           value: 'Add Item'
           type: 'button'
-          func: null
+          onclick: null
 
         itemSelect:
           type: 'select'
@@ -39,19 +39,26 @@ module.exports =
         delete:
           value: 'Delete item'
           type: 'button'
-          func: null
+          onclick: null
 
         selectedItemProperties:
           type: 'nested'
           value: null
           emptyMsg: 'Select an item to change it.'
 
-        items: []
+        editNewItem:
+          value: 'Edit items'
+          type: 'button'
+          onclick: null
+
+        genitems: []
+
+        newItemComponents: []
 
         newItemProperties: (index) ->
           index: index
-          name: "item_#{index}"
-          components: [new Button(), new Label()]
+          name: name + "item_#{index}"
+          data: {}
       }
 
     constructor: (name, properties=List.defaultProperties()) ->
@@ -60,23 +67,35 @@ module.exports =
       @type = "List"
       @index = 0
 
-      @properties.itemSelect.options = @properties.items
+      @properties.itemSelect.options = @properties.genitems
 
       @properties.add.onclick = @addItem
       @properties.delete.onclick = @removeItem
+      @properties.editNewItem.onclick = @OpenEditNewItem
       @properties.itemSelect.onchange = @onSelectionChange
 
     onSelectionChange: =>
       Vue.nextTick =>
-        @properties.selectedItemProperties.value = @getItemFromArray(@properties.items, 'index', @properties.itemSelect.selected).components
+        @properties.selectedItemProperties.value = @getItemFromArray(@properties.genitems, 'index', @properties.itemSelect.selected).data
 
     getItemFromArray: (array, key, value) ->
       for item in array
         if item[key] is value
           return item
 
+
+    createNewItem: =>
+      item = @properties.newItemProperties(@index)
+      for newComponent in @properties.newItemComponents
+        item.data[newComponent.name] = jQuery.extend(true, {}, newComponent.properties)
+        for propName, prop of item.data[newComponent.name]
+          if 'value' of prop
+            item.data[newComponent.name][propName] = prop.value
+
+      return item
+
     addItem: =>
-      @properties.items.push @properties.newItemProperties(@index)
+      @properties.genitems.push @createNewItem()
 
       @properties.itemSelect.selected = @index
       @onSelectionChange()
@@ -87,8 +106,8 @@ module.exports =
 
     removeItem: =>
       # Remove item from item list
-      itemToRemove = @getItemFromArray(@properties.items, 'index', @properties.itemSelect.selected)
-      @properties.items.splice @properties.items.indexOf(itemToRemove), 1
+      itemToRemove = @getItemFromArray(@properties.genitems, 'index', @properties.itemSelect.selected)
+      @properties.genitems.splice @properties.genitems.indexOf(itemToRemove), 1
 
       # Reset selected item to none
       @properties.itemSelect.selected = null
@@ -96,3 +115,23 @@ module.exports =
 
       # Update materializecss select box
       $('select').material_select()
+
+    OpenEditNewItem: =>
+      store.broadcast('nav-listitem', this)
+
+
+    export: ->
+      json = super()
+
+      #remove clutter
+      delete json.properties.itemSelect
+      delete json.properties.delete
+      delete json.properties.add
+      delete json.properties.editNewItem
+      delete json.properties.itemSelect
+      delete json.properties.selectedItemProperties
+
+      json
+
+    dataFields: ->
+      ['visibility', 'dim', 'page', 'genitems']
