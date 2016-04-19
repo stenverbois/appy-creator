@@ -137,7 +137,7 @@ module.exports =
     functions: Object.keys require('./../logic/functions.coffee').classes
 
 
-methods:
+  methods:
     isEditableProperty: (property) ->
       property.type? and property.type isnt 'hidden'
 
