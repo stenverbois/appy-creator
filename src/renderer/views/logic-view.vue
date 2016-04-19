@@ -106,8 +106,8 @@ path, .jsplumb-endpoint {
 </style>
 
 <template>
-  <div class="row" v-for="component in state.app.components">
-    <a class="btn" @click="add(component)">{{component.name}}</a>
+  <div class="row">
+    <a class="btn" v-for="component in state.app.components" @click="add(component)">{{component.name}}</a>
   </div>
   <div class="row" v-for="func in functions">
     <a class="btn" @click="">{{func}}</a>
@@ -135,7 +135,7 @@ module.exports =
     targetEndpoint: null
     basictype: null
     functions: Object.keys require('./../logic/functions.coffee').classes
-
+    triggers: ["click"]
 
   methods:
     isEditableProperty: (property) ->
@@ -151,13 +151,13 @@ module.exports =
     addDynEndPoints: (toId, sourceAnchors, targetAnchors) ->
       for source in sourceAnchors
         sourceUUID = toId + source;
-      @instance.addEndpoint("flowchart" + toId, @sourceEndpoint, {
+        @instance.addEndpoint("flowchart" + toId, @sourceEndpoint, {
         anchor: source, uuid: sourceUUID
-      });
+        });
 
       for target in targetAnchors
         targetUUID = toId + target;
-      @instance.addEndpoint("flowchart" + toId, @targetEndpoint, { anchor: target, uuid: targetUUID });
+        @instance.addEndpoint("flowchart" + toId, @targetEndpoint, { anchor: target, uuid: targetUUID });
 
 
   ready: ->
@@ -250,26 +250,15 @@ module.exports =
       ]
 
     init = (connection) ->
-      connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
-
-    _addEndpoints = (toId, sourceAnchors, targetAnchors) ->
-        for source in sourceAnchors
-            sourceUUID = toId + source;
-            @instance.addEndpoint("flowchart" + toId, sourceEndpoint, {
-                anchor: source, uuid: sourceUUID
-            });
-
-        for target in targetAnchors
-            targetUUID = toId + target;
-            @instance.addEndpoint("flowchart" + toId, targetEndpoint, { anchor: target, uuid: targetUUID });
+      connection.getOverlay("label").setLabel("<ul><li v-for=\"trigger in triggers\">{{ trigger }} </li></ul>");
 
     # // suspend drawing and initialise.
     @instance.batch(->
 
-        _addEndpoints("Window4", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
-        _addEndpoints("Window2", ["LeftMiddle", "BottomCenter"], ["TopCenter", "RightMiddle"]);
-        _addEndpoints("Window3", ["RightMiddle", "BottomCenter"], ["LeftMiddle", "TopCenter"]);
-        _addEndpoints("Window1", ["LeftMiddle", "RightMiddle"], ["TopCenter", "BottomCenter"]);
+        #_addEndpoints("Window4", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
+        #_addEndpoints("Window2", ["LeftMiddle", "BottomCenter"], ["TopCenter", "RightMiddle"]);
+        #_addEndpoints("Window3", ["RightMiddle", "BottomCenter"], ["LeftMiddle", "TopCenter"]);
+        #_addEndpoints("Window1", ["LeftMiddle", "RightMiddle"], ["TopCenter", "BottomCenter"]);
 
         # // listen for new connections; initialise them the same way we initialise the connections at startup.
         @instance.bind("connection", (connInfo, originalEvent) ->
