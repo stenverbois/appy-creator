@@ -124,15 +124,31 @@ module.exports =
       property.type? and property.type isnt 'hidden'
 
     add: (comp) ->
-      $("#canvas").append("<div class=\"window jtk-node\" id=\"#{comp.name}\"><strong class=\"block-title\">#{comp.name}</strong></div>");
-      @addDynEndPoints(comp.name, ["RightMiddle"], ["LeftMiddle"]);
+      if comp.type is 'List'
+        for subcomp in comp.properties.newItemComponents
+          # Text on block is List1.Button2
+          # Id is Button2List1 so we can check for type at start
+          $("#canvas").append("<div class=\"window jtk-node\" id=\"#{subcomp.name+comp.name}\"><strong class=\"block-title\">#{comp.name + '.' + subcomp.name}</strong></div>");
+          @addDynEndPoints(subcomp.name+comp.name, comp);
+      else
+        $("#canvas").append("<div class=\"window jtk-node\" id=\"#{comp.name}\"><strong class=\"block-title\">#{comp.name}</strong></div>");
+        @addDynEndPoints(comp.name ,comp);
       @instance.draggable($(".flowchart-demo .window"), { grid: [20, 20] });
       @id = @id + 1
 
-    addDynEndPoints: (name, sourceAnchors, targetAnchors) ->
+    addDynEndPoints: (name, comp) ->
+      sourceAnchors = ["RightMiddle"]
+      targetAnchors = ["LeftMiddle"]
+
+      # Dirty cases
+      # switch comp.type
+        # when 'Button'
+
+
       for source in sourceAnchors
         sourceUUID = name + source;
-        @instance.addEndpoint(name, @sourceEndpoint, { anchor: source, uuid: sourceUUID });
+        returned = @instance.addEndpoint(name, @sourceEndpoint, { anchor: source, uuid: sourceUUID });
+        console.log returned
 
       for target in targetAnchors
         targetUUID = name + target;
@@ -185,15 +201,18 @@ module.exports =
       outlineColor: "white",
       outlineWidth: 2
       # // .. and this is the hover style.
+
     connectorHoverStyle =
       lineWidth: 4,
       # strokeStyle: "#216477",
       outlineWidth: 2,
       outlineColor: "white"
+
     endpointHoverStyle =
       # fillStyle: "#216477",
       # strokeStyle: "#216477"
       # // the definition of source endpoints (the small blue ones)
+
     @sourceEndpoint =
       endpoint: "Dot",
       paintStyle:
@@ -214,11 +233,12 @@ module.exports =
             location: [-1, 0.5],
             label: "Action",
             cssClass: "endpointSourceLabel",
-            visible: true
+            visible: false
           }
         ]
       ]
-      # // the definition of target endpoints (will appear when the user drags a connection)
+
+    # // the definition of target endpoints (will appear when the user drags a connection)
     @targetEndpoint =
       endpoint: "Dot",
       paintStyle: { fillStyle: "#7AB02C", radius: 11 },
@@ -233,7 +253,7 @@ module.exports =
     init = (connection) ->
       if connection.sourceId.startsWith 'Button'
         # TODO: this doesn't work. Need a way to enable label on certain connections
-        connection.getOverlay('label').setParameter('visible', true)
+        connection.getOverlay('label').setVisible(true)
         connection.getOverlay("label").setLabel("<select class=\"browser-default\">
                                                   <option value=\"onclick\">On Click</option>
                                                  </select>");
