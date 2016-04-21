@@ -89,10 +89,10 @@ path, .jsplumb-endpoint {
 
 <template>
   <div class="row">
-    <a class="btn" v-for="component in state.app.components" @click="add(component)">{{component.name}}</a>
+    <a class="btn" v-for="component in state.app.components" @click="addComponent(component)">{{component.name}}</a>
   </div>
-  <div class="row" v-for="func in functions">
-    <a class="btn" @click="">{{func}}</a>
+  <div class="row" v-for="(name, func) in functions">
+    <a class="btn" @click="addFunction(name)" v-text="name"></a>
   </div>
   <div class="row">
     <div class="col s12">
@@ -111,49 +111,74 @@ path, .jsplumb-endpoint {
 module.exports =
   data: ->
     state: store.state
-    id: 0
     instance: null
     sourceEndpoint: null
     targetEndpoint: null
     basictype: null
-    functions: Object.keys require('./../logic/functions.coffee').classes
+    functions: require('./../logic/functions.coffee').classes
     triggers: ["click"]
 
   methods:
     isEditableProperty: (property) ->
       property.type? and property.type isnt 'hidden'
 
-    add: (comp) ->
+    addComponent: (comp) ->
       if comp.type is 'List'
         for subcomp in comp.properties.newItemComponents
           # Text on block is List1.Button2
-          # Id is Button2List1 so we can check for type at start
-          $("#canvas").append("<div class=\"window jtk-node\" id=\"#{subcomp.name+comp.name}\"><strong class=\"block-title\">#{comp.name + '.' + subcomp.name}</strong></div>");
-          @addDynEndPoints(subcomp.name+comp.name, comp);
+          # Id is ButtonButton2List1 so we can check for type at start
+          $("#canvas").append("<div class=\"window jtk-node\" id=\"#{subcomp.type+subcomp.name+comp.name}\"><strong class=\"block-title\">#{comp.name + '.' + subcomp.name}</strong></div>");
+          target_style = @targetEndpoint
+          target_style.overlays[0][1].label = 'Input'
+          t = { style: target_style, anchor: 'Left' }
+          @addTargetEndPoint(subcomp.type+subcomp.name+comp.name, t)
+          source_style = @sourceEndpoint
+          source_style.overlays[0][1].label = 'Output'
+          s = { style: source_style, anchor: 'Right' }
+          @addSourceEndPoint(subcomp.type+subcomp.name+comp.name, s)
       else
-        $("#canvas").append("<div class=\"window jtk-node\" id=\"#{comp.name}\"><strong class=\"block-title\">#{comp.name}</strong></div>");
-        @addDynEndPoints(comp.name ,comp);
+        $("#canvas").append("<div class=\"window jtk-node\" id=\"#{comp.type+comp.name}\"><strong class=\"block-title\">#{comp.name}</strong></div>");
+        target_style = @targetEndpoint
+        target_style.overlays[0][1].label = 'Input'
+        t = { style: target_style, anchor: 'Left' }
+        @addTargetEndPoint(comp.type+comp.name, t)
+        source_style = @sourceEndpoint
+        source_style.overlays[0][1].label = 'Output'
+        s = { style: source_style, anchor: 'Right' }
+        @addSourceEndPoint(comp.type+comp.name, s)
       @instance.draggable($(".flowchart-demo .window"), { grid: [20, 20] });
-      @id = @id + 1
 
-    addDynEndPoints: (name, comp) ->
-      sourceAnchors = ["RightMiddle"]
-      targetAnchors = ["LeftMiddle"]
+    addFunction: (name) ->
+      # console.log @state.app
+      func = @state.app.addFunction(name)
+      $("#canvas").append("<div class=\"window jtk-node\" id=\"#{func.name}\"><strong class=\"block-title\">#{func.name}</strong></div>");
 
-      # Dirty cases
-      # switch comp.type
-        # when 'Button'
+      for param in func.parameterNames
+        target_style = @targetEndpoint
+        target_style.overlays[0][1].label = param.name
+        t = { style: target_style, anchor: param.position }
+        @addTargetEndPoint(func.name, t)
 
+      for output in func.outputNames
+        source_style = @sourceEndpoint
+        source_style.overlays[0][1].label = output.name
+        s = { style: source_style, anchor: output.position }
+        @addSourceEndPoint(func.name, s)
 
-      for source in sourceAnchors
-        sourceUUID = name + source;
-        returned = @instance.addEndpoint(name, @sourceEndpoint, { anchor: source, uuid: sourceUUID });
-        console.log returned
+      trigger_style = @targetEndpoint
+      trigger_style.overlays[0][1].label = 'Action'
+      t = { style: trigger_style, anchor: 'Top' }
+      @addTargetEndPoint(func.name, t)
 
-      for target in targetAnchors
-        targetUUID = name + target;
-        @instance.addEndpoint(name, @targetEndpoint, { anchor: target, uuid: targetUUID });
+      @instance.draggable($(".flowchart-demo .window"), { grid: [20, 20] });
 
+    addSourceEndPoint: (name, source) ->
+      sourceUUID = name + source.anchor;
+      @instance.addEndpoint(name, source.style, { anchor: source.anchor, uuid: sourceUUID });
+
+    addTargetEndPoint: (name, target) ->
+      targetUUID = name + target.anchor;
+      @instance.addEndpoint(name, target.style, { anchor: target.anchor, uuid: targetUUID });
 
   ready: ->
     @instance = window.jsp = jsPlumb.getInstance({
@@ -233,7 +258,7 @@ module.exports =
             location: [-1, 0.5],
             label: "Action",
             cssClass: "endpointSourceLabel",
-            visible: false
+            visible: true
           }
         ]
       ]
@@ -247,12 +272,11 @@ module.exports =
       dropOptions: { hoverClass: "hover", activeClass: "active" },
       isTarget: true,
       overlays: [
-          [ "Label", { location: [0.5, -0.5], label: "Drop", cssClass: "endpointTargetLabel", visible:false } ]
+          [ "Label", { location: [0.5, -0.5], label: "Drop", cssClass: "endpointTargetLabel", visible: true } ]
       ]
 
     init = (connection) ->
       if connection.sourceId.startsWith 'Button'
-        # TODO: this doesn't work. Need a way to enable label on certain connections
         connection.getOverlay('label').setVisible(true)
         connection.getOverlay("label").setLabel("<select class=\"browser-default\">
                                                   <option value=\"onclick\">On Click</option>

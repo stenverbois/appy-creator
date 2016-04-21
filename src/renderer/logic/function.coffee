@@ -1,24 +1,24 @@
 module.exports =
-  class Function
-    constructor: (@name, @parameters={}, @triggers=[]) ->
-      @triggers = []
-      @triggerIndex = 1
-    connectParameter: (name, component, output) ->
-      if name in @parameterNames
-        @parameters[name] = "#{component}.#{output}"
-      else
-        console.error "'#{name}' is not a valid parameter of #{@name}."
+class Function
+  constructor: (@name, @parameters={}, @triggers=[]) ->
+    @triggerIndex = 1
 
-    connectTrigger: (name) ->
-      @triggers.push name
+  connectParameter: (name, component, output) ->
+    if name in (@parameterNames.map (e) -> e.name)
+      @parameters[name] = "#{component}.#{output}"
+    else
+      console.error "'#{name}' is not a valid parameter of #{@name}."
 
-    addTrigger: =>
-      @triggers.push({index: @triggerIndex, name: ""})
-      @triggerIndex += 1
+  connectTrigger: (name) ->
+    @triggers.push name
 
-    export: ->
-      {
-        @type
-        @parameters
-        @triggers
-      }
+  addTrigger: =>
+    @triggers.push({index: @triggerIndex, name: ""})
+    @triggerIndex += 1
+
+  export: ->
+    {
+      @type
+      @parameters
+      @triggers
+    }

@@ -46,8 +46,10 @@ class UserApp extends EventEmitter
     @id += 1
 
   addFunction: (name) ->
-    @functions.push new functionClasses[name](name + @id)
+    f =  new functionClasses[name](name + @id)
+    @functions.push f
     @id += 1
+    f
 
   removeFunction: (index) ->
     @functions.splice index, 1
