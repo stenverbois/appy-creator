@@ -124,19 +124,19 @@ module.exports =
       property.type? and property.type isnt 'hidden'
 
     add: (comp) ->
-      $("#canvas").append("<div class=\"window jtk-node\" id=\"flowchartWindow#{@id}\"><strong class=\"block-title\">#{comp.name}</strong></div>");
-      @addDynEndPoints("Window#{@id}", ["RightMiddle"], ["LeftMiddle"]);
+      $("#canvas").append("<div class=\"window jtk-node\" id=\"#{comp.name}\"><strong class=\"block-title\">#{comp.name}</strong></div>");
+      @addDynEndPoints(comp.name, ["RightMiddle"], ["LeftMiddle"]);
       @instance.draggable($(".flowchart-demo .window"), { grid: [20, 20] });
       @id = @id + 1
 
-    addDynEndPoints: (toId, sourceAnchors, targetAnchors) ->
+    addDynEndPoints: (name, sourceAnchors, targetAnchors) ->
       for source in sourceAnchors
-        sourceUUID = toId + source;
-        @instance.addEndpoint("flowchart" + toId, @sourceEndpoint, { anchor: source, uuid: sourceUUID });
+        sourceUUID = name + source;
+        @instance.addEndpoint(name, @sourceEndpoint, { anchor: source, uuid: sourceUUID });
 
       for target in targetAnchors
-        targetUUID = toId + target;
-        @instance.addEndpoint("flowchart" + toId, @targetEndpoint, { anchor: target, uuid: targetUUID });
+        targetUUID = name + target;
+        @instance.addEndpoint(name, @targetEndpoint, { anchor: target, uuid: targetUUID });
 
 
   ready: ->
@@ -147,12 +147,12 @@ module.exports =
         # // case it returns the 'labelText' member that we set on each connection in the 'init' method below.
         ConnectionOverlays: [
             [ "Arrow", {
-                location: 1,
-                visible:true,
-                id:"ARROW",
+                location: 1
+                id: "ARROW"
                 events:{
                     # click: -> alert("you clicked on the arrow overlay")
                 }
+                visible: false
             } ],
             [ "Label", {
                 location: 0.3,
@@ -161,6 +161,7 @@ module.exports =
                 events:{
                     # tap: -> alert("hey")
                 }
+                visible: false
             }]
         ],
         Container: "canvas"
@@ -230,9 +231,12 @@ module.exports =
       ]
 
     init = (connection) ->
-      connection.getOverlay("label").setLabel("<select class=\"browser-default\">
-                                                <option value=\"onclick\">On Click</option>
-                                               </select>");
+      if connection.sourceId.startsWith 'Button'
+        # TODO: this doesn't work. Need a way to enable label on certain connections
+        connection.getOverlay('label').setParameter('visible', true)
+        connection.getOverlay("label").setLabel("<select class=\"browser-default\">
+                                                  <option value=\"onclick\">On Click</option>
+                                                 </select>");
 
     # // suspend drawing and initialise.
     @instance.batch(=>
