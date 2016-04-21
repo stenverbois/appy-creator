@@ -4,6 +4,9 @@ module.exports =
 class Component extends EventEmitter
   constructor: (@name='NoName', @properties) ->
 
+  getDefaultOutput: ->
+    return 'text'
+
   export: ->
     exportObj =
       type: @type

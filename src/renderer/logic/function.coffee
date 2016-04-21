@@ -12,10 +12,6 @@ class Function
   connectTrigger: (name) ->
     @triggers.push name
 
-  addTrigger: =>
-    @triggers.push({index: @triggerIndex, name: ""})
-    @triggerIndex += 1
-
   export: ->
     {
       @type

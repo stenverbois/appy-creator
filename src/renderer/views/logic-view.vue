@@ -117,6 +117,7 @@ module.exports =
     basictype: null
     functions: require('./../logic/functions.coffee').classes
     triggers: ["click"]
+    selectId: 0
 
   methods:
     isEditableProperty: (property) ->
@@ -127,23 +128,23 @@ module.exports =
         for subcomp in comp.properties.newItemComponents
           # Text on block is List1.Button2
           # Id is ButtonButton2List1 so we can check for type at start
-          $("#canvas").append("<div class=\"window jtk-node\" id=\"#{subcomp.type+subcomp.name+comp.name}\"><strong class=\"block-title\">#{comp.name + '.' + subcomp.name}</strong></div>");
+          $("#canvas").append("<div class=\"window jtk-node\" data-name=\"#{comp.name}.#{subcomp.name}\" id=\"#{subcomp.type+subcomp.name+comp.name}\"><strong class=\"block-title\">#{comp.name + '.' + subcomp.name}</strong></div>");
           target_style = @targetEndpoint
           target_style.overlays[0][1].label = 'Input'
           t = { style: target_style, anchor: 'Left' }
           @addTargetEndPoint(subcomp.type+subcomp.name+comp.name, t)
           source_style = @sourceEndpoint
-          source_style.overlays[0][1].label = 'Output'
+          source_style.overlays[0][1].label = comp.getDefaultOutput()
           s = { style: source_style, anchor: 'Right' }
           @addSourceEndPoint(subcomp.type+subcomp.name+comp.name, s)
       else
-        $("#canvas").append("<div class=\"window jtk-node\" id=\"#{comp.type+comp.name}\"><strong class=\"block-title\">#{comp.name}</strong></div>");
+        $("#canvas").append("<div class=\"window jtk-node\" data-name=\"#{comp.name}\" id=\"#{comp.type+comp.name}\"><strong class=\"block-title\">#{comp.name}</strong></div>");
         target_style = @targetEndpoint
         target_style.overlays[0][1].label = 'Input'
         t = { style: target_style, anchor: 'Left' }
         @addTargetEndPoint(comp.type+comp.name, t)
         source_style = @sourceEndpoint
-        source_style.overlays[0][1].label = 'Output'
+        source_style.overlays[0][1].label = comp.getDefaultOutput()
         s = { style: source_style, anchor: 'Right' }
         @addSourceEndPoint(comp.type+comp.name, s)
       @instance.draggable($(".flowchart-demo .window"), { grid: [20, 20] });
@@ -151,7 +152,7 @@ module.exports =
     addFunction: (name) ->
       # console.log @state.app
       func = @state.app.addFunction(name)
-      $("#canvas").append("<div class=\"window jtk-node\" id=\"#{func.name}\"><strong class=\"block-title\">#{func.name}</strong></div>");
+      $("#canvas").append("<div class=\"window jtk-node\" data-name=\"#{func.name}\" id=\"#{func.name}\"><strong class=\"block-title\">#{func.name}</strong></div>");
 
       for param in func.parameterNames
         target_style = @targetEndpoint
@@ -275,24 +276,51 @@ module.exports =
           [ "Label", { location: [0.5, -0.5], label: "Drop", cssClass: "endpointTargetLabel", visible: true } ]
       ]
 
-    init = (connection) ->
+    init = (connection) =>
       if connection.sourceId.startsWith 'Button'
         connection.getOverlay('label').setVisible(true)
-        connection.getOverlay("label").setLabel("<select class=\"browser-default\">
-                                                  <option value=\"onclick\">On Click</option>
+        connection.getOverlay("label").setLabel("<select id=\"select#{@selectId}\" class=\"browser-default\">
+                                                  <option value=\"click\">On Click</option>
                                                  </select>");
+        @selectId += 1
 
     # // suspend drawing and initialise.
     @instance.batch(=>
 
-        #_addEndpoints("Window4", ["TopCenter", "BottomCenter"], ["LeftMiddle", "RightMiddle"]);
-        #_addEndpoints("Window2", ["LeftMiddle", "BottomCenter"], ["TopCenter", "RightMiddle"]);
-        #_addEndpoints("Window3", ["RightMiddle", "BottomCenter"], ["LeftMiddle", "TopCenter"]);
-        #_addEndpoints("Window1", ["LeftMiddle", "RightMiddle"], ["TopCenter", "BottomCenter"]);
-
         # // listen for new connections; initialise them the same way we initialise the connections at startup.
-        @instance.bind("connection", (connInfo, originalEvent) ->
+        @instance.bind("connection", (connInfo, originalEvent) =>
             init(connInfo.connection);
+            console.log connInfo
+            connection = connInfo.connection
+            s = $("##{connection.sourceId}")
+            t = $("##{connection.targetId}")
+
+            # If the function is the source
+            key = Object.keys(connInfo.sourceEndpoint.getOverlays())[0]
+            sourceOverlayLabel = connInfo.sourceEndpoint.getOverlay(key).label
+
+            key = Object.keys(connInfo.targetEndpoint.getOverlays())[0]
+            targetOverlayLabel = connInfo.targetEndpoint.getOverlay(key).label
+
+            # If function is the source
+            result = (func for func in @state.app.functions when func.name == s.data("name"))
+            if result
+              func = result[0]
+
+            # If the function is the target
+            result = (func for func in @state.app.functions when func.name == t.data("name"))
+            if result
+              func = result[0]
+              if targetOverlayLabel == "Action"
+                connectionOverlayLabel = connInfo.connection.getOverlay("label").label
+                select = $($.parseHTML(connectionOverlayLabel)).attr("id")
+                option = $("##{select}").val()
+
+                func.connectTrigger(@state.app.addTrigger(s.data("name"), option))
+
+              else
+                func.connectParameter(targetOverlayLabel, s.data("name"), sourceOverlayLabel)
+
         );
 
         # // make all the window divs draggable
@@ -300,15 +328,6 @@ module.exports =
         # // THIS DEMO ONLY USES getSelector FOR CONVENIENCE. Use your library's appropriate selector
         # // method, or document.querySelectorAll:
         # //jsPlumb.draggable(document.querySelectorAll(".window"), { grid: [20, 20] });
-
-        # // connect a few up
-        #instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"], editable: true});
-        #instance.connect({uuids: ["Window2LeftMiddle", "Window4LeftMiddle"], editable: true});
-        #instance.connect({uuids: ["Window4TopCenter", "Window4RightMiddle"], editable: true});
-        #instance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"], editable: true});
-        #instance.connect({uuids: ["Window4BottomCenter", "Window1TopCenter"], editable: true});
-        #instance.connect({uuids: ["Window3BottomCenter", "Window1BottomCenter"], editable: true});
-        # //
 
         # //
         # // listen for clicks on connections, and offer to delete connections on click.

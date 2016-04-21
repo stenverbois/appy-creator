@@ -41,9 +41,11 @@ class UserApp extends EventEmitter
   removeComponent: (index) ->
     @components.splice index, 1
 
-  addTriggers: =>
-    @triggers.push new trigger("Trigger" + @id)
+  addTrigger: (comp, action) =>
+    name = "Trigger" + @id
+    @triggers.push new trigger(name, comp, action)
     @id += 1
+    return name
 
   addFunction: (name) ->
     f =  new functionClasses[name](name + @id)
@@ -68,6 +70,7 @@ class UserApp extends EventEmitter
 
     for component in @components
       app.components[component.name] = component.export()
+
 
     for func in @functions
       app.logic.functions[func.name] = func.export()
