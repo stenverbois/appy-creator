@@ -130,7 +130,7 @@ module.exports =
           # Id is ButtonButton2List1 so we can check for type at start
           $("#canvas").append("<div class=\"window jtk-node\" data-name=\"#{comp.name}.#{subcomp.name}\" id=\"#{subcomp.type+subcomp.name+comp.name}\"><strong class=\"block-title\">#{comp.name + '.' + subcomp.name}</strong></div>");
           target_style = @targetEndpoint
-          target_style.overlays[0][1].label = 'Input'
+          target_style.overlays[0][1].label = comp.getDefaultInput()
           t = { style: target_style, anchor: 'Left' }
           @addTargetEndPoint(subcomp.type+subcomp.name+comp.name, t)
           source_style = @sourceEndpoint
@@ -140,7 +140,7 @@ module.exports =
       else
         $("#canvas").append("<div class=\"window jtk-node\" data-name=\"#{comp.name}\" id=\"#{comp.type+comp.name}\"><strong class=\"block-title\">#{comp.name}</strong></div>");
         target_style = @targetEndpoint
-        target_style.overlays[0][1].label = 'Input'
+        target_style.overlays[0][1].label = comp.getDefaultInput()
         t = { style: target_style, anchor: 'Left' }
         @addTargetEndPoint(comp.type+comp.name, t)
         source_style = @sourceEndpoint

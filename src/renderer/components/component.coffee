@@ -7,6 +7,9 @@ class Component extends EventEmitter
   getDefaultOutput: ->
     return 'text'
 
+  getDefaultInput: ->
+    return 'text'
+
   export: ->
     exportObj =
       type: @type
