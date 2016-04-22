@@ -290,7 +290,7 @@ module.exports =
         # // listen for new connections; initialise them the same way we initialise the connections at startup.
         @instance.bind("connection", (connInfo, originalEvent) =>
             init(connInfo.connection);
-            console.log connInfo
+
             connection = connInfo.connection
             s = $("##{connection.sourceId}")
             t = $("##{connection.targetId}")
@@ -302,14 +302,9 @@ module.exports =
             key = Object.keys(connInfo.targetEndpoint.getOverlays())[0]
             targetOverlayLabel = connInfo.targetEndpoint.getOverlay(key).label
 
-            # If function is the source
-            result = (func for func in @state.app.functions when func.name == s.data("name"))
-            if result
-              func = result[0]
-
             # If the function is the target
             result = (func for func in @state.app.functions when func.name == t.data("name"))
-            if result
+            if result.length > 0
               func = result[0]
               if targetOverlayLabel == "Action"
                 connectionOverlayLabel = connInfo.connection.getOverlay("label").label
@@ -321,6 +316,12 @@ module.exports =
               else
                 func.connectParameter(targetOverlayLabel, s.data("name"), sourceOverlayLabel)
 
+            else
+              # If function is the source
+              result = (func for func in @state.app.functions when func.name == s.data("name"))
+              if result.length > 0
+                func = result[0]
+                func.connectOutput(targetOverlayLabel, t.data("name"))
         );
 
         # // make all the window divs draggable
