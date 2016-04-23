@@ -91,8 +91,8 @@ path, .jsplumb-endpoint {
   <div class="row">
     <a class="btn" v-for="component in state.app.components" @click="addComponent(component)">{{component.name}}</a>
   </div>
-  <div class="row" v-for="(name, func) in functions">
-    <a class="btn" @click="addFunction(name)" v-text="name"></a>
+  <div class="row" id="logic_functions">
+    <a class="btn" v-for="(name, func) in functions" @click="addFunction(name)" v-text="name"></a>
   </div>
   <div class="row">
     <div class="col s12">
@@ -125,6 +125,7 @@ module.exports =
 
     addComponent: (comp) ->
       if comp.type is 'List'
+
         for subcomp in comp.properties.newItemComponents
           # Text on block is List1.Button2
           # Id is ButtonButton2List1 so we can check for type at start
