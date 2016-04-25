@@ -97,7 +97,19 @@ path, .jsplumb-endpoint {
   <div class="row">
     <div class="col s12">
       <div class="jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan" id="canvas">
+          <div v-for="node in state.app.components" v-show="node.visibleInLogic">
+            <div class="window jtk-node" id="{{node.name}}">
+              <strong>{{node.name}}</strong>
+                <div v-for="property in node.properties" v-show="property.primary" id="{{node.name}}.{{property.name}}">
+                  {{property.name}}
+                </div>
+              <br/>
+              <br/>
+            </div>
+          </div>
 
+          <div v-for="node in state.app.functions">
+          </div>
           <!--<div class="window jtk-node" id="flowchartWindow1"><strong>1</strong><br/><br/></div>
           <div class="window jtk-node" id="flowchartWindow2"><strong>2</strong><br/><br/></div>
           <div class="window jtk-node" id="flowchartWindow3"><strong>3</strong><br/><br/></div>
@@ -108,6 +120,7 @@ path, .jsplumb-endpoint {
 </template>
 
 <script lang="coffee">
+Vue = require 'vue'
 module.exports =
   data: ->
     state: store.state
@@ -124,31 +137,45 @@ module.exports =
       property.type? and property.type isnt 'hidden'
 
     addComponent: (comp) ->
-      if comp.type is 'List'
-
-        for subcomp in comp.properties.newItemComponents
-          # Text on block is List1.Button2
-          # Id is ButtonButton2List1 so we can check for type at start
-          $("#canvas").append("<div class=\"window jtk-node\" data-name=\"#{comp.name}.#{subcomp.name}\" id=\"#{subcomp.type+subcomp.name+comp.name}\"><strong class=\"block-title\">#{comp.name + '.' + subcomp.name}</strong></div>");
-          target_style = @targetEndpoint
-          target_style.overlays[0][1].label = comp.getDefaultInput()
-          t = { style: target_style, anchor: 'Left' }
-          @addTargetEndPoint(subcomp.type+subcomp.name+comp.name, t)
-          source_style = @sourceEndpoint
-          source_style.overlays[0][1].label = comp.getDefaultOutput()
-          s = { style: source_style, anchor: 'Right' }
-          @addSourceEndPoint(subcomp.type+subcomp.name+comp.name, s)
-      else
-        $("#canvas").append("<div class=\"window jtk-node\" data-name=\"#{comp.name}\" id=\"#{comp.type+comp.name}\"><strong class=\"block-title\">#{comp.name}</strong></div>");
-        target_style = @targetEndpoint
-        target_style.overlays[0][1].label = comp.getDefaultInput()
-        t = { style: target_style, anchor: 'Left' }
-        @addTargetEndPoint(comp.type+comp.name, t)
-        source_style = @sourceEndpoint
-        source_style.overlays[0][1].label = comp.getDefaultOutput()
-        s = { style: source_style, anchor: 'Right' }
-        @addSourceEndPoint(comp.type+comp.name, s)
-      @instance.draggable($(".flowchart-demo .window"), { grid: [20, 20] });
+      comp.visibleInLogic = true
+      Vue.nextTick(=>
+        Vue.nextTick(=>
+          for propertyName, property of comp.properties
+            if property.primary
+              target_style = @targetEndpoint
+              target_style.overlays[0][1].label = ""
+              t = { style: target_style, anchor: "Right" }
+              @addTargetEndPoint("#{comp.name}.#{property.name}", t)
+              source_style = @sourceEndpoint
+              source_style.overlays[0][1].label = ""
+              s = { style: source_style, anchor: "Left" }
+              @addSourceEndPoint("#{comp.name}.#{property.name}", s)
+        )
+      )
+      # if comp.type is 'List'
+      #   for subcomp in comp.properties.newItemComponents
+      #     # Text on block is List1.Button2
+      #     # Id is ButtonButton2List1 so we can check for type at start
+      #     $("#canvas").append("<div class=\"window jtk-node\" data-name=\"#{comp.name}.#{subcomp.name}\" id=\"#{subcomp.type+subcomp.name+comp.name}\"><strong class=\"block-title\">#{comp.name + '.' + subcomp.name}</strong></div>");
+      #     target_style = @targetEndpoint
+      #     target_style.overlays[0][1].label = comp.getDefaultInput()
+      #     t = { style: target_style, anchor: 'Left' }
+      #     @addTargetEndPoint(subcomp.type+subcomp.name+comp.name, t)
+      #     source_style = @sourceEndpoint
+      #     source_style.overlays[0][1].label = comp.getDefaultOutput()
+      #     s = { style: source_style, anchor: 'Right' }
+      #     @addSourceEndPoint(subcomp.type+subcomp.name+comp.name, s)
+      # else
+      #   $("#canvas").append("<div class=\"window jtk-node\" data-name=\"#{comp.name}\" id=\"#{comp.type+comp.name}\"><strong class=\"block-title\">#{comp.name}</strong></div>");
+      #   target_style = @targetEndpoint
+      #   target_style.overlays[0][1].label = comp.getDefaultInput()
+      #   t = { style: target_style, anchor: 'Left' }
+      #   @addTargetEndPoint(comp.type+comp.name, t)
+      #   source_style = @sourceEndpoint
+      #   source_style.overlays[0][1].label = comp.getDefaultOutput()
+      #   s = { style: source_style, anchor: 'Right' }
+      #   @addSourceEndPoint(comp.type+comp.name, s)
+      # @instance.draggable($(".flowchart-demo .window"), { grid: [20, 20] });
 
     addFunction: (name) ->
       # console.log @state.app
