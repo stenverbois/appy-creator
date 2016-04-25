@@ -1,14 +1,17 @@
 # Jquery requires and plugins
-window.jQuery = require("jquery")
-window.$ = require("jquery")
+window.jQuery = require 'jquery'
+window.$ = require 'jquery'
 
 # Stop...
-window.Hammer = require('hammerjs')
+window.Hammer = require 'hammerjs'
 # Time
 
 # Gridster requires
 Gridster = require 'gridster'
 require 'gridster-css'
+ 
+# jsPlumb = require 'jsplumb'
+# window.jsPlumb = jsPlumb
 
 Vue = require 'vue'
 App = require './app'

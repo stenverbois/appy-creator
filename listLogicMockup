@@ -1,0 +1,20 @@
+// ma needs
+-> List
+  -> Generic item:
+    -> Label
+    -> Button
+
+-> Textbox
+-> Button
+
+// logic
+Logic blocks: ListX.Label1 & ListX.Button2
+
+
+Textbox.text -> listX.Label1 on button1.click
+
+AddListItem: 1 input (geconnecteerd met textbox)
+             1 trigger (button)
+             1 output (list)
+
+DeleteListItem: 1 trigger (listX.button2)

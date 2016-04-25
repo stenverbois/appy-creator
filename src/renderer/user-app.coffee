@@ -3,6 +3,7 @@
 componentClasses = require('./components/components').classes
 functionClasses = require('./logic/function.coffee')
 trigger = require('./logic/trigger.coffee')
+functionClasses = require('./logic/functions.coffee').classes
 
 module.exports =
 class UserApp extends EventEmitter
@@ -40,13 +41,17 @@ class UserApp extends EventEmitter
   removeComponent: (index) ->
     @components.splice index, 1
 
-  addTriggers: =>
-    @triggers.push new trigger("Trigger" + @id)
+  addTrigger: (comp, action) =>
+    name = "Trigger" + @id
+    @triggers.push new trigger(name, comp, action)
     @id += 1
+    return name
 
   addFunction: (name) ->
-    @functions.push new functionClasses[name](name + @id)
+    f =  new functionClasses[name](name + @id)
+    @functions.push f
     @id += 1
+    f
 
   removeFunction: (index) ->
     @functions.splice index, 1
@@ -65,6 +70,7 @@ class UserApp extends EventEmitter
 
     for component in @components
       app.components[component.name] = component.export()
+
 
     for func in @functions
       app.logic.functions[func.name] = func.export()

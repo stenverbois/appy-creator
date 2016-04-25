@@ -9,6 +9,7 @@
   </head>
   <body>
     <app></app>{% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+    <script src="http://yui.yahooapis.com/3.17.2/build/yui/yui-min.js"></script>
     <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>{% } %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
   </body>
