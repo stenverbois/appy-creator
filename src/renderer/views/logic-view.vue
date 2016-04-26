@@ -108,8 +108,20 @@ path, .jsplumb-endpoint {
             </div>
           </div>
 
-          <div v-for="node in state.app.functions">
+          <div v-for="node in state.app.functions" v-show="node.visibleInLogic">
+            <div class="window jtk-node" id="{{node.name}}">
+              <strong>{{node.type}}</strong>
+                <div v-for="param in node.parameterNames" id="{{node.name}}.{{param.name}}">
+                    {{param.name}}
+                </div>
+                <div v-for="param in node.outputNames" id="{{node.name}}.{{param.name}}">
+                    {{param.name}}
+                </div>
+              <br/>
+              <br/>
+            </div>
           </div>
+
           <!--<div class="window jtk-node" id="flowchartWindow1"><strong>1</strong><br/><br/></div>
           <div class="window jtk-node" id="flowchartWindow2"><strong>2</strong><br/><br/></div>
           <div class="window jtk-node" id="flowchartWindow3"><strong>3</strong><br/><br/></div>
@@ -180,26 +192,50 @@ module.exports =
     addFunction: (name) ->
       # console.log @state.app
       func = @state.app.addFunction(name)
-      $("#canvas").append("<div class=\"window jtk-node\" data-name=\"#{func.name}\" id=\"#{func.name}\"><strong class=\"block-title\">#{func.name}</strong></div>");
+      func.visibleInLogic = true
+      Vue.nextTick(=>
+        Vue.nextTick(=>
+          for property in func.parameterNames
+            target_style = @targetEndpoint
+            target_style.overlays[0][1].label = ""
+            t = { style: target_style, anchor: "Left" }
+            @addTargetEndPoint("#{func.name}.#{property.name}", t)
 
-      for param in func.parameterNames
-        target_style = @targetEndpoint
-        target_style.overlays[0][1].label = param.name
-        t = { style: target_style, anchor: param.position }
-        @addTargetEndPoint(func.name, t)
+          for property in func.outputNames
+            source_style = @sourceEndpoint
+            source_style.overlays[0][1].label = ""
+            s = { style: source_style, anchor: "Right" }
+            @addSourceEndPoint("#{func.name}.#{property.name}", s)
 
-      for output in func.outputNames
-        source_style = @sourceEndpoint
-        source_style.overlays[0][1].label = output.name
-        s = { style: source_style, anchor: output.position }
-        @addSourceEndPoint(func.name, s)
+          #Trigger
+          trigger_style = @targetEndpoint
+          trigger_style.overlays[0][1].label = 'Action'
+          t = { style: trigger_style, anchor: 'Top' }
+          @addTargetEndPoint(func.name, t)
 
-      trigger_style = @targetEndpoint
-      trigger_style.overlays[0][1].label = 'Action'
-      t = { style: trigger_style, anchor: 'Top' }
-      @addTargetEndPoint(func.name, t)
-
-      @instance.draggable($(".flowchart-demo .window"), { grid: [20, 20] });
+          @instance.draggable($(".flowchart-demo .window"), { grid: [20, 20] });
+        )
+      )
+      # $("#canvas").append("<div class=\"window jtk-node\" data-name=\"#{func.name}\" id=\"#{func.name}\"><strong class=\"block-title\">#{func.name}</strong></div>");
+      #
+      # for param in func.parameterNames
+      #   target_style = @targetEndpoint
+      #   target_style.overlays[0][1].label = param.name
+      #   t = { style: target_style, anchor: param.position }
+      #   @addTargetEndPoint(func.name, t)
+      #
+      # for output in func.outputNames
+      #   source_style = @sourceEndpoint
+      #   source_style.overlays[0][1].label = output.name
+      #   s = { style: source_style, anchor: output.position }
+      #   @addSourceEndPoint(func.name, s)
+      #
+      # trigger_style = @targetEndpoint
+      # trigger_style.overlays[0][1].label = 'Action'
+      # t = { style: trigger_style, anchor: 'Top' }
+      # @addTargetEndPoint(func.name, t)
+      #
+      # @instance.draggable($(".flowchart-demo .window"), { grid: [20, 20] });
 
     addSourceEndPoint: (name, source) ->
       sourceUUID = name + source.anchor;

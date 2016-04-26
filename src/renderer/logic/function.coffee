@@ -1,6 +1,7 @@
 module.exports =
 class Function
   constructor: (@name, @parameters={}, @triggers=[], @outputs=[]) ->
+    @visibleInLogic = false
 
   connectParameter: (name, component, output) ->
     if name in (@parameterNames.map (e) -> e.name)
