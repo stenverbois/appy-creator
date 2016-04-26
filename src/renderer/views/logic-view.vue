@@ -98,13 +98,29 @@ path, .jsplumb-endpoint {
     <div class="col s12">
       <div class="jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan" id="canvas">
           <div v-for="node in state.app.components" data-name="{{node.name}}" v-show="node.visibleInLogic">
-            <div class="window jtk-node" id="{{node.name}}">
-              <strong>{{node.name}}</strong>
-                <div v-for="(key, property) of node.properties" data-name="{{node.name}}" v-show="property.primary" id="{{node.name}}{{property.name}}">
-                  {{key}}
+            <div v-if="node.type == 'List'">
+              <div v-for="genitem in node.properties.newItemComponents" data-name="{{node.name}}" v-show="node.visibleInLogic">
+
+                <div class="window jtk-node" id="{{node.name}}">
+                  <strong>{{node.name}}.{{genitem.name}}</strong>
+                    <div v-for="(key, property) of genitem.properties" data-name="{{node.name}}.{{genitem.name}}" v-show="property.primary" id="{{node.name}}{{genitem.name}}{{property.name}}">
+                      {{key}}
+                    </div>
+                  <br/>
+                  <br/>
                 </div>
-              <br/>
-              <br/>
+
+              </div>
+            </div>
+            <div v-else>
+              <div class="window jtk-node" id="{{node.name}}">
+                <strong>{{node.name}}</strong>
+                  <div v-for="(key, property) of node.properties" data-name="{{node.name}}" v-show="property.primary" id="{{node.name}}{{property.name}}">
+                    {{key}}
+                  </div>
+                <br/>
+                <br/>
+              </div>
             </div>
           </div>
 
@@ -153,16 +169,31 @@ module.exports =
       comp.visibleInLogic = true
       Vue.nextTick(=>
         Vue.nextTick(=>
-          for propertyName, property of comp.properties
-            if property.primary
-              target_style = @targetEndpoint
-              target_style.overlays[0][1].label = ""
-              t = { style: target_style, anchor: "Left" }
-              @addTargetEndPoint("#{comp.name}#{property.name}", t)
-              source_style = @sourceEndpoint
-              source_style.overlays[0][1].label = ""
-              s = { style: source_style, anchor: "Right" }
-              @addSourceEndPoint("#{comp.name}#{property.name}", s)
+          if comp.type == "List"
+            console.log(comp.properties.newItemComponents)
+            for newItemComp in comp.properties.newItemComponents
+              for propertyName, property of newItemComp.properties
+                if property.primary
+                  target_style = @targetEndpoint
+                  target_style.overlays[0][1].label = ""
+                  t = { style: target_style, anchor: "Left" }
+                  @addTargetEndPoint("#{comp.name}#{newItemComp.name}#{property.name}", t)
+                  source_style = @sourceEndpoint
+                  source_style.overlays[0][1].label = ""
+                  s = { style: source_style, anchor: "Right" }
+                  @addSourceEndPoint("#{comp.name}#{newItemComp.name}#{property.name}", s)
+
+          else
+            for propertyName, property of comp.properties
+              if property.primary
+                target_style = @targetEndpoint
+                target_style.overlays[0][1].label = ""
+                t = { style: target_style, anchor: "Left" }
+                @addTargetEndPoint("#{comp.name}#{property.name}", t)
+                source_style = @sourceEndpoint
+                source_style.overlays[0][1].label = ""
+                s = { style: source_style, anchor: "Right" }
+                @addSourceEndPoint("#{comp.name}#{property.name}", s)
         )
       )
 
