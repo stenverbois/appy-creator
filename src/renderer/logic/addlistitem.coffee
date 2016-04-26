@@ -6,7 +6,6 @@ class AddListItem extends Function
     super(name, parameters, triggers)
     @type = "AddItem"
     @parameterNames = ({name: comp.name} for comp in genItems)
-    
+
     @outputNames = [
-      { name: 'list', position: 'Left' }
     ]
