@@ -103,8 +103,7 @@ path, .jsplumb-endpoint {
           <div v-for="node in state.app.components" data-name="{{node.name}}" v-show="node.visibleInLogic">
             <div v-if="node.type == 'List'">
               <div v-for="genitem in node.properties.newItemComponents" data-name="{{node.name}}" v-show="node.visibleInLogic">
-
-                <div class="window jtk-node" id="{{node.name}}">
+                <div class="window jtk-node" id="{{node.name}}{{genitem.name}}">
                   <strong>{{node.name}}.{{genitem.name}}</strong>
                     <div v-for="(key, property) of genitem.properties" data-name="{{node.name}}.{{genitem.name}}" v-show="property.primary" id="{{node.name}}{{genitem.name}}{{property.name}}">
                       {{key}}
@@ -168,7 +167,6 @@ module.exports =
   methods:
     isEditableProperty: (property) ->
       property.type? and property.type isnt 'hidden'
-
 
     createListFunction: (listName, newItemComps) ->
       @listFunctions = Object.assign({}, @listFunctions, { "#{listName}.addListItem": new @functions["AddListItem"]("#{listName}.addListItem", newItemComps)})
@@ -240,7 +238,6 @@ module.exports =
       func = @state.app.addFunction(name)
       func.visibleInLogic = true
       @renderFuncNode(func)
-
 
     addSourceEndPoint: (name, source) ->
       sourceUUID = name + source.anchor;
