@@ -94,6 +94,9 @@ path, .jsplumb-endpoint {
   <div class="row" id="logic_functions">
     <a class="btn" v-for="(name, func) in functions" @click="addFunction(name)" v-text="name"></a>
   </div>
+  <div class="row" id="list_logic_functions">
+    <a class="btn" v-for="(name, func) in listFunctions" @click="addFunction(name)" v-text="name"></a>
+  </div>
   <div class="row">
     <div class="col s12">
       <div class="jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan" id="canvas">
@@ -158,6 +161,7 @@ module.exports =
     targetEndpoint: null
     basictype: null
     functions: require('./../logic/functions.coffee').classes
+    listFunctions: {}
     triggers: ["click"]
     selectId: 0
 
@@ -165,12 +169,18 @@ module.exports =
     isEditableProperty: (property) ->
       property.type? and property.type isnt 'hidden'
 
+
+    addListFunction: (listName, newItemComps) ->
+      @listFunctions = Object.assign({}, @listFunctions, { "#{listName}.addListItem": new @functions["AddListItem"](newItemComps)})
+
     addComponent: (comp) ->
       comp.visibleInLogic = true
       Vue.nextTick(=>
         Vue.nextTick(=>
           if comp.type == "List"
+
             console.log(comp.properties.newItemComponents)
+            @addListFunction(comp.name, comp.properties.newItemComponents)
             for newItemComp in comp.properties.newItemComponents
               for propertyName, property of newItemComp.properties
                 if property.primary
