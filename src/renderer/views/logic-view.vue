@@ -95,7 +95,7 @@ path, .jsplumb-endpoint {
     <a class="btn" v-for="(name, func) in functions" @click="addFunction(name)" v-text="name"></a>
   </div>
   <div class="row" id="list_logic_functions">
-    <a class="btn" v-for="(name, func) in listFunctions" @click="addFunction(name)" v-text="name"></a>
+    <a class="btn" v-for="(name, func) in listFunctions" @click="addListFunc(func)" v-text="name"></a>
   </div>
   <div class="row">
     <div class="col s12">
@@ -170,17 +170,16 @@ module.exports =
       property.type? and property.type isnt 'hidden'
 
 
-    addListFunction: (listName, newItemComps) ->
-      @listFunctions = Object.assign({}, @listFunctions, { "#{listName}.addListItem": new @functions["AddListItem"](newItemComps)})
+    createListFunction: (listName, newItemComps) ->
+      @listFunctions = Object.assign({}, @listFunctions, { "#{listName}.addListItem": new @functions["AddListItem"]("#{listName}.addListItem", newItemComps)})
 
     addComponent: (comp) ->
       comp.visibleInLogic = true
       Vue.nextTick(=>
         Vue.nextTick(=>
           if comp.type == "List"
-
             console.log(comp.properties.newItemComponents)
-            @addListFunction(comp.name, comp.properties.newItemComponents)
+            @createListFunction(comp.name, comp.properties.newItemComponents)
             for newItemComp in comp.properties.newItemComponents
               for propertyName, property of newItemComp.properties
                 if property.primary
@@ -207,10 +206,7 @@ module.exports =
         )
       )
 
-
-    addFunction: (name) ->
-      func = @state.app.addFunction(name)
-      func.visibleInLogic = true
+    renderFuncNode: (func) ->
       Vue.nextTick(=>
         Vue.nextTick(=>
           for property in func.parameterNames
@@ -234,6 +230,17 @@ module.exports =
           @instance.draggable($(".flowchart-demo .window"), { grid: [20, 20] });
         )
       )
+
+    addListFunc: (func) ->
+      @state.app.addListFunction(func)
+      func.visibleInLogic = true
+      @renderFuncNode(func)
+
+    addFunction: (name) ->
+      func = @state.app.addFunction(name)
+      func.visibleInLogic = true
+      @renderFuncNode(func)
+
 
     addSourceEndPoint: (name, source) ->
       sourceUUID = name + source.anchor;
