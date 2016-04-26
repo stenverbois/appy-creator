@@ -1,4 +1,4 @@
-<style>
+<style lang="scss">
 .flowchart-demo .window {
     border: 1px solid #346789;
     box-shadow: 2px 2px 19px #aaa;
@@ -17,7 +17,7 @@
     background-color: #eeeeef;
     color: black;
     font-family: helvetica, sans-serif;
-    padding: 0.5em;
+    // padding: 0.5em;
     font-size: 0.9em;
     -webkit-transition: -webkit-box-shadow 0.15s ease-in;
     -moz-transition: -moz-box-shadow 0.15s ease-in;
@@ -85,6 +85,12 @@ path, .jsplumb-endpoint {
 .block-title {
   top: 0;
 }
+
+.logic-container {
+  .property-container {
+    width: 100%;
+  }
+}
 </style>
 
 <template>
@@ -115,9 +121,9 @@ path, .jsplumb-endpoint {
               </div>
             </div>
             <div v-else>
-              <div class="window jtk-node" id="{{node.name}}">
+              <div class="window jtk-node logic-container" id="{{node.name}}">
                 <strong>{{node.name}}</strong>
-                  <div v-for="(key, property) of node.properties" data-name="{{node.name}}" v-show="property.primary" id="{{node.name}}{{property.name}}">
+                  <div v-for="(key, property) of node.properties" data-name="{{node.name}}" v-show="property.primary" id="{{node.name}}{{property.name}}" class="property-container">
                     {{key}}
                   </div>
                 <br/>
