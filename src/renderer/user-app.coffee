@@ -55,7 +55,6 @@ class UserApp extends EventEmitter
 
   addListFunction: (func) ->
     @functions.push func
-    
 
   removeFunction: (index) ->
     @functions.splice index, 1

@@ -175,7 +175,7 @@ module.exports =
       property.type? and property.type isnt 'hidden'
 
     createListFunction: (listName, newItemComps) ->
-      @listFunctions = Object.assign({}, @listFunctions, { "#{listName}_addListItem": new @functions["AddListItem"]("#{listName}_addListItem", newItemComps)})
+      @listFunctions = Object.assign({}, @listFunctions, { "#{listName}_addListItem": new @functions["AddListItem"]("#{listName}", newItemComps)})
 
     addComponent: (comp) ->
       comp.visibleInLogic = true
