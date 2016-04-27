@@ -11,7 +11,8 @@ class AddListItem extends Function
     ]
 
   export: ->
-    outputs = Object.assign([], @outputs, {'name': @listName})
+    outputs = @outputs.slice()
+    outputs.push({'name': @listName})
     {
       @type
       @parameters
