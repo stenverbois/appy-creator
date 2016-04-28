@@ -108,10 +108,10 @@ path, .jsplumb-endpoint {
       <div class="jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan" id="canvas">
           <div v-for="node in state.app.components" data-name="{{node.name}}" v-show="node.visibleInLogic">
             <div v-if="node.type == 'List'">
-              <div v-for="genitem in node.properties.newItemComponents" data-name="{{node.name}}" v-show="node.visibleInLogic">
+              <div v-for="genitem in node.properties.newItemComponents" data-type="{{genitem.type}}" data-name="{{node.name}}" v-show="node.visibleInLogic">
                 <div class="window jtk-node" id="{{node.name}}{{genitem.name}}">
                   <strong>{{node.name}}.{{genitem.name}}</strong>
-                    <div v-for="(key, property) of genitem.properties" data-name="{{node.name}}.{{genitem.name}}" v-show="property.primary" id="{{node.name}}{{genitem.name}}{{property.name}}">
+                    <div v-for="(key, property) of genitem.properties" data-type="{{genitem.type}}" data-name="{{node.name}}.{{genitem.name}}" v-show="property.primary" id="{{node.name}}{{genitem.name}}{{property.name}}">
                       {{key}}
                     </div>
                   <br/>
@@ -123,7 +123,7 @@ path, .jsplumb-endpoint {
             <div v-else>
               <div class="window jtk-node logic-container" id="{{node.name}}">
                 <strong>{{node.name}}</strong>
-                  <div v-for="(key, property) of node.properties" data-name="{{node.name}}" v-show="property.primary" id="{{node.name}}{{property.name}}" class="property-container">
+                  <div v-for="(key, property) of node.properties" data-type="{{node.type}}" data-name="{{node.name}}" v-show="property.primary" id="{{node.name}}{{property.name}}" class="property-container">
                     {{key}}
                   </div>
                 <br/>
@@ -175,8 +175,8 @@ module.exports =
       property.type? and property.type isnt 'hidden'
 
     createListFunction: (listName, newItemComps) ->
-      @listFunctions = Object.assign({}, @listFunctions, { "#{listName}_addListItem": new @functions["AddListItem"]("#{listName}", newItemComps)})
-
+      @listFunctions = Object.assign({}, @listFunctions, { "#{listName}_addListItem": new @functions["AddListItem"]("#{listName}", newItemComps) })
+      @listFunctions = Object.assign({}, @listFunctions, {"#{listName}_removeListItem": new @functions["RemoveListItem"]("#{listName}")})
     addComponent: (comp) ->
       comp.visibleInLogic = true
       Vue.nextTick(=>
@@ -349,7 +349,8 @@ module.exports =
       ]
 
     init = (connection) =>
-      if connection.sourceId.startsWith 'Button'
+      s = $("body").find("##{connection.sourceId}")
+      if s.data("type") == "Button"
         connection.getOverlay('label').setVisible(true)
         connection.getOverlay("label").setLabel("<select id=\"select#{@selectId}\" class=\"browser-default\">
                                                   <option value=\"click\">On Click</option>
