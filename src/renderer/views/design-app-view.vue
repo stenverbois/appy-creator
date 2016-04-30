@@ -1,4 +1,4 @@
-<style lang="scss">
+<style lang="scss" scoped>
 @import "./../../style/custom/variables.scss";
 .content {
   position: absolute;
@@ -11,7 +11,7 @@
 <template>
   <main>
     <div class="contents">
-      <components @add-component="addComponent($arguments)"></components>
+      <components :data.once="components" @add-component="addComponent($arguments)"></components>
       <div class="content">
         <app-view></app-view>
       </div>
@@ -24,7 +24,13 @@
 module.exports =
   data: ->
     state: store.state
-
+    components: [
+      {
+        title: "Main"
+        icon: "language"
+        objects: Object.keys require('../components/components.coffee').classes
+      }
+    ]
   computed:
     selectedComponent: ->
       @state.app.components[@state.selected]
@@ -36,5 +42,5 @@ module.exports =
 
   methods:
     addComponent: (args) ->
-      @state.app.addComponent(args?[0])
+      @state.app.addComponent(args?[1])
 </script>

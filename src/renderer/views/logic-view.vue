@@ -1,4 +1,17 @@
-<style lang="scss">
+<style lang="scss" scoped>
+@import "./../../style/custom/variables.scss";
+// .view {
+//   position: absolute;
+//   height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
+// }
+
+.content {
+  // position: absolute;
+  // left: $component-bar-width;
+  // width: calc(100% - #{$properties-bar-width} - #{$component-bar-width});
+  // height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
+}
+
 .flowchart-demo .window {
     border: 1px solid #346789;
     box-shadow: 2px 2px 19px #aaa;
@@ -94,66 +107,66 @@ path, .jsplumb-endpoint {
 </style>
 
 <template>
-  <div class="row">
-    <a class="btn" v-for="component in state.app.components" @click="addComponent(component)">{{component.name}}</a>
-  </div>
-  <div class="row" id="logic_functions">
-    <a class="btn" v-for="(name, func) in functions" @click="addFunction(name)" v-text="name"></a>
-  </div>
-  <div class="row" id="list_logic_functions">
-    <a class="btn" v-for="(name, func) in listFunctions" @click="addListFunc(func)" v-text="name"></a>
-  </div>
-  <div class="row">
-    <div class="col s12">
-      <div class="jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan" id="canvas">
-          <div v-for="node in state.app.components" data-name="{{node.name}}" v-show="node.visibleInLogic">
-            <div v-if="node.type == 'List'">
-              <div v-for="genitem in node.properties.newItemComponents" data-type="{{genitem.type}}" data-name="{{node.name}}" v-show="node.visibleInLogic">
-                <div class="window jtk-node" id="{{node.name}}{{genitem.name}}">
-                  <strong>{{node.name}}.{{genitem.name}}</strong>
-                    <div v-for="(key, property) of genitem.properties" data-type="{{genitem.type}}" data-name="{{node.name}}.{{genitem.name}}" v-show="property.primary" id="{{node.name}}{{genitem.name}}{{property.name}}">
+<div>
+  <components :data="components" @add-component="addComponentClick($arguments)"></components>
+  <div class="content">
+    <!-- <div class="row">
+      <a class="btn" v-for="component in state.app.components" @click="addComponent(component)">{{component.name}}</a>
+    </div>
+    <div class="row" id="logic_functions">
+      <a class="btn" v-for="(name, func) in functions" @click="addFunction(name)" v-text="name"></a>
+    </div>
+    <div class="row" id="list_logic_functions">
+      <a class="btn" v-for="(name, func) in listFunctions" @click="addListFunc(func)" v-text="name"></a>
+    </div> -->
+    <div class="row">
+      <div class="col s12">
+        <div class="jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan" id="canvas">
+            <div v-for="node in state.app.components" data-name="{{node.name}}" v-show="node.visibleInLogic">
+              <div v-if="node.type == 'List'">
+                <div v-for="genitem in node.properties.newItemComponents" data-type="{{genitem.type}}" data-name="{{node.name}}" v-show="node.visibleInLogic">
+                  <div class="window jtk-node" id="{{node.name}}{{genitem.name}}">
+                    <strong>{{node.name}}.{{genitem.name}}</strong>
+                      <div v-for="(key, property) of genitem.properties" data-type="{{genitem.type}}" data-name="{{node.name}}.{{genitem.name}}" v-show="property.primary" id="{{node.name}}{{genitem.name}}{{property.name}}">
+                        {{key}}
+                      </div>
+                    <br/>
+                    <br/>
+                  </div>
+
+                </div>
+              </div>
+              <div v-else>
+                <div class="window jtk-node logic-container" id="{{node.name}}">
+                  <strong>{{node.name}}</strong>
+                    <div v-for="(key, property) of node.properties" data-type="{{node.type}}" data-name="{{node.name}}" v-show="property.primary" id="{{node.name}}{{property.name}}" class="property-container">
                       {{key}}
                     </div>
                   <br/>
                   <br/>
                 </div>
-
               </div>
             </div>
-            <div v-else>
-              <div class="window jtk-node logic-container" id="{{node.name}}">
-                <strong>{{node.name}}</strong>
-                  <div v-for="(key, property) of node.properties" data-type="{{node.type}}" data-name="{{node.name}}" v-show="property.primary" id="{{node.name}}{{property.name}}" class="property-container">
-                    {{key}}
+
+            <div v-for="node in state.app.functions" data-name="{{node.name}}" class="window jtk-node" id="{{node.name}}" v-show="node.visibleInLogic">
+                <strong>{{node.type}}</strong>
+                  <div v-for="param in node.parameterNames" data-name="{{node.name}}"  id="{{node.name}}{{param.name}}">
+                      {{param.name}}
+                  </div>
+                  <div v-for="param in node.outputNames" data-name="{{node.name}}"  id="{{node.name}}{{param.name}}">
+                      {{param.name}}
+                  </div>
+                  <div id="{{node.name}}action" data-name="{{node.name}}">
+                    Action
                   </div>
                 <br/>
                 <br/>
-              </div>
             </div>
-          </div>
-
-          <div v-for="node in state.app.functions" data-name="{{node.name}}" class="window jtk-node" id="{{node.name}}" v-show="node.visibleInLogic">
-              <strong>{{node.type}}</strong>
-                <div v-for="param in node.parameterNames" data-name="{{node.name}}"  id="{{node.name}}{{param.name}}">
-                    {{param.name}}
-                </div>
-                <div v-for="param in node.outputNames" data-name="{{node.name}}"  id="{{node.name}}{{param.name}}">
-                    {{param.name}}
-                </div>
-                <div id="{{node.name}}action" data-name="{{node.name}}">
-                  Action
-                </div>
-              <br/>
-              <br/>
-          </div>
-
-          <!--<div class="window jtk-node" id="flowchartWindow1"><strong>1</strong><br/><br/></div>
-          <div class="window jtk-node" id="flowchartWindow2"><strong>2</strong><br/><br/></div>
-          <div class="window jtk-node" id="flowchartWindow3"><strong>3</strong><br/><br/></div>
-          <div class="window jtk-node" id="flowchartWindow4"><strong>4</strong><br/><br/></div>-->
+        </div>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script lang="coffee">
@@ -169,6 +182,10 @@ module.exports =
     listFunctions: {}
     triggers: ["click"]
     selectId: 0
+    components: []
+
+  components:
+    'components': require './components.vue'
 
   methods:
     isEditableProperty: (property) ->
@@ -177,6 +194,15 @@ module.exports =
     createListFunction: (listName, newItemComps) ->
       @listFunctions = Object.assign({}, @listFunctions, { "#{listName}_addListItem": new @functions["AddListItem"]("#{listName}", newItemComps) })
       @listFunctions = Object.assign({}, @listFunctions, {"#{listName}_removeListItem": new @functions["RemoveListItem"]("#{listName}")})
+
+    addComponentClick: (args) ->
+      switch args?[0]
+        when 'Functions'
+          @addFunction(args?[1])
+        when 'Components'
+          @addComponent(args?[1])
+      # @addComponent(args?[0])
+
     addComponent: (comp) ->
       comp.visibleInLogic = true
       Vue.nextTick(=>
@@ -254,6 +280,18 @@ module.exports =
       @instance.addEndpoint(name, target.style, { anchor: target.anchor, uuid: targetUUID });
 
   ready: ->
+    @components = [
+      {
+        title: 'Components'
+        icon: 'timeline'
+        objects: @state.app.components
+      }
+      {
+        title: 'Functions'
+        icon: 'timeline'
+        objects: Object.keys require('./../logic/functions.coffee').classes
+      }
+    ]
     @instance = window.jsp = jsPlumb.getInstance({
         # // default drag options
         DragOptions: { cursor: 'pointer', zIndex: 2000 },
@@ -430,8 +468,5 @@ module.exports =
     );
 
     jsPlumb.fire("jsPlumbDemoLoaded", @instance);
-
-
-
 
 </script>
