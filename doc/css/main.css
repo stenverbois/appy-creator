@@ -10,6 +10,20 @@
 
 }
 
+
+ .pin-top {
+     position: relative;
+ }
+
+.pin-bottom {
+     position: relative;
+   }
+
+.pinned {
+     position: fixed !important;
+   }
+
+
 /* Rules for sizing the icon. */
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
