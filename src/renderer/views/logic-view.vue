@@ -179,7 +179,6 @@ module.exports =
     targetEndpoint: null
     basictype: null
     functions: require('./../logic/functions.coffee').classes
-    listFunctions: {}
     triggers: ["click"]
     selectId: 0
     components: []
@@ -192,8 +191,9 @@ module.exports =
       property.type? and property.type isnt 'hidden'
 
     createListFunction: (listName, newItemComps) ->
-      @listFunctions = Object.assign({}, @listFunctions, { "#{listName}_addListItem": new @functions["AddListItem"]("#{listName}", newItemComps) })
-      @listFunctions = Object.assign({}, @listFunctions, {"#{listName}_removeListItem": new @functions["RemoveListItem"]("#{listName}")})
+      add_func = new @functions["AddListItem"]("#{listName}", newItemComps)
+      remove_func = new @functions["RemoveListItem"]("#{listName}")
+      @components.push({title: listName, icon: 'list', objects: [add_func, remove_func]})
 
     addComponentClick: (args) ->
       switch args?[0]
@@ -201,7 +201,10 @@ module.exports =
           @addFunction(args?[1])
         when 'Components'
           @addComponent(args?[1])
-      # @addComponent(args?[0])
+        else
+          console.log args?[0]
+          if args?[0].startsWith 'List'
+            @addListFunc(args?[1])
 
     addComponent: (comp) ->
       comp.visibleInLogic = true
@@ -267,6 +270,7 @@ module.exports =
       @renderFuncNode(func)
 
     addFunction: (name) ->
+      console.log "Adding function " + name
       func = @state.app.addFunction(name)
       func.visibleInLogic = true
       @renderFuncNode(func)
