@@ -1,3 +1,7 @@
+body {
+  position: relative;
+}
+
 .appy{
   background-color: #ff675b;
   display: flex;
@@ -7,21 +11,19 @@
 
 .appy_font{
   font-size: 64px;
-
 }
 
-
  .pin-top {
-     position: relative;
+     position: relative !important;
  }
 
 .pin-bottom {
-     position: relative;
+     position: relative !important;
    }
 
 .pinned {
      position: fixed !important;
-   }
+}
 
 
 /* Rules for sizing the icon. */

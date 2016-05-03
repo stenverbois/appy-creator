@@ -20,21 +20,6 @@
 </head>
 <body>
 
-<div class="parallax-container">
-  <div class="parallax appy">
-    <div class="row">
-      <div class="section">
-        <div class="col s12 center">
-          <i class="material-icons md-120">smartphone</i>
-        </div>
-        <div class="col s12 center appy_font">
-          Appy
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="section white">
   <div class="row container">
       <div class="col s12 m9 l10">
@@ -42,20 +27,126 @@
           <p><h4>Components</h4> </p>
           <div class="divider"></div>
           <div class="section">
-            <div class="row">
+            <div class="row" class="section scrollspy">
               <h5>Textbox</h5>
+              <p>A textbox component is used for user input. </p>
+
+              <table class="bordered">
+                <thead>
+                <tr>
+                  <th data-field="attr">Attribute</th>
+                  <th data-field="info">Info</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                  <td>Text</td>
+                  <td>The text the component has</td>
+                </tr>
+                <tr>
+                  <td>Visible</td>
+                  <td>If the component is visible or not</td>
+                </tr>
+                </tbody>
+              </table>
+
+
             </div>
             <div class="row">
               <h5>Label</h5>
+              <p>A label component can be used to contain any text you want to display to the user.</p>
+
+              <table class="bordered">
+                <thead>
+                <tr>
+                  <th data-field="attr">Attribute</th>
+                  <th data-field="info">Info</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                  <td>Text</td>
+                  <td>The text the component has</td>
+                </tr>
+                <tr>
+                  <td>Visible</td>
+                  <td>If the component is visible or not</td>
+                </tr>
+                </tbody>
+              </table>
+
             </div>
             <div class="row">
               <h5>Image</h5>
+              <p>An image component can be used to display an image to the user.</p>
+              <table class="bordered">
+                <thead>
+                <tr>
+                  <th data-field="attr">Attribute</th>
+                  <th data-field="info">Info</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                  <td>Text</td>
+                  <td>The text the component has</td>
+                </tr>
+                <tr>
+                  <td>Visible</td>
+                  <td>If the component is visible or not</td>
+                </tr>
+                </tbody>
+              </table>
             </div>
             <div class="row">
               <h5>Button</h5>
+              <p>A button component can be used to interact with the user with logic blocks.</p>
+              <table class="bordered">
+                <thead>
+                <tr>
+                  <th data-field="attr">Attribute</th>
+                  <th data-field="info">Info</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                  <td>Text</td>
+                  <td>The text the component has</td>
+                </tr>
+                <tr>
+                  <td>Visible</td>
+                  <td>If the component is visible or not</td>
+                </tr>
+                </tbody>
+              </table>
             </div>
             <div class="row">
               <h5>List</h5>
+              <img style="width: 150px; float: right;" src="img/list/props.png">
+              <p>A list component is a collection of different components.
+                 The components of a list are created from a component template.
+              This template can be created by clicking on <b>Edit items</b> in the properties of the list.
+              In this template you insert the components each list element should have.</p>
+
+              <table class="bordered">
+                <thead>
+                <tr>
+                  <th data-field="attr">Attribute</th>
+                  <th data-field="info">Info</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                  <td>Visible</td>
+                  <td>If the component is visible or not</td>
+                </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 
@@ -67,14 +158,17 @@
 
         <div id="logic" class="section scrollspy">
           <p><h4>Logic</h4> </p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse commodo ultrices diam non ultrices. Ut pellentesque, turpis et mollis gravida, orci turpis iaculis lacus, quis egestas ligula justo ac quam. Morbi commodo pretium felis, vitae congue est tempor et. Praesent elit purus, posuere efficitur pharetra sit amet, posuere in odio. Sed non ante eget ligula mollis eleifend. Pellentesque pharetra varius massa, a dictum purus iaculis eu. Nam id massa ut tortor malesuada pretium. Nunc rhoncus mi in eros dapibus, eu porttitor felis pellentesque. Integer interdum pulvinar augue, quis facilisis leo finibus vel. Ut venenatis, risus a varius semper, risus lacus vehicula dui, sit amet suscipit sapien sem sed leo. Etiam vehicula tellus ac ex eleifend, sit amet placerat nibh semper. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean dolor felis, lobortis quis pretium id, lobortis ut justo.
         </div>
       </div>
       <div class="col hide-on-small-only m3 l2">
-        <ul class="section table-of-contents">
-          <li><a href="#components">Components</a></li>
-          <li><a href="#editor">Editor</a></li>
-          <li><a href="#logic">Logic</a></li>
-        </ul>
+        <div id="side-bar" class="pinned">
+          <ul class="section table-of-contents">
+            <li><a href="#components">Components</a></li>
+            <li><a href="#editor">Editor</a></li>
+            <li><a href="#logic">Logic</a></li>
+          </ul>
+        </div>
       </div>
   </div>
 </div>
@@ -82,7 +176,6 @@
 <script>
   $(document).ready(function(){
     $('.scrollspy').scrollSpy();
-    $('.parallax').parallax();
   });
 </script>
 </body>
