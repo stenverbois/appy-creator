@@ -26,11 +26,6 @@ module.exports =
           value: 'Page0'
           type: 'hidden'
 
-        selectedItemProperties:
-          type: 'nested'
-          value: null
-          emptyMsg: 'Select an item to change it.'
-
         editNewItem:
           value: 'Edit items'
           type: 'button'
