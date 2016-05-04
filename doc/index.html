@@ -1,223 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Appy creator</title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Appy creator</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-    <script src="js/main.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  <script src="js/main.js"></script>
 
   <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
 
   <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
 
-<div class="section white">
   <div class="row container">
-      <div class="col s12 m9 l10">
-        <div id="editor" class="section scrollspy">
-          <h4>Editor</h4>
-          <div class="divider"></div>
-          <div class="section">
-            <img class="responsive-img" style="" src="img/editor/editor.png">
-            <p>
-              The editor is used to create the visual part of your application. The editor consists of several parts.
-              On your left you have a list of components. With these components you create the application that you want.
-              When you click on a component, the component will be visible on the panel in the middle.
-            </p>
-
-            <p>
-              When a component is selected on the smartphone panel, you can move it around by just dragging it to where you want.
-              You can also resize the component if you want to. You do this by putting your cursor in the right bottom corner of the component.
-              Then you just drag to the size you want. <b>ZET GIF HIER ERGENS</b>
-            </p>
-
-            <p>
-              On the right side of the editor you have the properties section. Here you can edit the properties of the components individually.
-              More info about the components and their properties can be found in the <a href="#components">components</a> section.
-              In this section you can also delete a component if you want.
-            </p>
-
-            <img class="responsive-img" src="img/editor/tabs.png">
-            <p>On the top bar of the editor you have the following tabs. For the moment we are in the Design tab.
-            When you're done with your design you can choose to add some logic to your app by going to the Logic tab.
-              More info about the logic tab can be found in the <a href="#logic">logic</a> section.
-              The info tab contains info about the application itself, like the name of your awesome app, your name, the width and height of the application preview etc...
-            </p>
-            <p>
-              You can also save your app by clicking on the save tab. Once saved you can reload the app with the load tab.
-              If you're done with making your app, you can upload it to the public by clicking on upload.
-              When you do this you'll get a QR code back. This QR code is important! Other users will use this to download your application.
-            </p>
-          </div>
-        </div>
-
-        <div id="components" class="section scrollspy">
-          <h4>Components</h4>
-          <div class="divider"></div>
-          <div class="section">
-            <div class="row" class="section scrollspy">
-
-              <h5>Textbox</h5>
-              <p>A textbox component is used for user input. </p>
-
-              <table class="bordered">
-                <thead>
-                <tr>
-                  <th data-field="attr">Attribute</th>
-                  <th data-field="info">Info</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr>
-                  <td>Text</td>
-                  <td>The text the component has</td>
-                </tr>
-                <tr>
-                  <td>Visible</td>
-                  <td>If the component is visible or not</td>
-                </tr>
-                </tbody>
-              </table>
-
-
-            </div>
-            <div class="row">
-              <h5>Label</h5>
-              <p>A label component can be used to contain any text you want to display to the user.</p>
-
-              <table class="bordered">
-                <thead>
-                <tr>
-                  <th data-field="attr">Attribute</th>
-                  <th data-field="info">Info</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr>
-                  <td>Text</td>
-                  <td>The text the component has</td>
-                </tr>
-                <tr>
-                  <td>Visible</td>
-                  <td>If the component is visible or not</td>
-                </tr>
-                </tbody>
-              </table>
-
-            </div>
-            <div class="row">
-              <h5>Image</h5>
-              <p>An image component can be used to display an image to the user.</p>
-              <table class="bordered">
-                <thead>
-                <tr>
-                  <th data-field="attr">Attribute</th>
-                  <th data-field="info">Info</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr>
-                  <td>Text</td>
-                  <td>The text the component has</td>
-                </tr>
-                <tr>
-                  <td>Visible</td>
-                  <td>If the component is visible or not</td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="row">
-              <h5>Button</h5>
-              <p>A button component can be used to interact with the user with logic blocks.</p>
-              <table class="bordered">
-                <thead>
-                <tr>
-                  <th data-field="attr">Attribute</th>
-                  <th data-field="info">Info</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr>
-                  <td>Text</td>
-                  <td>The text the component has</td>
-                </tr>
-                <tr>
-                  <td>Visible</td>
-                  <td>If the component is visible or not</td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="row">
-              <h5>List</h5>
-              <img style="width: 150px; float: right;" class="responsive-img" src="img/list/props.png">
-              <p>A list component is a collection of different components.
-                 The components of a list are created from a component template.
-              This template can be created by clicking on <b>Edit items</b> in the properties of the list.
-              In this template you insert the components each list element should have.</p>
-
-              <table class="bordered">
-                <thead>
-                <tr>
-                  <th data-field="attr">Attribute</th>
-                  <th data-field="info">Info</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr>
-                  <td>Visible</td>
-                  <td>If the component is visible or not</td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-        </div>
-
-        <div id="logic" class="section scrollspy">
-          <h4>Logic</h4>
-          <div class="divider"></div>
-          <img class="responsive-img" src="img/logic/logic.png">
+    <div class="col s12 m9 l10">
+      <div id="editor" class="section scrollspy">
+        <h4>Editor</h4>
+        <div class="divider"></div>
+        <div class="section">
+          <img class="responsive-img" style="" src="img/editor/editor.png">
           <p>
-            The logic view is the view where you create the logic of your application!
-            This is an important process because it makes your app do the things you want!
-            The logic view consists of two parts. The first part is on the left.
-            Here you can find the components that are present in your app.
-            You can also find functions and these functions are the most important things in your logic!
-            When you click on one of the components or functions, then a node will appear on the right side.
-            This right side is the place where you connect your logic!
+            The editor is used to create the visual part of your application. The editor consists of several parts.
+            On your left you have a list of components. With these components you create the application that you want.
+            When you click on a component, the component will be visible on the panel in the middle.
           </p>
-          <h5>Functions</h5>
-          <div class="row">
-            <h6>Plus</h6>
-            <p>FOTO</p>
-          </div>
 
-          <div class="row">
-            <h6>RemoveListItem</h6>
-            <p>FOTO</p>
-          </div>
+          <p>
+            When a component is selected on the smartphone panel, you can move it around by just dragging it to where you want.
+            You can also resize the component if you want to. You do this by putting your cursor in the right bottom corner of the component.
+            Then you just drag to the size you want. <b>ZET GIF HIER ERGENS</b>
+          </p>
 
-          <div class="row">
-            <h6>AddListItem</h6>
-            <p>FOTO</p>
+          <p>
+            On the right side of the editor you have the properties section. Here you can edit the properties of the components individually.
+            More info about the components and their properties can be found in the <a href="#components">components</a> section.
+            In this section you can also delete a component if you want.
+          </p>
+
+          <img class="responsive-img" src="img/editor/tabs.png">
+          <p>On the top bar of the editor you have the following tabs. For the moment we are in the Design tab.
+            When you're done with your design you can choose to add some logic to your app by going to the Logic tab.
+            More info about the logic tab can be found in the <a href="#logic">logic</a> section.
+            The info tab contains info about the application itself, like the name of your awesome app, your name, the width and height of the application preview etc...
+          </p>
+          <p>
+            You can also save your app by clicking on the save tab. Once saved you can reload the app with the load tab.
+            If you're done with making your app, you can upload it to the public by clicking on upload.
+            When you do this you'll get a QR code back. This QR code is important! Other users will use this to download your application.
+          </p>
+        </div>
+      </div>
+
+      <div id="components" class="section scrollspy">
+        <h4>Components</h4>
+        <div class="divider"></div>
+        <div class="section">
+          <div class="row" class="section scrollspy">
+
+            <h5>Textbox</h5>
+            <p>A textbox component is used for user input. </p>
+
+            <table class="bordered">
+              <thead>
+                <tr>
+                  <th data-field="attr">Attribute</th>
+                  <th data-field="info">Info</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Text</td>
+                  <td>The text the component has</td>
+                </tr>
+                <tr>
+                  <td>Visible</td>
+                  <td>If the component is visible or not</td>
+                </tr>
+              </tbody>
+            </table>
+
+
           </div>
+          <div class="row">
+            <h5>Label</h5>
+            <p>A label component can be used to contain any text you want to display to the user.</p>
+
+            <table class="bordered">
+              <thead>
+                <tr>
+                  <th data-field="attr">Attribute</th>
+                  <th data-field="info">Info</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Text</td>
+                  <td>The text the component has</td>
+                </tr>
+                <tr>
+                  <td>Visible</td>
+                  <td>If the component is visible or not</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+          <div class="row">
+            <h5>Image</h5>
+            <p>An image component can be used to display an image to the user.</p>
+            <table class="bordered">
+              <thead>
+                <tr>
+                  <th data-field="attr">Attribute</th>
+                  <th data-field="info">Info</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Text</td>
+                  <td>The text the component has</td>
+                </tr>
+                <tr>
+                  <td>Visible</td>
+                  <td>If the component is visible or not</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <h5>Button</h5>
+            <p>A button component can be used to interact with the user with logic blocks.</p>
+            <table class="bordered">
+              <thead>
+                <tr>
+                  <th data-field="attr">Attribute</th>
+                  <th data-field="info">Info</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Text</td>
+                  <td>The text the component has</td>
+                </tr>
+                <tr>
+                  <td>Visible</td>
+                  <td>If the component is visible or not</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <h5>List</h5>
+            <img style="width: 150px; float: right;" class="responsive-img" src="img/list/props.png">
+            <p>A list component is a collection of different components.
+              The components of a list are created from a component template.
+              This template can be created by clicking on <b>Edit items</b> in the properties of the list.
+              In this template you insert the components each list element should have.
+            </p>
+
+            <table class="bordered">
+              <thead>
+                <tr>
+                  <th data-field="attr">Attribute</th>
+                  <th data-field="info">Info</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Visible</td>
+                  <td>If the component is visible or not</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="logic" class="section scrollspy">
+        <h4>Logic</h4>
+        <div class="divider"></div>
+        <img class="responsive-img" src="img/logic/logic.png">
+        <p>
+          The logic view is the view where you create the logic of your application!
+          This is an important process because it makes your app do the things you want!
+          The logic view consists of two parts. The first part is on the left.
+          Here you can find the components that are present in your app.
+          You can also find functions and these functions are the most important things in your logic!
+          When you click on one of the components or functions, then a node will appear on the right side.
+          This right side is the place where you connect your logic!
+        </p>
+        <h5>Functions</h5>
+        <div class="row">
+          <h6>Plus</h6>
+          <p>FOTO</p>
+        </div>
+
+        <div class="row">
+          <h6>RemoveListItem</h6>
+          <p>FOTO</p>
+        </div>
+
+        <div class="row">
+          <h6>AddListItem</h6>
+          <p>FOTO</p>
+        </div>
       </div>
       <div class="col hide-on-small-only m3 l2">
         <div id="side-bar" class="pinned">
@@ -228,13 +228,13 @@
           </ul>
         </div>
       </div>
+    </div>
   </div>
-</div>
 
-<script>
+  <script>
   $(document).ready(function(){
     $('.scrollspy').scrollSpy();
   });
-</script>
+  </script>
 </body>
 </html>
