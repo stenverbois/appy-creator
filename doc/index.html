@@ -22,11 +22,11 @@
 
   <div class="row container">
     <div class="col s12 m9 l10">
-      <div id="editor" class="section scrollspy">
-        <h4>Editor</h4>
+      <div id="design" class="section scrollspy">
+        <h3>Design</h3>
         <div class="divider"></div>
         <div class="section">
-          <img class="responsive-img" style="" src="img/editor/editor.png">
+          <img class="responsive-img" src="img/editor/editor.png">
           <p>
             The editor is used to create the visual part of your application. The editor consists of several parts.
             On your left you have a list of components. With these components you create the application that you want.
@@ -60,138 +60,132 @@
       </div>
 
       <div id="components" class="section scrollspy">
-        <h4>Components</h4>
+        <h3>Components</h3>
         <div class="divider"></div>
         <div class="section">
-          <div class="row" class="section scrollspy">
+          <h5>Textbox</h5>
+          <p>A textbox component is used for user input. </p>
 
-            <h5>Textbox</h5>
-            <p>A textbox component is used for user input. </p>
+          <table class="bordered">
+            <thead>
+              <tr>
+                <th data-field="attr">Attribute</th>
+                <th data-field="info">Info</th>
+              </tr>
+            </thead>
 
-            <table class="bordered">
-              <thead>
-                <tr>
-                  <th data-field="attr">Attribute</th>
-                  <th data-field="info">Info</th>
-                </tr>
-              </thead>
+            <tbody>
+              <tr>
+                <td>Text</td>
+                <td>The text the component has</td>
+              </tr>
+              <tr>
+                <td>Visible</td>
+                <td>If the component is visible or not</td>
+              </tr>
+            </tbody>
+          </table>
 
-              <tbody>
-                <tr>
-                  <td>Text</td>
-                  <td>The text the component has</td>
-                </tr>
-                <tr>
-                  <td>Visible</td>
-                  <td>If the component is visible or not</td>
-                </tr>
-              </tbody>
-            </table>
+          <br />
+          <h5>Label</h5>
+          <p>A label component can be used to contain any text you want to display to the user.</p>
 
+          <table class="bordered">
+            <thead>
+              <tr>
+                <th data-field="attr">Attribute</th>
+                <th data-field="info">Info</th>
+              </tr>
+            </thead>
 
-          </div>
-          <div class="row">
-            <h5>Label</h5>
-            <p>A label component can be used to contain any text you want to display to the user.</p>
+            <tbody>
+              <tr>
+                <td>Text</td>
+                <td>The text the component has</td>
+              </tr>
+              <tr>
+                <td>Visible</td>
+                <td>If the component is visible or not</td>
+              </tr>
+            </tbody>
+          </table>
 
-            <table class="bordered">
-              <thead>
-                <tr>
-                  <th data-field="attr">Attribute</th>
-                  <th data-field="info">Info</th>
-                </tr>
-              </thead>
+          <br />
+          <h5>Image</h5>
+          <p>An image component can be used to display an image to the user.</p>
+          <table class="bordered">
+            <thead>
+              <tr>
+                <th data-field="attr">Attribute</th>
+                <th data-field="info">Info</th>
+              </tr>
+            </thead>
 
-              <tbody>
-                <tr>
-                  <td>Text</td>
-                  <td>The text the component has</td>
-                </tr>
-                <tr>
-                  <td>Visible</td>
-                  <td>If the component is visible or not</td>
-                </tr>
-              </tbody>
-            </table>
+            <tbody>
+              <tr>
+                <td>Text</td>
+                <td>The text the component has</td>
+              </tr>
+              <tr>
+                <td>Visible</td>
+                <td>If the component is visible or not</td>
+              </tr>
+            </tbody>
+          </table>
 
-          </div>
-          <div class="row">
-            <h5>Image</h5>
-            <p>An image component can be used to display an image to the user.</p>
-            <table class="bordered">
-              <thead>
-                <tr>
-                  <th data-field="attr">Attribute</th>
-                  <th data-field="info">Info</th>
-                </tr>
-              </thead>
+          <br />
+          <h5>Button</h5>
+          <p>A button component can be used to interact with the user with logic blocks.</p>
+          <table class="bordered">
+            <thead>
+              <tr>
+                <th data-field="attr">Attribute</th>
+                <th data-field="info">Info</th>
+              </tr>
+            </thead>
 
-              <tbody>
-                <tr>
-                  <td>Text</td>
-                  <td>The text the component has</td>
-                </tr>
-                <tr>
-                  <td>Visible</td>
-                  <td>If the component is visible or not</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="row">
-            <h5>Button</h5>
-            <p>A button component can be used to interact with the user with logic blocks.</p>
-            <table class="bordered">
-              <thead>
-                <tr>
-                  <th data-field="attr">Attribute</th>
-                  <th data-field="info">Info</th>
-                </tr>
-              </thead>
+            <tbody>
+              <tr>
+                <td>Text</td>
+                <td>The text the component has</td>
+              </tr>
+              <tr>
+                <td>Visible</td>
+                <td>If the component is visible or not</td>
+              </tr>
+            </tbody>
+          </table>
 
-              <tbody>
-                <tr>
-                  <td>Text</td>
-                  <td>The text the component has</td>
-                </tr>
-                <tr>
-                  <td>Visible</td>
-                  <td>If the component is visible or not</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="row">
-            <h5>List</h5>
-            <img style="width: 150px; float: right;" class="responsive-img" src="img/list/props.png">
-            <p>A list component is a collection of different components.
-              The components of a list are created from a component template.
-              This template can be created by clicking on <b>Edit items</b> in the properties of the list.
-              In this template you insert the components each list element should have.
-            </p>
+          <br />
+          <h5>List</h5>
+          <img style="width: 150px; float: right;" class="responsive-img" src="img/list/props.png">
+          <p>A list component is a collection of different components.
+            The components of a list are created from a component template.
+            This template can be created by clicking on <b>Edit items</b> in the properties of the list.
+            In this template you insert the components each list element should have.
+          </p>
 
-            <table class="bordered">
-              <thead>
-                <tr>
-                  <th data-field="attr">Attribute</th>
-                  <th data-field="info">Info</th>
-                </tr>
-              </thead>
+          <table class="bordered">
+            <thead>
+              <tr>
+                <th data-field="attr">Attribute</th>
+                <th data-field="info">Info</th>
+              </tr>
+            </thead>
 
-              <tbody>
-                <tr>
-                  <td>Visible</td>
-                  <td>If the component is visible or not</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+            <tbody>
+              <tr>
+                <td>Visible</td>
+                <td>If the component is visible or not</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
       </div>
 
       <div id="logic" class="section scrollspy">
-        <h4>Logic</h4>
+        <h3>Logic</h3>
         <div class="divider"></div>
         <img class="responsive-img" src="img/logic/logic.png">
         <p>
@@ -205,25 +199,31 @@
         </p>
         <h5>Functions</h5>
         <div class="row">
-          <h6>Plus</h6>
-          <p>FOTO</p>
+          <div class="col s12">
+            <h6>Plus</h6>
+            <p>FOTO</p>
+          </div>
         </div>
 
         <div class="row">
-          <h6>RemoveListItem</h6>
-          <p>FOTO</p>
+          <div class="col s12">
+            <h6>RemoveListItem</h6>
+            <p>FOTO</p>
+          </div>
         </div>
 
         <div class="row">
-          <h6>AddListItem</h6>
-          <p>FOTO</p>
+          <div class="col s12">
+            <h6>AddListItem</h6>
+            <p>FOTO</p>
+          </div>
         </div>
       </div>
     </div>
     <div class="col hide-on-small-only m3 l2">
       <div id="side-bar" class="pinned">
         <ul class="section table-of-contents">
-          <li><a href="#editor">Editor</a></li>
+          <li><a href="#design">Design</a></li>
           <li><a href="#components">Components</a></li>
           <li><a href="#logic">Logic</a></li>
         </ul>
