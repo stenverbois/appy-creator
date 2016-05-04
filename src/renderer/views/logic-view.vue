@@ -1,4 +1,4 @@
-<style lang="scss" scoped>
+<style lang="scss">
 @import "./../../style/custom/variables.scss";
 // .view {
 //   position: absolute;
