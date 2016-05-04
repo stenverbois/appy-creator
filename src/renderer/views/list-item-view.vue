@@ -71,7 +71,7 @@
             @mousedown="selected = $index">
 
             <div>
-              <component :is="component.cmpName" :cmp="component"></component>
+              <component :is="component.cmpName" :cmp="component" :class="component.cmpName"></component>
             </div>
 
           </li>
