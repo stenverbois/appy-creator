@@ -19,7 +19,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-
+  <div class="parallax-container">
+    <div class="parallax appy">
+      <div class="row">
+        <div class="section">
+          <div class="col s12 center">
+            <i class="material-icons md-120">smartphone</i>
+          </div>
+          <div class="col s12 center appy_font">
+            Appy
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row container">
     <div class="col s12 m9 l10">
       <div id="design" class="section scrollspy">
@@ -28,9 +41,9 @@
         <div class="section">
           <img class="responsive-img" src="img/editor/editor.png">
           <p>
-            The editor is used to create the visual part of your application. The editor consists of several parts.
+            The editor is used to create the visual part of your application.
             On your left you have a list of components. With these components you create the application that you want.
-            When you click on a component, the component will be visible on the panel in the middle.
+            When you click on a component, the component will be visible on the smartphone panel in the middle.
           </p>
 
           <p>
@@ -40,16 +53,16 @@
           </p>
 
           <p>
-            On the right side of the editor you have the properties section. Here you can edit the properties of the components individually.
+            On the right side of the editor you have the properties section. Here you can edit the properties of the components on the smartphone panel individually.
             More info about the components and their properties can be found in the <a href="#components">components</a> section.
-            In this section you can also delete a component if you want.
+            In this section you can also delete a component by clicking on the <kbd>DELETE</kbd> button at the bottom of the panel.
           </p>
 
           <img class="responsive-img" src="img/editor/tabs.png">
-          <p>On the top bar of the editor you have the following tabs. For the moment we are in the Design tab.
+          <p>On the top bar of the editor you have a few tabs. We are now in the Design tab.
             When you're done with your design you can choose to add some logic to your app by going to the Logic tab.
             More info about the logic tab can be found in the <a href="#logic">logic</a> section.
-            The info tab contains info about the application itself, like the name of your awesome app, your name, the width and height of the application preview etc...
+            The info tab contains info about the application itself but you shouldn't worry about that for the moment.
           </p>
           <p>
             You can also save your app by clicking on the save tab. Once saved you can reload the app with the load tab.
@@ -77,11 +90,11 @@
             <tbody>
               <tr>
                 <td>Text</td>
-                <td>The text the component has</td>
+                <td>The text on the Textbox</td>
               </tr>
               <tr>
                 <td>Visible</td>
-                <td>If the component is visible or not</td>
+                <td>If the Textbox is visible or not</td>
               </tr>
             </tbody>
           </table>
@@ -101,16 +114,16 @@
             <tbody>
               <tr>
                 <td>Text</td>
-                <td>The text the component has</td>
+                <td>The text on the Label</td>
               </tr>
               <tr>
                 <td>Visible</td>
-                <td>If the component is visible or not</td>
+                <td>If the Label is visible or not</td>
               </tr>
             </tbody>
           </table>
 
-          <br />
+          <!-- <br />
           <h5>Image</h5>
           <p>An image component can be used to display an image to the user.</p>
           <table class="bordered">
@@ -131,7 +144,7 @@
                 <td>If the component is visible or not</td>
               </tr>
             </tbody>
-          </table>
+          </table> -->
 
           <br />
           <h5>Button</h5>
@@ -147,11 +160,11 @@
             <tbody>
               <tr>
                 <td>Text</td>
-                <td>The text the component has</td>
+                <td>The text on the Button</td>
               </tr>
               <tr>
                 <td>Visible</td>
-                <td>If the component is visible or not</td>
+                <td>If the Button is visible or not</td>
               </tr>
             </tbody>
           </table>
@@ -176,7 +189,7 @@
             <tbody>
               <tr>
                 <td>Visible</td>
-                <td>If the component is visible or not</td>
+                <td>If the List is visible or not</td>
               </tr>
             </tbody>
           </table>
@@ -189,13 +202,14 @@
         <div class="divider"></div>
         <img class="responsive-img" src="img/logic/logic.png">
         <p>
-          The logic view is the view where you create the logic of your application!
+          The logic view is the view where you create the logic of your application.
           This is an important process because it makes your app do the things you want!
-          The logic view consists of two parts. The first part is on the left.
-          Here you can find the components that are present in your app.
-          You can also find functions and these functions are the most important things in your logic!
-          When you click on one of the components or functions, then a node will appear on the right side.
-          This right side is the place where you connect your logic!
+          The logic view consists of two main area's. First we again have a side bar on the left.
+          This time there is a button for every component that is present in your app.
+          Here you can also find functions. These functions are the most important things in your logic because they will connect
+          your components to make them do useful things.
+          When you click on one of the components or functions, a block will appear on the right side.
+          This right side is where you connect your logic.
         </p>
         <h5>Functions</h5>
         <div class="row">

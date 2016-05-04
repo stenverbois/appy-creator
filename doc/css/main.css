@@ -3,10 +3,19 @@ body {
 }
 
 .appy{
-  background-color: #ff675b;
+  background-color: #303F9F;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+h3 {
+  color: #303F9F;
+}
+
+h5 {
+  font-weight: 500;
 }
 
 .appy_font{
@@ -23,6 +32,10 @@ body {
 
 .pinned {
      position: fixed !important;
+}
+
+.parallax-container {
+  height: 300px;
 }
 
 

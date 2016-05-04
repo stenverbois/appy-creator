@@ -27,7 +27,7 @@ module.exports =
     components: [
       {
         title: "Main"
-        icon: "language"
+        icon: "dashboard"
         objects: Object.keys require('../components/components.coffee').classes
       }
     ]
