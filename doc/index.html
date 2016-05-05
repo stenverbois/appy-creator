@@ -209,7 +209,8 @@
           Here you can also find functions. These functions are the most important things in your logic because they will connect
           your components to make them do useful things.
           When you click on one of the components or functions, a block will appear on the right side.
-          This right side is where you connect your logic. Before we talk more about the editor we should probably talk about the functions first.
+          This right side is where you connect your logic.
+          Before we talk more about the editor we should probably talk about the functions first.
         </p>
         <h4>Functions</h4>
         <p>
@@ -284,10 +285,31 @@
           <div class="col s12">
             <h5>RemoveListItem</h5>
             <div class="divider"></div>
+            <img class="responsive-img" src="img/logic/deleteListItem.png">
+            <p>This function is used to remove a single entry from a list</p>
 
-            <p>FOTO</p>
-            <b><u>Inputs</u></b>
-            <b><u>Outputs</u></b>
+            <div class="row">
+              <b><u>Inputs</u></b>
+              <table class="bordered">
+                <thead>
+                <tr>
+                  <th data-field="attr">Input</th>
+                  <th data-field="info">Info</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                  <td>Action</td>
+                  <td>The event for which this function should be triggered. This event should come from an item in a list!</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <b><u>Outputs</u></b>
+              <p>This function has no explicit output. The implicit output is of course the list of which the component is part of!</p>
+            </div>
           </div>
         </div>
 
@@ -296,12 +318,30 @@
             <h5>AddListItem</h5>
             <div class="divider"></div>
 
-            <p>FOTO</p>
-            <b><u>Inputs</u></b>
-            <b><u>Outputs</u></b>
+            <img class="responsive-img" src="img/logic/addItemList.png">
+            <p>This function is used to add new items to a list.</p>
+            <div class="row">
+              <b><u>Inputs</u></b>
+              <p>
+                This function has an input for each element in the list.
+                These inputs can be used to set the data of these elements.
+                Let's say you have a label in your list and you want to set it's text through a textbox, then you would connect
+                the output of the textbox with the input of the according label in this function.
+                ...
+              </p>
+            </div>
+
+            <div class="row">
+              <b><u>Outputs</u></b>
+              <p>This function has no explicit output since this is a specific function for a list.</p>
+            </div>
           </div>
         </div>
 
+        <p>
+          Now that you know which functions there exists. Let's see how you the logic editor works!
+
+        </p>
       </div>
     </div>
     <div class="col hide-on-small-only m3 l2">
