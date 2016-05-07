@@ -216,11 +216,24 @@
           it over an input.
         </p>
         <h4>Functions</h4>
+        <p>
+          Functions consist of three different types of inputs and outputs.
+          At the left side of the block you always have the inputs of the function.
+          These inputs are given to the function to do something with.
+          The inputs always have names so be sure to carefully read the label of the input you want to make a connection with.
+          On the bottom of the block you have an action input.
+          These inputs should only be connected with connections from a Button block.
+          The reason for this is that your function is triggered by an event (e.g. <u>click</u> on a button).
+          For the moment only buttons have events.
+          On the right side of the function block you have the output's of the function.
+          These outputs can be connected with any other component or even function.
+        </p>
         <div class="row">
           <div class="col s12">
             <h5>Plus</h5>
-            <p>FOTO</p>
-            <p>A Plus block adds 2 things together. Like the text of two textboxes.</p>
+            <div class="divider"></div>
+            <img class="responsive-img" src="img/logic/plus.png">
+            <p>A Plus block adds 2 things together into one output. Like the text of two textboxes.</p>
             <table class="bordered">
               <thead>
                 <tr>
@@ -247,6 +260,8 @@
                 </tr>
               </tbody>
             </table>
+            <p>Special note: The left output is used first. So if you connect a textbox with text "A" to left and a textbox with text "B" to right.
+              The result will be "AB" and not "BA".</p>
           </div>
         </div>
 
@@ -261,7 +276,8 @@
         <div class="row">
           <div class="col s12">
             <h5>AddListItem</h5>
-            <p>FOTO</p>
+            <div class="divider"></div>
+            <img class="responsive-img" src="img/logic/addItemList.png">
             <p>
               When activated, the AddListItem block adds a new item to the list it belongs to.
               It doesn't have a fixed set of inputs like the Plus, rather the inputs
@@ -279,7 +295,8 @@
         <div class="row">
           <div class="col s12">
             <h5>RemoveListItem</h5>
-            <p>FOTO</p>
+            <div class="divider"></div>
+            <img class="responsive-img" src="img/logic/deleteListItem.png">
             <p>
               When activated, the RemoveListItem block removes an item from the list it belongs to.
               For now, you can only remove items from lists by clicking on a button on that item.
