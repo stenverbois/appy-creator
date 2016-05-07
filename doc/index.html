@@ -209,27 +209,82 @@
           Here you can also find functions. These functions are the most important things in your logic because they will connect
           your components to make them do useful things.
           When you click on one of the components or functions, a block will appear on the right side.
-          This right side is where you connect your logic.
         </p>
-        <h5>Functions</h5>
+        <p>
+          Inputs of a block are indicated by the colored circles and outputs by the empty circles.
+          You can connect any input to an output simply by holding your mouse down on an output and then releasing
+          it over an input.
+        </p>
+        <h4>Functions</h4>
         <div class="row">
           <div class="col s12">
-            <h6>Plus</h6>
+            <h5>Plus</h5>
             <p>FOTO</p>
+            <p>A Plus block adds 2 things together. Like the text of two textboxes.</p>
+            <table class="bordered">
+              <thead>
+                <tr>
+                  <th data-field="conn">Connector</th>
+                  <th data-field="type">Type</th>
+                  <th data-field="info">Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Left</td>
+                  <td>Input</td>
+                  <td>The parameter on the left side of the +</td>
+                </tr>
+                <tr>
+                  <td>Right</td>
+                  <td>Input</td>
+                  <td>The parameter on the right side of the +</td>
+                </tr>
+                <tr>
+                  <td>Result</td>
+                  <td>Output</td>
+                  <td>The result of the +</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+        </div>
+
+        <div class="card-panel teal">
+          <p class="white-text">
+            The next two function blocks are a bit different because they are not always available.
+            They have an effect on a specific List component in your app, so you will only be able to
+            add one of them for each List component you have in your app.
+          </p>
         </div>
 
         <div class="row">
           <div class="col s12">
-            <h6>RemoveListItem</h6>
+            <h5>AddListItem</h5>
             <p>FOTO</p>
+            <p>
+              When activated, the AddListItem block adds a new item to the list it belongs to.
+              It doesn't have a fixed set of inputs like the Plus, rather the inputs
+              depend on what components you have put in the list item need an input.
+            </p>
+            <p>
+              For example: If you have two Labels and a Button in your list item
+              then the AddListItem block will only have two inputs, one for each label.
+              the button does't need an input in this case. You provided the text on the button
+              when designing the list item. It will then make a new item with the text of the connected
+              inputs in place of the default text on those Labels.
+            </p>
           </div>
         </div>
-
         <div class="row">
           <div class="col s12">
-            <h6>AddListItem</h6>
+            <h5>RemoveListItem</h5>
             <p>FOTO</p>
+            <p>
+              When activated, the RemoveListItem block removes an item from the list it belongs to.
+              For now, you can only remove items from lists by clicking on a button on that item.
+              So the way you this function is by connecting a Button to it that is part of the components of a list item.
+            </p>
           </div>
         </div>
       </div>
