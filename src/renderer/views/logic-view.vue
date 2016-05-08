@@ -293,9 +293,10 @@ module.exports =
       {
         title: 'Functions'
         icon: 'timeline'
-        objects: Object.keys require('./../logic/functions.coffee').classes
+        objects: (f for f in Object.keys require('./../logic/functions.coffee').classes when (@functions[f]).isForList == false)
       }
     ]
+
     @instance = window.jsp = jsPlumb.getInstance({
         # // default drag options
         DragOptions: { cursor: 'pointer', zIndex: 2000 },
