@@ -36,6 +36,53 @@
   <div class="row container">
     <div class="col s12 m9 l10">
       <div id="tutorial" class="section scrollspy">
+        <h3>Tutorial</h3>
+        <div class="divider"></div>
+        <div class="section">
+          <p>
+            Lets's dive right in with a small tutorial to make your first app! If you just want to know how a
+            specific part of the editor works, feel free to use the menu on the right to skip to the part you need.
+          </p>
+          <p>
+            We will be making an app that lets a user fill in two textboxes and then press a button to combine the text
+            in those textboxes and show the result. Let's get started!
+          </p>
+          <h5>Design</h5>
+          <p>
+            First thing we need to do is add all the components we need to our app. For this small app we will need
+            two textboxes for the user to fill in the text, one button and a label to show the resulting text.
+            We add these components by clicking on them in de components bar on the left.
+            You can position and resize the elements to make your app look unique. You can change some of
+            the properties of the components as well, like the text on the button or the default text in the texboxes.
+          </p>
+          <b>GIF?</b>
+          <p>
+            Now that we have all the components in place we can apply some logic to them.
+          </p>
+          <h5>Logic</h5>
+          <p>
+            Now we start by looking through the functions on the left. Click on the <b>Plus</b> block and you will see
+            a logic block appear in the middle of the screen. This is the central logic block for our app.
+          </p>
+          <b>GIF?</b>
+          <p>
+            We can see it needs some inputs, an output and an action. The inputs are the textboxes, so we find both our
+            textboxes in the bar on the left and add them to the logic screen by clicking on them. Now we can connect
+            the <b>text</b> output of the texboxes to the <b>left</b> and <b>right</b> inputs of the Plus block.
+          </p>
+          <b>GIF?</b>
+          <p>
+            Next up is the output. We add the label to the logic screen and connect the output of the Plus block to
+            the <b>text</b> input of the label.
+          </p>
+          <p>
+            Finally we need a way to activate the Plus block. Let's add our last component, the button, to the logic screen
+            and connect it with the <b>action</b> input of the Plus block. On the connection you will see
+            a dropdown selection for the action that will activate the block. For now we need the click so you can leave it
+            like that. That's it! All we need to do now is click the Upload button in the top right corner, scan the qr code with
+            the Appy Center app and see our brand new app in action.
+          </p>
+        </div>
       </div>
       <div id="design" class="section scrollspy">
         <h3>Design</h3>
@@ -217,6 +264,12 @@
           You can connect any input to an output simply by holding your mouse down on an output and then releasing
           it over an input.
         </p>
+        <div class="card-panel teal">
+          <p class="white-text">
+            <i>Note:</i> When you add a List component to the logic screen, instead of adding a single block like for the other components,
+            there will a block for every component inside each list item. This way you can connect these with functions individually.
+          </p>
+        </div>
         <h4>Functions</h4>
         <p>
           Functions consist of three different types of inputs and outputs.
