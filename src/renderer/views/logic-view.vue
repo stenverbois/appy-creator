@@ -13,7 +13,7 @@
 }
 
 .flowchart-demo .window {
-    border: 1px solid #346789;
+    border: 2px solid $primary-color;
     box-shadow: 2px 2px 19px #aaa;
     -o-box-shadow: 2px 2px 19px #aaa;
     -webkit-box-shadow: 2px 2px 19px #aaa;
@@ -21,14 +21,14 @@
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
     opacity: 0.8;
-    width: 130px;
-    height: 90px;
+    width: 180px;
+    height: 135px;
     cursor: pointer;
     text-align: center;
     z-index: 20;
     position: absolute;
-    background-color: #eeeeef;
-    color: black;
+    background-color: #eeeeee;
+    color: #212121;
     font-family: helvetica, sans-serif;
     // padding: 0.5em;
     font-size: 0.9em;
@@ -84,7 +84,8 @@
 }
 
 .jsplumb-drag {
-    outline: 4px solid pink !important;
+    // outline: 4px solid $accent-color !important;
+    box-shadow: 2px 2px 19px $primary-color !important;
 }
 
 path, .jsplumb-endpoint {
@@ -99,10 +100,42 @@ path, .jsplumb-endpoint {
   top: 0;
 }
 
-.logic-container {
-  .property-container {
-    width: 100%;
-  }
+.action-container {
+  padding-top: 10px;
+  margin-bottom: 5px;
+}
+
+.inout-container {
+  width: 100%;
+}
+
+.in-container {
+  width: 50%;
+  float: left;
+  text-align: left;
+}
+
+.out-container {
+  width: 50%;
+  float: right;
+  text-align: right;
+  margin-top: 15px;
+}
+
+.block-parameter {
+  margin-top: 10px;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.block-name {
+  width: 100%;
+  background-color: $primary-color;
+  color: $primary-color-text;
+  font-weight: bold;
+  font-size: 1.2rem;
+  // border-top: 1px solid #B6B6B6;
+  // border-bottom: 1px solid #B6B6B6;
 }
 </style>
 
@@ -126,41 +159,42 @@ path, .jsplumb-endpoint {
               <div v-if="node.type == 'List'">
                 <div v-for="genitem in node.properties.newItemComponents" data-type="{{genitem.type}}" data-name="{{node.name}}" v-show="node.visibleInLogic">
                   <div class="window jtk-node" id="{{node.name}}{{genitem.name}}">
-                    <strong>{{node.name}}.{{genitem.name}}</strong>
-                      <div v-for="(key, property) of genitem.properties" data-type="{{genitem.type}}" data-name="{{node.name}}.{{genitem.name}}" v-show="property.primary" id="{{node.name}}{{genitem.name}}{{property.name}}">
-                        {{key}}
-                      </div>
-                    <br/>
-                    <br/>
+                    <div class="block-name">{{node.name}}.{{genitem.name}}</div>
+                    <div v-for="(key, property) of genitem.properties" data-type="{{genitem.type}}" data-name="{{node.name}}.{{genitem.name}}" v-show="property.primary" id="{{node.name}}{{genitem.name}}{{property.name}}" class="block-parameter">
+                      {{key}}
+                    </div>
                   </div>
-
                 </div>
               </div>
               <div v-else>
                 <div class="window jtk-node logic-container" id="{{node.name}}">
-                  <strong>{{node.name}}</strong>
-                    <div v-for="(key, property) of node.properties" data-type="{{node.type}}" data-name="{{node.name}}" v-show="property.primary" id="{{node.name}}{{property.name}}" class="property-container">
+                  <div class="block-name">{{node.name}}</div>
+                  <div class="inout-container">
+                    <div v-for="(key, property) of node.properties" data-type="{{node.type}}" data-name="{{node.name}}" v-show="property.primary" id="{{node.name}}{{property.name}}" class="block-parameter">
                       {{key}}
                     </div>
-                  <br/>
-                  <br/>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div v-for="node in state.app.functions" data-name="{{node.name}}" class="window jtk-node" id="{{node.name}}" v-show="node.visibleInLogic">
-                <strong>{{node.type}}</strong>
-                  <div v-for="param in node.parameterNames" data-name="{{node.name}}"  id="{{node.name}}{{param.name}}">
-                      {{param.name}}
-                  </div>
-                  <div v-for="param in node.outputNames" data-name="{{node.name}}"  id="{{node.name}}{{param.name}}">
-                      {{param.name}}
-                  </div>
-                  <div id="{{node.name}}action" data-name="{{node.name}}">
-                    Action
-                  </div>
-                <br/>
-                <br/>
+              <div id="{{node.name}}action" data-name="{{node.name}}" class="action-container">
+                Action
+              </div>
+              <div class="block-name">{{node.type}}</div>
+              <div class="in-container">
+                <div v-for="param in node.parameterNames" data-name="{{node.name}}"  id="{{node.name}}{{param.name}}" class="block-parameter">
+                  {{param.name}}
+                </div>
+              </div>
+              <div class="out-container">
+                <div v-for="param in node.outputNames" data-name="{{node.name}}"  id="{{node.name}}{{param.name}}" class="block-parameter">
+                  {{param.name}}
+                </div>
+              </div>
+              <br/>
+              <br/>
             </div>
         </div>
       </div>
@@ -337,29 +371,28 @@ module.exports =
       # // this is the paint style for the connecting lines..
     connectorPaintStyle =
       lineWidth: 4,
-      strokeStyle: "#61B7CF",
-      joinstyle: "round",
+      strokeStyle: "#8BC34A",
       outlineColor: "white",
       outlineWidth: 2
-      # // .. and this is the hover style.
 
     connectorHoverStyle =
       lineWidth: 4,
-      # strokeStyle: "#216477",
+      # strokeStyle: "#3F51B5",
       outlineWidth: 2,
       outlineColor: "white"
 
     endpointHoverStyle =
-      # fillStyle: "#216477",
-      # strokeStyle: "#216477"
+      # fillStyle: "#3F51B5",
+      # strokeStyle: "#3F51B5"
       # // the definition of source endpoints (the small blue ones)
 
     @sourceEndpoint =
       endpoint: "Dot",
       paintStyle:
-        strokeStyle: "#7AB02C",
-        fillStyle: "transparent",
-        radius: 7,
+        strokeStyle: "#8BC34A",
+        # fillStyle: "transparent",
+        fillStyle: "#FFFFFF",
+        radius: 10,
         lineWidth: 3
       isSource: true,
       maxConnections: -1,
@@ -382,7 +415,7 @@ module.exports =
     # // the definition of target endpoints (will appear when the user drags a connection)
     @targetEndpoint =
       endpoint: "Dot",
-      paintStyle: { fillStyle: "#7AB02C", radius: 11 },
+      paintStyle: { fillStyle: "#8BC34A", radius: 11 },
       hoverPaintStyle: endpointHoverStyle,
       maxConnections: -1,
       dropOptions: { hoverClass: "hover", activeClass: "active" },
@@ -456,7 +489,7 @@ module.exports =
         @instance.bind("click", (conn, originalEvent) ->
           #  // if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
             #  //   instance.detach(conn);
-            conn.toggleType("basic");
+            # conn.toggleType("basic");
         );
 
         @instance.bind("connectionDrag", (connection) ->
