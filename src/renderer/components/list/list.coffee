@@ -26,26 +26,6 @@ module.exports =
           value: 'Page0'
           type: 'hidden'
 
-        add:
-          value: 'Add Item'
-          type: 'button'
-          onclick: null
-
-        itemSelect:
-          type: 'select'
-          options: []
-          selected: null
-
-        delete:
-          value: 'Delete item'
-          type: 'button'
-          onclick: null
-
-        selectedItemProperties:
-          type: 'nested'
-          value: null
-          emptyMsg: 'Select an item to change it.'
-
         editNewItem:
           value: 'Edit items'
           type: 'button'
@@ -67,12 +47,7 @@ module.exports =
       @type = "List"
       @index = 0
 
-      @properties.itemSelect.options = @properties.genitems
-
-      @properties.add.onclick = @addItem
-      @properties.delete.onclick = @removeItem
       @properties.editNewItem.onclick = @OpenEditNewItem
-      @properties.itemSelect.onchange = @onSelectionChange
 
     onSelectionChange: =>
       Vue.nextTick =>

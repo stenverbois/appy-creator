@@ -1,4 +1,4 @@
-<style lang="scss">
+<style lang="scss" scoped>
 @import "./../../style/custom/variables.scss";
 .content {
   position: absolute;
@@ -11,7 +11,7 @@
 <template>
   <main>
     <div class="contents">
-      <components @add-component="addComponent($arguments)"></components>
+      <components :data.once="components" @add-component="addComponent($arguments)"></components>
       <div class="content">
         <list-item-view :list.sync="list" :selected.sync="selected"></list-item-view>
       </div>
@@ -24,8 +24,14 @@
 module.exports =
   data: ->
     state: store.state
-
     selected: -1
+    components: [
+      {
+        title: "Main"
+        icon: "language"
+        objects: Object.keys require('../components/components.coffee').classes
+      }
+    ]
 
   props: ['list']
 
@@ -40,5 +46,5 @@ module.exports =
 
   methods:
     addComponent: (args) ->
-      @state.app.addComponent(args?[0], @list.properties.newItemComponents)
+      @state.app.addComponent(args?[1], @list.properties.newItemComponents)
 </script>

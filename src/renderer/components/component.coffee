@@ -3,6 +3,7 @@
 module.exports =
 class Component extends EventEmitter
   constructor: (@name='NoName', @properties) ->
+    @visibleInLogic = false
 
   getDefaultOutput: ->
     return 'text'

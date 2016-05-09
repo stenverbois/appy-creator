@@ -5,7 +5,8 @@
   position: absolute;
   left: 0;
   width: $component-bar-width;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   height: calc(100% - #{$top-bar-height} - #{$footer-bar-height});
 
   .collapsible {
@@ -28,20 +29,14 @@
       Components
     </div>
     <ul class="collapsible" data-collapsible="accordion">
-      <li>
-        <div class="collapsible-header"><i class="material-icons">view_module</i>Standard</div>
+      <li v-for="category in data">
+        <div class="collapsible-header"><i class="material-icons" v-text="category.icon"></i>{{category.title}}</div>
         <div class="collapsible-body">
           <ul class="collection">
-            <li class="collection-item" v-for="component in components">
-              <a class="btn-flat" @click="add(component)">{{component}}</a>
+            <li class="collection-item" v-for="object in category.objects">
+              <a class="btn-flat" @click="add(category.title, object)">{{object | isname}}</a>
             </li>
           </ul>
-        </div>
-      </li>
-      <li>
-        <div class="collapsible-header"><i class="material-icons">language</i>Other</div>
-        <div class="collapsible-body">
-          <p>Stuff</p>
         </div>
       </li>
     </ul>
@@ -50,18 +45,21 @@
 
 <script lang="coffee">
 module.exports =
-  data: ->
-    state: store.state
-    components: []
-
-  created: ->
-    @components = Object.keys require('../components/components.coffee').classes
+  props: ['data']
 
   ready: ->
     $('.collapsible', @$el).collapsible?()
 
+  watch:
+    'data': ->
+      $('.collapsible', @$el).collapsible?()
+
+  filters:
+    'isname': (val) ->
+      return (if typeof val is 'string' then val else val.name)
+
   methods:
-    add: (component) ->
-      @$dispatch('add-component', component)
+    add: (category, component) ->
+      @$dispatch('add-component', category, component)
 
 </script>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Appy creator</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+  <div class="parallax-container">
+    <div class="parallax appy">
+      <div class="row">
+        <div class="section">
+          <div class="col s12 center">
+            <i class="material-icons md-120">smartphone</i>
+          </div>
+          <div class="col s12 center appy_font">
+            Appy
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row container">
+    <div class="col s12 m9 l10">
+      <div id="tutorial" class="section scrollspy">
+        <h3>Tutorial</h3>
+        <div class="divider"></div>
+        <div class="section">
+          <p>
+            Lets's dive right in with a small tutorial to make your first app! If you just want to know how a
+            specific part of the editor works, feel free to use the menu on the right to skip to the part you need.
+          </p>
+          <p>
+            We will be making an app that lets a user fill in two textboxes and then press a button to combine the text
+            in those textboxes and show the result. Let's get started!
+          </p>
+          <h5>Design</h5>
+          <p>
+            First thing we need to do is add all the components we need to our app. For this small app we will need
+            two textboxes for the user to fill in the text, one button and a label to show the resulting text.
+            We add these components by clicking on them in de components bar on the left.
+            You can position and resize the elements to make your app look unique. You can change some of
+            the properties of the components as well, like the text on the button or the default text in the texboxes.
+          </p>
+          <b>GIF?</b>
+          <p>
+            Now that we have all the components in place we can apply some logic to them.
+          </p>
+          <h5>Logic</h5>
+          <p>
+            Now we start by looking through the functions on the left. Click on the <b>Plus</b> block and you will see
+            a logic block appear in the middle of the screen. This is the central logic block for our app.
+          </p>
+          <img class="responsive-img" src="https://i.gyazo.com/5a83dc69ddf925eeb9571edab85ab737.gif">
+          <p>
+            We can see it needs some inputs, an output and an action. The inputs are the textboxes, so we find both our
+            textboxes in the bar on the left and add them to the logic screen by clicking on them. Now we can connect
+            the <b>text</b> output of the texboxes to the <b>left</b> and <b>right</b> inputs of the Plus block.
+          </p>
+          <img class="responsive-img" src="https://i.gyazo.com/45203ec1eb1c852b3632e330db40f408.gif">
+          <p>
+            Next up is the output. We add the label to the logic screen and connect the output of the Plus block to
+            the <b>text</b> input of the label.
+          </p>
+          <p>
+            Finally we need a way to activate the Plus block. Let's add our last component, the button, to the logic screen
+            and connect it with the <b>action</b> input of the Plus block. On the connection you will see
+            a dropdown selection for the action that will activate the block. For now we need the click so you can leave it
+            like that. That's it! All we need to do now is click the Upload button in the top right corner, scan the qr code with
+            the Appy Center app and see our brand new app in action.
+          </p>
+        </div>
+      </div>
+      <div id="design" class="section scrollspy">
+        <h3>Design</h3>
+        <div class="divider"></div>
+        <div class="section">
+          <img class="responsive-img" src="img/editor/editor.png">
+          <p>
+            The editor is used to create the visual part of your application.
+            On your left you have a list of components. With these components you create the application that you want.
+            When you click on a component, the component will be visible on the smartphone panel in the middle.
+          </p>
+
+          <p>
+            When a component is selected on the smartphone panel, you can move it around by just dragging it to where you want.
+            You can also resize the component if you want to. You do this by putting your cursor in the right bottom corner of the component.
+            Then you just drag to the size you want.
+            <img class="responsive-img" src="https://i.gyazo.com/8daf9cc2e7ea96eb98b70829b8393aed.gif">
+          </p>
+
+          <p>
+            On the right side of the editor you have the properties section. Here you can edit the properties of the components on the smartphone panel individually.
+            More info about the components and their properties can be found in the <a href="#components">components</a> section.
+            In this section you can also delete a component by clicking on the <kbd>DELETE</kbd> button at the bottom of the panel.
+          </p>
+
+          <img class="responsive-img" src="img/editor/tabs.png">
+          <p>On the top bar of the editor you have a few tabs. We are now in the Design tab.
+            When you're done with your design you can choose to add some logic to your app by going to the Logic tab.
+            More info about the logic tab can be found in the <a href="#logic">logic</a> section.
+            The info tab contains info about the application itself but you shouldn't worry about that for the moment.
+          </p>
+          <p>
+            You can also save your app by clicking on the save tab. Once saved you can reload the app with the load tab.
+            If you're done with making your app, you can upload it to the public by clicking on upload.
+            When you do this you'll get a QR code back. This QR code is important! Other users will use this to download your application.
+          </p>
+        </div>
+      </div>
+
+      <div id="components" class="section scrollspy">
+        <h3>Components</h3>
+        <div class="divider"></div>
+        <div class="section">
+          <h5>Textbox</h5>
+          <p>A textbox component is used for user input. </p>
+
+          <table class="bordered">
+            <thead>
+              <tr>
+                <th data-field="attr">Attribute</th>
+                <th data-field="info">Info</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Text</td>
+                <td>The text on the Textbox</td>
+              </tr>
+              <tr>
+                <td>Visible</td>
+                <td>If the Textbox is visible or not</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <br />
+          <h5>Label</h5>
+          <p>A label component can be used to contain any text you want to display to the user.</p>
+
+          <table class="bordered">
+            <thead>
+              <tr>
+                <th data-field="attr">Attribute</th>
+                <th data-field="info">Info</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Text</td>
+                <td>The text on the Label</td>
+              </tr>
+              <tr>
+                <td>Visible</td>
+                <td>If the Label is visible or not</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- <br />
+          <h5>Image</h5>
+          <p>An image component can be used to display an image to the user.</p>
+          <table class="bordered">
+            <thead>
+              <tr>
+                <th data-field="attr">Attribute</th>
+                <th data-field="info">Info</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Text</td>
+                <td>The text the component has</td>
+              </tr>
+              <tr>
+                <td>Visible</td>
+                <td>If the component is visible or not</td>
+              </tr>
+            </tbody>
+          </table> -->
+
+          <br />
+          <h5>Button</h5>
+          <p>A button component can be used to interact with the user with logic blocks.</p>
+          <table class="bordered">
+            <thead>
+              <tr>
+                <th data-field="attr">Attribute</th>
+                <th data-field="info">Info</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Text</td>
+                <td>The text on the Button</td>
+              </tr>
+              <tr>
+                <td>Visible</td>
+                <td>If the Button is visible or not</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <br />
+          <h5>List</h5>
+          <img style="width: 150px; float: right;" class="responsive-img" src="img/list/props.png">
+          <p>A list component is a collection of different components.
+            The components of a list are created from a component template.
+            This template can be created by clicking on <b>Edit items</b> in the properties of the list.
+            In this template you insert the components each list element should have.
+          </p>
+
+          <table class="bordered">
+            <thead>
+              <tr>
+                <th data-field="attr">Attribute</th>
+                <th data-field="info">Info</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Visible</td>
+                <td>If the List is visible or not</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <div id="logic" class="section scrollspy">
+        <h3>Logic</h3>
+        <div class="divider"></div>
+        <img class="responsive-img" src="img/logic/logic.png">
+        <p>
+          The logic view is the view where you create the logic of your application.
+          This is an important process because it makes your app do the things you want!
+          The logic view consists of two main area's. First we again have a side bar on the left.
+          This time there is a button for every component that is present in your app.
+          Here you can also find functions. These functions are the most important things in your logic because they will connect
+          your components to make them do useful things.
+          When you click on one of the components or functions, a block will appear on the right side.
+        </p>
+        <p>
+          Inputs of a block are indicated by the colored circles and outputs by the empty circles.
+          You can connect any input to an output simply by holding your mouse down on an output and then releasing
+          it over an input.
+        </p>
+        <div class="card-panel teal">
+          <p class="white-text">
+            <i>Note:</i> When you add a List component to the logic screen, instead of adding a single block like for the other components,
+            there will a block for every component inside each list item. This way you can connect these with functions individually.
+          </p>
+        </div>
+        <h4>Functions</h4>
+        <p>
+          Functions consist of three different types of inputs and outputs.
+          At the left side of the block you always have the inputs of the function.
+          These inputs are given to the function to do something with.
+          The inputs always have names so be sure to carefully read the label of the input you want to make a connection with.
+          On the bottom of the block you have an action input.
+          These inputs should only be connected with connections from a Button block.
+          The reason for this is that your function is triggered by an event (e.g. <u>click</u> on a button).
+          For the moment only buttons have events.
+          On the right side of the function block you have the output's of the function.
+          These outputs can be connected with any other component or even function.
+        </p>
+        <div class="row">
+          <div class="col s12">
+            <h5>Plus</h5>
+            <div class="divider"></div>
+            <img class="responsive-img" src="img/logic/plus.png">
+            <p>A Plus block adds 2 things together into one output. Like the text of two textboxes.</p>
+            <table class="bordered">
+              <thead>
+                <tr>
+                  <th data-field="conn">Connection</th>
+                  <th data-field="type">Type</th>
+                  <th data-field="info">Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Left</td>
+                  <td>Input</td>
+                  <td>The parameter on the left side of the +</td>
+                </tr>
+                <tr>
+                  <td>Right</td>
+                  <td>Input</td>
+                  <td>The parameter on the right side of the +</td>
+                </tr>
+                <tr>
+                  <td>Result</td>
+                  <td>Output</td>
+                  <td>The result of the +</td>
+                </tr>
+                <tr>
+                  <td>Action</td>
+                  <td>Input</td>
+                  <td>The result of the +</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>Special note: The left output is used first. So if you connect a textbox with text "A" to left and a textbox with text "B" to right.
+              The result will be "AB" and not "BA".</p>
+          </div>
+        </div>
+
+        <div class="card-panel teal">
+          <p class="white-text">
+            The next two function blocks are a bit different because they are not always available.
+            They have an effect on a specific List component in your app, so you will only be able to
+            add one of them for each List component you have in your app.
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col s12">
+            <h5>AddListItem</h5>
+            <div class="divider"></div>
+            <img class="responsive-img" src="img/logic/addItemList.png">
+            <p>
+              When activated, the AddListItem block adds a new item to the list it belongs to.
+              It doesn't have a fixed set of inputs like the Plus, rather the inputs
+              depend on what components you have put in the list item need an input.
+            </p>
+            <p>
+              For example: If you have two Labels and a Button in your list item
+              then the AddListItem block will only have two inputs, one for each label.
+              the button does't need an input in this case. You provided the text on the button
+              when designing the list item. It will then make a new item with the text of the connected
+              inputs in place of the default text on those Labels.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <h5>RemoveListItem</h5>
+            <div class="divider"></div>
+            <img class="responsive-img" src="img/logic/deleteListItem.png">
+            <p>
+              When activated, the RemoveListItem block removes an item from the list it belongs to.
+              For now, you can only remove items from lists by clicking on a button on that item.
+              So the way you this function is by connecting a Button to it that is part of the components of a list item.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col hide-on-small-only m3 l2">
+      <div id="side-bar" class="pinned">
+        <ul class="section table-of-contents">
+          <li><a href="#tutorial">Tutorial</a></li>
+          <li><a href="#design">Design</a></li>
+          <li><a href="#components">Components</a></li>
+          <li><a href="#logic">Logic</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  $(document).ready(function(){
+    $('.scrollspy').scrollSpy();
+  });
+  </script>
+</body>
+</html>
