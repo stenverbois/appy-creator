@@ -38,6 +38,19 @@ h5 {
   height: 300px;
 }
 
+.responsive-img {
+  display: block;
+  margin: auto;
+}
+
+.wide {
+  width: 100%;
+}
+
+.responsive-img.logic-block {
+  max-width: 300px !important;
+  margin-left: 0;
+}
 
 /* Rules for sizing the icon. */
 .material-icons.md-18 { font-size: 18px; }
