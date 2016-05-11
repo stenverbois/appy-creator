@@ -477,6 +477,49 @@ module.exports =
                 func.connectOutput(targetOverlayLabel, t.data("name"))
         );
 
+        @instance.bind("beforeDetach", (connection) =>
+            console.log("WHY YOU DETACHING BRAH");
+            console.log("##{connection.sourceId}")
+            console.log("##{connection.targetId}")
+
+            s = $("body").find("##{connection.sourceId}")
+            t = $("body").find("##{connection.suspendedElementId}")
+
+            sourceOverlayLabel = s.text().trim(" ")
+            targetOverlayLabel = t.text().trim(" ")
+
+            # If the function is the target
+            #console.log(connection)
+            #console.log(targetOverlayLabel)
+            #console.log(sourceOverlayLabel)
+            result = (func for func in @state.app.functions when func.name == t.data("name"))
+            if result.length > 0
+              func = result[0]
+              if targetOverlayLabel == "Action"
+                connectionOverlayLabel = connInfo.connection.getOverlay("label").label
+                select = $($.parseHTML(connectionOverlayLabel)).attr("id")
+                option = $("##{select}").val()
+                #func.connectTrigger(@state.app.addTrigger(s.data("name"), option))
+                func.disconnectTrigger(@state.app.getTrigger(s.data("name")))
+
+              else
+                #console.log("PARAM")
+                #console.log(targetOverlayLabel)
+                #console.log(s.data("name"))
+                #console.log(sourceOverlayLabel)
+                #func.connectParameter(targetOverlayLabel, s.data("name"), sourceOverlayLabel)
+                func.disconnectParameter(targetOverlayLabel)
+
+            else
+              # If function is the source
+              result = (func for func in @state.app.functions when func.name == s.data("name"))
+              if result.length > 0
+                func = result[0]
+                #func.connectOutput(targetOverlayLabel, t.data("name"))
+                func.disconnectOutput(targetOverlayLabel, t.data("name"))
+        );
+
+
         # // make all the window divs draggable
         @instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
         # // THIS DEMO ONLY USES getSelector FOR CONVENIENCE. Use your library's appropriate selector

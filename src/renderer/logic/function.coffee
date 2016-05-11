@@ -1,7 +1,7 @@
 module.exports =
 class Function
   @isForList : false
-  
+
   constructor: (@name, @parameters={}, @triggers=[], @outputs=[]) ->
     @visibleInLogic = false
 
@@ -12,8 +12,24 @@ class Function
     else
       console.error "'#{name}' is not a valid parameter of #{@name}."
 
+  disconnectParameter: (name) ->
+      if name in (@parameterNames.map (e) -> e.name)
+        delete @parameters[name]
+
+  disconnectTrigger: (name) ->
+    @triggers.remove name
+
   connectTrigger: (name) ->
     @triggers.push name
+
+  disconnectOutput: (name, component) ->
+    newOutput = []
+    for output in @outputs
+      if output != "#{component}.#{name}"
+        newOutput.push output
+        
+    @outputs = newOutput
+
 
   connectOutput: (name, component) ->
     @outputs.push "#{component}.#{name}"
