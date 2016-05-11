@@ -73,6 +73,10 @@
     cursor: pointer;
 }
 
+.jtk-node{
+  left: 25%;
+}
+
 .flowchart-demo .aLabel.jsplumb-hover {
     /*background-color: #5C96BC;*/
     /*color: white;*/
