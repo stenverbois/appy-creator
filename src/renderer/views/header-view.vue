@@ -101,7 +101,7 @@ module.exports =
           if err?
             alert "Upload failed: #{err}"
           else
-            alert "Successfully uploaded your appy!\nServer responded with #{body}"
+            # alert "Successfully uploaded your appy!\nServer responded with #{body}"
             $(@$refs.qr.$el).empty()
             @$refs.qr.renderQR(body)
             $('#qr_modal').openModal();
