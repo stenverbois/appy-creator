@@ -496,7 +496,7 @@ module.exports =
             if result.length > 0
               func = result[0]
               if targetOverlayLabel == "Action"
-                connectionOverlayLabel = connInfo.connection.getOverlay("label").label
+                connectionOverlayLabel = connection.getOverlay("label").label
                 select = $($.parseHTML(connectionOverlayLabel)).attr("id")
                 option = $("##{select}").val()
                 #func.connectTrigger(@state.app.addTrigger(s.data("name"), option))

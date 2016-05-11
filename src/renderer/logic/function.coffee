@@ -1,3 +1,5 @@
+Array::remove = (e) -> @[t..t] = [] if (t = @indexOf(e)) > -1
+
 module.exports =
 class Function
   @isForList : false
@@ -27,9 +29,7 @@ class Function
     for output in @outputs
       if output != "#{component}.#{name}"
         newOutput.push output
-        
-    @outputs = newOutput
-
+    @outputs = newOutput    
 
   connectOutput: (name, component) ->
     @outputs.push "#{component}.#{name}"
