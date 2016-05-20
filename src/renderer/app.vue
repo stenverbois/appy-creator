@@ -8,7 +8,7 @@
 
 <template>
   <div>
-    <header-view></header-view>
+    <header-view :page="page"></header-view>
     <content-view :page="page" :list="list"></content-view>
     <footer-view></footer-view>
   </div>

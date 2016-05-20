@@ -11,7 +11,7 @@
 <template>
   <main>
     <div class="contents">
-      <components :data.once="components" @add-component="addComponent($arguments)"></components>
+      <components :data.once="components" :title.once="'Components'" @add-component="addComponent($arguments)"></components>
       <div class="content">
         <app-view></app-view>
       </div>

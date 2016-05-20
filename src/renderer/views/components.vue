@@ -26,7 +26,7 @@
 <template>
   <div class="components z-depth-1">
     <div class="view header indigo-text text-lighten-1">
-      Components
+      {{title}}
     </div>
     <ul class="collapsible" data-collapsible="accordion">
       <li v-for="category in data">
@@ -45,7 +45,7 @@
 
 <script lang="coffee">
 module.exports =
-  props: ['data']
+  props: ['data', 'title']
 
   ready: ->
     $('.collapsible', @$el).collapsible?()

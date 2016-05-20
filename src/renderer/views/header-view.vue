@@ -11,7 +11,16 @@
     padding: 0 20px;
   }
   .separator {
-    border-right: 3px solid $secondary-color;
+    width: 3rem;
+    // TODO: Better way to show seperator
+    // Possibly reworking entire header
+    height: 1rem;
+  }
+
+  .active {
+    height: 60px;
+    box-sizing: content-box;
+    border-bottom: 4px solid $accent-color;
   }
 }
 </style>
@@ -24,9 +33,10 @@
           <li><div class="brand-logo z-depth-1">Appy</div></li>
         </ul>
         <ul id="nav-mobile" class="right">
-          <li><a @click="gotoDesignPage()">Design</a></li>
-          <li><a @click="gotoLogicPage()">Logic</a></li>
-          <li><a class="separator" @click="gotoInfoPage()">Info</a></li>
+          <li><div :class="{'active': page === 'design-app-view' || page === 'design-list-item-view'}"><a @click="gotoDesignPage()">Design</a></div></li>
+          <li><a @click="gotoLogicPage()" :class="{'active': page === 'logic-view'}">Logic</a></li>
+          <li><a @click="gotoInfoPage()" :class="{'active': page === 'info-view'}">Info</a></li>
+          <li><div class="separator"></div></li>
           <li><a @click="saveApp()">Save</a></li>
           <li><a @click="loadApp()">Load</a></li>
           <li><a class="modal-trigger" href="#upload_modal">Upload</a></li>
@@ -62,6 +72,7 @@ remote = require('electron').remote
 dialog = remote.dialog
 
 module.exports =
+  props: ['page']
   data: ->
     state: store.state
 

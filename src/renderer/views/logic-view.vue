@@ -145,7 +145,7 @@ path, .jsplumb-endpoint {
 
 <template>
 <div>
-  <components :data="components" @add-component="addComponentClick($arguments)"></components>
+  <components :data="components" :title.once="'Blocks'" @add-component="addComponentClick($arguments)"></components>
   <div class="content">
     <!-- <div class="row">
       <a class="btn" v-for="component in state.app.components" @click="addComponent(component)">{{component.name}}</a>
