@@ -41,6 +41,11 @@ class UserApp extends EventEmitter
   removeComponent: (index) ->
     @components.splice index, 1
 
+  getTrigger: (name) =>
+    for t in @triggers
+      if t.component == name
+        return t.name
+
   addTrigger: (comp, action) =>
     name = "Trigger" + @id
     @triggers.push new trigger(name, comp, action)

@@ -21,7 +21,7 @@
     <nav class="z-depth-0">
       <div class="nav-wrapper z-depth-1">
         <ul id="nav-mobile" class="left">
-          <li><a class="brand-logo z-depth-1">Appy</a></li>
+          <li><div class="brand-logo z-depth-1">Appy</div></li>
         </ul>
         <ul id="nav-mobile" class="right">
           <li><a @click="gotoDesignPage()">Design</a></li>
@@ -101,7 +101,7 @@ module.exports =
           if err?
             alert "Upload failed: #{err}"
           else
-            alert "Successfully uploaded your appy!\nServer responded with #{body}"
+            # alert "Successfully uploaded your appy!\nServer responded with #{body}"
             $(@$refs.qr.$el).empty()
             @$refs.qr.renderQR(body)
             $('#qr_modal').openModal();
