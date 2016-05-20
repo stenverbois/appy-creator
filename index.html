@@ -10,6 +10,7 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/gifffer.min.js"></script>
 
   <!--Import Google Icon Font-->
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -64,13 +65,13 @@
             Now we start by looking through the functions on the left. Click on the <b>Plus</b> block and you will see
             a logic block appear in the middle of the screen. This is the central logic block for our app.
           </p>
-          <img class="responsive-img" src="https://i.gyazo.com/5a83dc69ddf925eeb9571edab85ab737.gif">
+          <img class="responsive-img" data-gifffer="https://i.gyazo.com/5a83dc69ddf925eeb9571edab85ab737.gif">
           <p>
             We can see it needs some inputs, an output and an action. The inputs are the textboxes, so we find both our
             textboxes in the bar on the left and add them to the logic screen by clicking on them. Now we can connect
             the <b>text</b> output of the texboxes to the <b>left</b> and <b>right</b> inputs of the Plus block.
           </p>
-          <img class="responsive-img" src="https://i.gyazo.com/45203ec1eb1c852b3632e330db40f408.gif">
+          <img class="responsive-img" data-gifffer="https://i.gyazo.com/45203ec1eb1c852b3632e330db40f408.gif">
           <p>
             Next up is the output. We add the label to the logic screen and connect the output of the Plus block to
             the <b>text</b> input of the label.
@@ -88,7 +89,7 @@
         <h3>Design</h3>
         <div class="divider"></div>
         <div class="section">
-          <img class="responsive-img" src="img/editor/editor.png">
+          <img class="responsive-img" data-gifffer="img/editor/editor.png">
           <p>
             The editor is used to create the visual part of your application.
             On your left you have a list of components. With these components you create the application that you want.
@@ -99,7 +100,7 @@
             When a component is selected on the smartphone panel, you can move it around by just dragging it to where you want.
             You can also resize the component if you want to. You do this by putting your cursor in the right bottom corner of the component.
             Then you just drag to the size you want.
-            <img class="responsive-img" src="https://i.gyazo.com/8daf9cc2e7ea96eb98b70829b8393aed.gif">
+            <img class="responsive-img" data-gifffer="https://i.gyazo.com/8daf9cc2e7ea96eb98b70829b8393aed.gif">
           </p>
 
           <p>
@@ -108,7 +109,7 @@
             In this section you can also delete a component by clicking on the <kbd>DELETE</kbd> button at the bottom of the panel.
           </p>
 
-          <img class="responsive-img" src="img/editor/tabs.png">
+          <img class="responsive-img" data-gifffer="img/editor/tabs.png">
           <p>On the top bar of the editor you have a few tabs. We are now in the Design tab.
             When you're done with your design you can choose to add some logic to your app by going to the Logic tab.
             More info about the logic tab can be found in the <a href="#logic">logic</a> section.
@@ -250,7 +251,7 @@
       <div id="logic" class="section scrollspy">
         <h3>Logic</h3>
         <div class="divider"></div>
-        <img class="responsive-img" src="img/logic/logic.png">
+        <img class="responsive-img" data-gifffer="img/logic/logic.png">
         <p>
           The logic view is the view where you create the logic of your application.
           This is an important process because it makes your app do the things you want!
@@ -382,6 +383,7 @@
   <script>
   $(document).ready(function(){
     $('.scrollspy').scrollSpy();
+    Gifffer();
   });
   </script>
 </body>
