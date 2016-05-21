@@ -1,8 +1,9 @@
 body {
   position: relative;
+  background-color: #e0e0e0;
 }
 
-.appy{
+.appy {
   background-color: #303F9F;
   color: white;
   display: flex;
@@ -16,6 +17,14 @@ h3 {
 
 h5 {
   font-weight: 500;
+}
+
+img, canvas {
+  border-radius: 3px;
+}
+
+div.divider {
+  background-color: #ABABAB;
 }
 
 .appy_font{
