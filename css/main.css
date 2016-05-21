@@ -20,11 +20,16 @@ h5 {
 }
 
 img, canvas {
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 div.divider {
   background-color: #ABABAB;
+}
+
+.result {
+  width: 300px;
+  height: auto;
 }
 
 .appy_font{
