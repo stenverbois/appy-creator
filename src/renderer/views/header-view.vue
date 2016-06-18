@@ -76,7 +76,7 @@ module.exports =
   data: ->
     state: store.state
 
-    uploadURL: 'localhost:8000'
+    uploadURL: 'https://appy-ua.herokuapp.com/'
     qrContent: ''
 
   components:
@@ -106,7 +106,7 @@ module.exports =
         file: JSON.stringify(@state.app.export(), null, 2)
 
       request.post
-        url: "http://#{@uploadURL}/upload/"
+        url: "#{@uploadURL}/upload/"
         formData: formData
         (err, httpResponse, body) =>
           if err?
