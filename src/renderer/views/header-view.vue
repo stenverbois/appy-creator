@@ -76,7 +76,7 @@ module.exports =
   data: ->
     state: store.state
 
-    uploadURL: 'https://appy-ua.herokuapp.com/'
+    uploadURL: 'https://appy-ua.herokuapp.com'
     qrContent: ''
 
   components:
